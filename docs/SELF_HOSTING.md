@@ -32,8 +32,9 @@ have one source in [`defaults.json`](../src/minder_publish/defaults.json).
 
 ## Configure and bootstrap
 
-Work from an inspected release checkout. These commands build and start containers
-on your own host; review the Dockerfile and Compose configuration before running them.
+Use the source for a [published release tag](https://github.com/S1lash/minder-publish/releases/latest).
+These commands build and start containers on your own host. Review the Dockerfile
+and Compose configuration before running them.
 
 ```sh
 cp .env.example .env
@@ -189,10 +190,13 @@ Sign in at `/login`, open **Connection**, and choose your assistant. For Codex o
 Claude Code, copy one setup instruction into the assistant: it installs the verified
 client release and compact skill together. It reports an absolute connection command
 for your own terminal, so installation does not depend on the executable being on
-`PATH`. Enter the device token once into that command’s hidden prompt; setup checks
-the connection. The token stays outside model context. Manual installation and
-skill repair instructions are in the advanced section. Read scope is sufficient
-for tools that do not publish or change materials.
+`PATH`. For a new connection, create a device token with **Manage materials**
+and enter it into that command’s hidden prompt. Setup checks the connection.
+Open a fresh chat to load the installed skill. The token stays outside model context.
+Manual installation and skill repair instructions are in the advanced section.
+Read scope is sufficient for tools that only read materials. Run the Claude Code
+installer from the same Claude configuration you use for publishing, so it can
+honor its `CLAUDE_CONFIG_DIR` when set.
 
 The Docker image retains its CLI-only wheel at `/opt/minder-publish/client.whl`.
 For a direct source installation, run `python scripts/build-client-wheel.py` in
@@ -202,15 +206,27 @@ provides download links and checksums for the installer, CLI wheel, complete
 skill ZIP and plugin package. The CLI download is unavailable when no wheel is
 configured.
 
-Remote MCP is disabled by default. To enable it, install the `mcp` extra in the
-server environment (included in the image), set `PUBLISH_REMOTE_MCP=true` and
-restart the single worker. Its canonical resource/endpoint is
-`https://YOUR_CONTROL_HOST/mcp`. The proxy must forward Authorization and support
+Remote MCP is disabled by default. For Docker Compose, set `PUBLISH_REMOTE_MCP=true`
+in `.env`. If the service is already running, apply the new environment to the
+app container from the release directory:
+
+```sh
+docker compose up -d --wait --no-deps app
+```
+
+The image includes the MCP dependencies. For a direct source installation,
+install the `mcp` extra, set `PUBLISH_REMOTE_MCP=true` in the server environment
+and restart the single worker. Use `https://YOUR_CONTROL_HOST/mcp` as the
+endpoint and canonical resource. The proxy must forward Authorization and support
 unbuffered requests. Provider servers must be able to reach the HTTPS endpoint;
 a desktop browser reaching an IP-restricted instance does not prove cloud access.
 
 In ChatGPT, choose OAuth with automatic client registration (DCR); leave static
 client ID and secret empty. The instance supplies discovery and supports PKCE.
+Set up ChatGPT on the web. OpenAI documents custom MCP write access for eligible
+Business and Enterprise/Edu workspaces. If your client is read-only or lacks the
+app, use the cabinet or CLI for publication.
+[ChatGPT custom MCP availability](https://help.openai.com/en/articles/12584461-connecting-custom-mcp-servers-in-chatgpt)
 Claude can also use OAuth; choose **Register automatically** for its OAuth client.
 A client supporting fixed credentials can instead use its own device token in the
 `Authorization: Bearer ...` header; in Claude choose **No sign in** for this alternative.
@@ -234,15 +250,18 @@ installation, ask the user for their preference once, then apply it only using
 controls the host actually offers; explain if the chosen behavior is unavailable.
 A skill adds instructions and does not grant access or change host permissions.
 
-Install or enable the resulting connection and start a new chat. Connection provides
-a copied check request that lists at most three materials without mutations. Verify
-this first; a skill is optional guidance, not a prerequisite for using MCP tools.
+Install or enable the resulting connection and start a new chat. Use **Copy
+connection check** for a read-only check, then **Copy publish test** to verify
+that the client can publish and update an HTML sample at the same address.
+The connector can run these tools without a skill.
 
 Connection supplies one skill ZIP with all references for either application.
 In ChatGPT, open Plugins → Skills → Create → Upload from your computer. In Claude,
 open Customize → Skills → + → Create skill → Upload a skill; some layouts place Skills under
 Plugins or Customize. Upload the ZIP and enable the skill with the existing MCP
-connection. Downloading a ZIP does not install it or authorize a connector.
+connection. In Claude, enable code execution and file creation if **Skills**
+is missing. Complete setup on the web or desktop, then open a new chat on each
+device and check whether its connected app and skill are available.
 Follow Claude's [connector guide](https://support.claude.com/en/articles/11176164-use-connectors-to-extend-claude-s-capabilities)
 and [skill upload guide](https://support.claude.com/en/articles/12512180-use-skills-in-claude)
 for the controls available in the account. Confirm actual account and mobile
@@ -292,7 +311,8 @@ Operator environment variables override their namesake defaults from
 | `PUBLISH_OWNER_RECENT_AUTH_SECONDS` | Fresh confirmation window |
 
 All values must be positive integers and satisfy the session policy constraints.
-Restart the worker after changing them. Logout revokes that browser session;
+Apply changes to the Compose environment with `docker compose up -d --wait --no-deps app`.
+For a direct source installation, restart the worker. Logout revokes that browser session;
 password reset revokes owner sessions, device tokens, OAuth grants and content
 access credentials. An ordinary logout does not disconnect independently authorized
 applications.

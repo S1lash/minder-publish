@@ -57,6 +57,9 @@ function assertLocal(markup){
 }
 assertLocal(root.innerHTML);
 await root.click({connectionCopy:'cli'});assert.equal(copied.at(-1),'INSTALL_CODEX_PUBLIC');
+await root.click({connectionCopy:'example'});
+assert(copied.at(-1).includes('one-day expiry') && copied.at(-1).includes('that same material'));
+assert(copied.at(-1).includes('without changing access or expiry') && copied.at(-1).includes('original stable link'));
 await root.click({connectionProvider:'claude-code'});assertLocal(root.innerHTML);await root.click({connectionCopy:'cli'});assert.equal(copied.at(-1),'INSTALL_CLAUDE_PUBLIC');await root.click({connectionCopy:'skill'});assert.equal(copied.at(-1),'SKILL_CLAUDE_PUBLIC');
 await root.click({connectionProvider:'chatgpt'});
 function assertCloud(markup){
@@ -78,6 +81,7 @@ function assertCloud(markup){
  assert(markup.includes('Open upload settings') && markup.includes('data-upload-limits'));
 }
 assertCloud(root.innerHTML);assert(root.innerHTML.includes('automatic client registration (DCR)'));assert(root.innerHTML.includes('ChatGPT, review the Publish app'));
+assert(root.innerHTML.includes('Copy publish test'));
 await root.click({connectionCopy:'cloud-check'});
 assert(copied.at(-1).includes('at most three materials'));
 assert(copied.at(-1).includes('Do not publish, edit, delete or upload'));

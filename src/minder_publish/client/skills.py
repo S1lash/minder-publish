@@ -332,9 +332,25 @@ def _ensure_generation(
             shutil.rmtree(staging)
 
 
+def claude_directory(override: Path | str | None = None) -> Path | None:
+    value = override if override is not None else os.getenv("CLAUDE_CONFIG_DIR")
+    if not value:
+        return None
+    directory = Path(os.path.abspath(Path(value).expanduser()))
+    if directory.is_relative_to(Path.home().absolute()):
+        return directory
+    # Pin the parent of an explicit profile outside the home boundary. The
+    # profile directory and the managed skill tree still get symlink checks.
+    try:
+        return directory.parent.resolve() / directory.name
+    except (OSError, RuntimeError) as error:
+        raise ClientError("unsafe_skill_target", "Cannot resolve the Claude configuration directory.") from error
+
+
 def install(
-    source: Path, *, home: Path, runtimes: list[str], apply: bool = False,
+    source: Path, *, runtimes: list[str], home: Path | None = None, apply: bool = False,
     instance_name: str | None = None, instance_url: str | None = None,
+    claude_config_dir: Path | None = None,
 ) -> list[dict]:
     if (instance_name is None) != (instance_url is None):
         raise ClientError("invalid_skill_instance", "The skill instance requires both its name and server URL.")
@@ -342,7 +358,10 @@ def install(
         instance_name = _safe_name(instance_name)
         instance_url = validate_base_url(instance_url)
     files = read_skill_files(source)
-    home = Path(home).expanduser().absolute()
+    claude_config_dir = (
+        claude_directory(claude_config_dir) if home is None and "claude" in runtimes else None
+    )
+    home = Path(home or Path.home()).expanduser().absolute()
     plans = []
     snapshots = {}
     for runtime in dict.fromkeys(runtimes):
@@ -351,10 +370,16 @@ def install(
         rendered = _installed_skill_files(files, runtime, instance_name, instance_url)
         version, manifest = _version(rendered)
         content = _entry(rendered, version)
-        target = home / RUNTIMES[runtime] / "skills" / "minder-publish" / "SKILL.md"
-        previous = _check_target(home, target)
+        runtime_directory = home / RUNTIMES[runtime]
+        target_root = home
+        if runtime == "claude" and claude_config_dir is not None:
+            runtime_directory = claude_config_dir
+            if not runtime_directory.is_relative_to(home):
+                target_root = runtime_directory
+        target = runtime_directory / "skills" / "minder-publish" / "SKILL.md"
+        previous = _check_target(target_root, target)
         legacy, legacy_previous = _legacy_entry(home, runtime)
-        snapshots[runtime] = (previous, target.exists(), legacy, legacy_previous)
+        snapshots[runtime] = (target_root, previous, target.exists(), legacy, legacy_previous)
         generation = target.parent / CACHE / "versions" / version
         if generation.exists() or generation.is_symlink():
             _verify_generation(generation, {**rendered, GENERATION_MANIFEST: manifest})
@@ -387,9 +412,9 @@ def install(
             version, manifest = _version(rendered)
             content = _entry(rendered, version)
             target = Path(plan["path"])
-            previous, existed, legacy, legacy_previous = snapshots[plan["runtime"]]
+            target_root, previous, existed, legacy, legacy_previous = snapshots[plan["runtime"]]
             if (
-                _check_target(home, target) != previous
+                _check_target(target_root, target) != previous
                 or _legacy_entry(home, plan["runtime"]) != (legacy, legacy_previous)
             ):
                 raise ClientError(

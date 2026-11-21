@@ -11,6 +11,7 @@ import pytest
 
 pytest.importorskip("mcp")
 
+from browser_navigation import opening_target
 from test_http import publish, sign_in
 from test_oauth import code, exchange, register, tokens
 
@@ -116,7 +117,13 @@ async def test_challenge_scope_authorized_by_owner_can_publish(remote_applicatio
             "method": "tools/call",
             "params": {
                 "name": "publish_content",
-                "arguments": {"content": "Synthetic publishing acceptance", "filename": "acceptance.txt"},
+                "arguments": {
+                    "content": "<h1>Version 1</h1>",
+                    "filename": "acceptance.html",
+                    "title": "Publish setup check",
+                    "access": "link",
+                    "ttl": "1d",
+                },
             },
         },
     )
@@ -125,6 +132,49 @@ async def test_challenge_scope_authorized_by_owner_can_publish(remote_applicatio
     assert not result.get("isError"), result
     payload = json.loads(result["content"][0]["text"])
     assert payload["stable_url"].startswith("https://publish.test/p/")
+    assert payload["access"] == "link"
+    assert payload["expires_at"] is not None
+
+    second_client, second_tokens = await tokens(remote_browser, oauth)
+    assert second_client["client_id"] != registered["client_id"]
+    headers["Authorization"] = "Bearer " + second_tokens["access_token"]
+    response = await remote_browser.post(
+        "/mcp",
+        headers=headers,
+        json={
+            "jsonrpc": "2.0",
+            "id": 2,
+            "method": "tools/call",
+            "params": {
+                "name": "update_content",
+                "arguments": {
+                    "id": payload["id"],
+                    "content": "<h1>Version 2</h1>",
+                    "filename": "acceptance.html",
+                },
+            },
+        },
+    )
+    assert response.status_code == 200, response.text
+    result = response.json()["result"]
+    assert not result.get("isError"), result
+    updated = json.loads(result["content"][0]["text"])
+    assert updated["id"] == payload["id"]
+    assert updated["stable_url"] == payload["stable_url"]
+    assert updated["current_revision"] != payload["current_revision"]
+    assert updated["access"] == payload["access"]
+    assert updated["expires_at"] == payload["expires_at"]
+
+    async with httpx.AsyncClient(
+        transport=httpx.ASGITransport(app=remote_application),
+        follow_redirects=True,
+    ) as guest:
+        landing = await guest.get(payload["stable_url"])
+        target = opening_target(landing)
+        assert target
+        opened = await guest.get(target)
+    assert opened.status_code == 200
+    assert "Version 2" in opened.text
 
 
 @pytest.mark.parametrize("credential", ["device", "oauth"])

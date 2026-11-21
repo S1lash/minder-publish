@@ -1817,23 +1817,29 @@
     "es": "Añade este servidor en los ajustes MCP remotos de la aplicación y autorízalo con OAuth. Sigue su guía de instalación.",
     "fr": "Ajoutez ce serveur dans les réglages MCP distants de l’application et autorisez-le avec OAuth. Suivez son guide d’installation."
   },
-  "Try asking your assistant": {
-    "en": "Try asking your assistant",
-    "ru": "Попробуй попросить помощника",
-    "es": "Prueba a pedirle a tu asistente",
-    "fr": "Essayez de demander à votre assistant"
+  "Test publishing": {
+    "en": "Test publishing",
+    "ru": "Пробная публикация",
+    "es": "Prueba de publicación",
+    "fr": "Tester la publication"
   },
-  "Publish this finished result and give me a link I can share.": {
-    "en": "Publish this finished result and give me a link I can share.",
-    "ru": "Опубликуй этот готовый результат и дай ссылку, которой можно поделиться.",
-    "es": "Publica este resultado terminado y dame un enlace para compartir.",
-    "fr": "Publie ce résultat terminé et donne-moi un lien à partager."
+  "Publish a sample HTML page for one day and update it at the same address.": {
+    "en": "Publish a sample HTML page for one day and update it at the same address.",
+    "ru": "Опубликуй тестовую HTML-страницу на сутки и обнови её по тому же адресу.",
+    "es": "Publica una página HTML de prueba durante un día y actualízala en la misma dirección.",
+    "fr": "Publiez une page HTML de test pendant un jour et mettez-la à jour à la même adresse."
   },
-  "Copy example request": {
-    "en": "Copy example request",
-    "ru": "Скопировать пример запроса",
-    "es": "Copiar ejemplo de petición",
-    "fr": "Copier l’exemple de requête"
+  "Copy publish test": {
+    "en": "Copy publish test",
+    "ru": "Скопировать запрос на тест",
+    "es": "Copiar solicitud de prueba",
+    "fr": "Copier la demande de test"
+  },
+  "Use Minder Publish to publish a small sample HTML page named “Publish setup check” with link access and a one-day expiry. Update that same material to show “Version 2” without changing access or expiry. Verify the updated HTML at the original stable link and return that link. If publishing is unavailable, tell me which connection or permission is missing.": {
+    "en": "Use Minder Publish to publish a small sample HTML page named “Publish setup check” with link access and a one-day expiry. Update that same material to show “Version 2” without changing access or expiry. Verify the updated HTML at the original stable link and return that link. If publishing is unavailable, tell me which connection or permission is missing.",
+    "ru": "Опубликуй через Minder Publish тестовую HTML-страницу «Проверка подключения» с доступом по ссылке на сутки. Обнови тот же материал, чтобы на странице было написано «Версия 2», сохранив доступ и срок. Проверь новый HTML по исходной ссылке и верни её. Если публикация недоступна, сообщи, какого подключения или права не хватает.",
+    "es": "Publica con Minder Publish una página HTML de prueba llamada «Prueba de conexión», con acceso mediante enlace durante un día. Actualiza ese mismo material para que muestre «Versión 2» y conserva el acceso y la caducidad. Comprueba el HTML actualizado en el enlace estable original y devuélvelo. Si no puedes publicar, indica qué conexión o permiso falta.",
+    "fr": "Publiez avec Minder Publish une page HTML de test intitulée « Test de connexion », accessible par lien pendant un jour. Mettez à jour le même document pour afficher « Version 2 » en conservant l’accès et l’expiration. Vérifiez la page mise à jour à l’adresse d’origine et renvoyez ce lien. Si la publication est indisponible, indiquez la connexion ou l’autorisation manquante."
   },
   "Manage connected apps and devices": {
     "en": "Manage connected apps and devices",
@@ -3023,11 +3029,11 @@
     "es": "Conecta con tu token",
     "fr": "Connectez-vous avec votre jeton"
   },
-  "Create a device token, then run the connection command your assistant provided in your own terminal.": {
-    "en": "Create a device token, then run the connection command your assistant provided in your own terminal.",
-    "ru": "Создай токен устройства и выполни команду подключения от ассистента в своём терминале.",
-    "es": "Crea un token de dispositivo y ejecuta en tu terminal el comando de conexión que te dio el asistente.",
-    "fr": "Créez un jeton d’appareil, puis exécutez dans votre terminal la commande de connexion fournie par votre assistant."
+  "Create a device token with Manage materials, then run the exact connection command from your assistant in your own terminal.": {
+    "en": "Create a device token with Manage materials, then run the exact connection command from your assistant in your own terminal.",
+    "ru": "Создай токен устройства с правом «Управление материалами» и выполни в своём терминале точную команду подключения от ассистента.",
+    "es": "Crea un token de dispositivo con permiso para gestionar materiales y ejecuta en tu terminal el comando exacto de conexión que te dio el asistente.",
+    "fr": "Créez un jeton d’appareil avec l’autorisation de gérer les documents, puis exécutez dans votre terminal la commande exacte de connexion fournie par votre assistant."
   },
   "Paste the token once into the hidden terminal prompt. Never paste it into an AI chat or put it in a command.": {
     "en": "Paste the token once into the hidden terminal prompt. Never paste it into an AI chat or put it in a command.",

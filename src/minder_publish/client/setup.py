@@ -9,10 +9,13 @@ from pathlib import Path
 from . import config
 from .api import PublishClient
 from .errors import ClientError
-from .skills import canonical_source, install
+from .skills import canonical_source, claude_directory, install
 
 
-def setup(runtime: str, url: str, name: str, *, connect: bool, read_token) -> dict:
+def setup(
+    runtime: str, url: str, name: str, *, connect: bool, read_token,
+    claude_config_dir: Path | None = None,
+) -> dict:
     url = config.validate_base_url(url)
     name = config._safe_name(name)
     saved = config.read_config()
@@ -25,12 +28,16 @@ def setup(runtime: str, url: str, name: str, *, connect: bool, read_token) -> di
             "That instance name already points to another server. Choose another --name; existing credentials were not changed.",
             field="name",
         )
+    claude_config_dir = claude_directory(claude_config_dir) if runtime == "claude" else None
     plans = install(
-        canonical_source(), home=Path.home(), runtimes=[runtime], apply=True,
+        canonical_source(), runtimes=[runtime], apply=True,
         instance_name=name, instance_url=url,
+        claude_config_dir=claude_config_dir,
     )
     command = [str(config.executable_path()), "setup", "--runtime", runtime,
                "--url", url, "--name", name, "--connect"]
+    if claude_config_dir is not None:
+        command.extend(["--claude-config-dir", str(claude_config_dir)])
     shell_command = (
         "& " + " ".join("'" + value.replace("'", "''") + "'" for value in command)
         if os.name == "nt" else shlex.join(command)

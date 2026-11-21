@@ -40,6 +40,48 @@ def test_setup_without_token_installs_and_returns_absolute_shell_command(setup_e
     assert config.read_config()['instances'] == {}
 
 
+def test_setup_installs_skill_in_claude_config_directory(setup_env, monkeypatch, tmp_path):
+    claude_config = tmp_path / "separate claude profile"
+    monkeypatch.setenv("CLAUDE_CONFIG_DIR", str(claude_config))
+
+    result = setup_client.setup(
+        "claude", "https://publish.test", "personal",
+        connect=False, read_token=lambda: pytest.fail("unexpected token prompt"),
+    )
+
+    entry = claude_config / "skills" / "minder-publish" / "SKILL.md"
+    assert result["skills"][0]["path"] == str(entry)
+    assert "name: minder:publish" in entry.read_text(encoding="utf-8")
+    assert result["connection_command"][-2:] == ["--claude-config-dir", str(claude_config)]
+    monkeypatch.delenv("CLAUDE_CONFIG_DIR")
+    connected = setup_client.setup(
+        "claude", "https://publish.test", "personal",
+        connect=False, read_token=lambda: pytest.fail("unexpected token prompt"),
+        claude_config_dir=Path(result["connection_command"][-1]),
+    )
+    assert connected["skills"][0]["path"] == str(entry)
+    assert not (setup_env / ".claude").exists()
+
+
+def test_setup_pins_the_parent_of_an_external_claude_profile(setup_env, monkeypatch, tmp_path):
+    parent = tmp_path / "profiles"
+    parent.mkdir()
+    alias = tmp_path / "profile alias"
+    if os.name == "nt":
+        pytest.skip("POSIX alias required")
+    alias.symlink_to(parent, target_is_directory=True)
+    monkeypatch.setenv("CLAUDE_CONFIG_DIR", str(alias / "claude"))
+
+    result = setup_client.setup(
+        "claude", "https://publish.test", "personal",
+        connect=False, read_token=lambda: pytest.fail("unexpected token prompt"),
+    )
+
+    directory = parent / "claude"
+    assert result["connection_command"][-2:] == ["--claude-config-dir", str(directory)]
+    assert Path(result["skills"][0]["path"]).is_relative_to(directory)
+
+
 def test_invalid_token_is_never_saved(setup_env, monkeypatch):
     def reject(url, token): raise ClientError('invalid_credentials', 'invalid')
     client_stub(monkeypatch, reject)

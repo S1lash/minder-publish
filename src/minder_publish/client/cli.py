@@ -185,6 +185,7 @@ def build_parser() -> argparse.ArgumentParser:
     onboarding.add_argument("--runtime", required=True, choices=["codex", "claude"])
     onboarding.add_argument("--url", required=True)
     onboarding.add_argument("--name", default="personal")
+    onboarding.add_argument("--claude-config-dir", type=Path, help=argparse.SUPPRESS)
     onboarding.add_argument("--connect", action="store_true", help="ask for a token in a private interactive terminal if not configured")
     setup = command("configure", "connect a named instance using a device token")
     setup.add_argument("name")
@@ -197,7 +198,7 @@ def build_parser() -> argparse.ArgumentParser:
         "skills", "install the managed Codex/Claude skill; dry-run by default"
     )
     skills.add_argument("--runtime", required=True, choices=["codex", "claude", "all"])
-    skills.add_argument("--home", type=Path, default=Path.home())
+    skills.add_argument("--home", type=Path, help="Use an alternate home for skill installation.")
     skills.add_argument("--apply", action="store_true")
     command("config", "show redacted named-instance configuration")
     doctor = command("doctor", "check configuration, authentication and server capabilities")
@@ -288,6 +289,7 @@ def run(args):
         return setup(
             args.runtime, args.url, args.name, connect=args.connect,
             read_token=lambda: _secret(prompt="Device token: "),
+            claude_config_dir=args.claude_config_dir,
         )
     if args.command == "configure":
         return config.save_instance(

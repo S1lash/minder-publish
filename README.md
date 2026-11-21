@@ -26,24 +26,28 @@ Follow one report from an agent’s terminal to a phone, then update and share i
 
 Set up one server, then connect the agents you already use.
 
-1. **Deploy Minder Publish.** Follow the Docker Compose guide for your server,
-   domain and TLS. Create the owner account and sign in to the cabinet.
-   [Self-hosting guide](docs/SELF_HOSTING.md)
+1. **Deploy Minder Publish.** Start from a tagged source release. Follow the
+   Docker Compose guide for your server, domain and TLS. Create the owner account,
+   check server health and sign in to the cabinet.
+   [Latest release](https://github.com/S1lash/minder-publish/releases/latest) · [Self-hosting guide](docs/SELF_HOSTING.md)
 2. **Install the CLI and skill in your coding agents.** In the cabinet, go to
    **Connection**, choose **Codex** or **Claude Code**, and click **Copy setup
    instructions**. Paste the result into that agent. Repeat for each runtime and
    machine you use, including remote machines where the files live. The installer
-   sets up both the CLI and its skill. If it asks for a new device token, enter it
-   in the hidden terminal prompt. Other agents with terminal access can use the
-   CLI and install the skill if supported. [CLI and skill setup](#connect-the-cli)
+   sets up both the CLI and its skill. When asked for a token, use **Create token**
+   with **Manage materials**, run the exact command reported by the installer, and
+   enter the token at its hidden prompt. Open a fresh chat to load the new skill.
+   Other agents with terminal access can use the CLI and install the skill if
+   supported. [CLI and skill setup](#connect-the-cli)
 3. **Connect ChatGPT and Claude.** Enable remote MCP on your instance, then
    open **Connection → ChatGPT** or **Claude**. Start on the web and follow the
    steps to authorize the custom app or connector and choose when it asks for
    approval. Download the skill ZIP there and import it if your account
    supports skills. Try the connected app and skill in a fresh chat on each
-   device you use, including your phone. Write access and skill availability
-   depend on the app, account and workspace. The browser cabinet and CLI are
-   available as alternatives.
+   device you use, including your phone. OpenAI documents full custom MCP
+   support for eligible ChatGPT Business and Enterprise/Edu workspaces on the
+   web. If a client offers only read access or its connected app is unavailable,
+   publish from the cabinet or CLI and keep the same instance.
    [Connection guide](docs/SELF_HOSTING.md#connect-an-ai-tool) ·
    [ChatGPT app availability](https://help.openai.com/en/articles/12584461-connecting-custom-mcp-servers-in-chatgpt) ·
    [Claude connector availability](https://support.claude.com/en/articles/11176164-use-connectors-to-extend-claude-s-capabilities)
@@ -57,18 +61,26 @@ Set up one server, then connect the agents you already use.
 
 ```text
 Help me set up Minder Publish from https://github.com/S1lash/minder-publish.
-Use its self-hosting guide for the current release. Verify an existing instance
-or help me deploy one. Ask me for the intended server and domain if needed.
+Follow the project's self-hosting guide and use a published release tag. If I already have an instance,
+verify its URL and health. Otherwise deploy to my chosen server and domain,
+then verify HTTPS and help me sign in as the owner.
 
 Set up the coding agents, ChatGPT and Claude that I use by following the
-Connection page. Use its copied setup instruction in each coding agent. Do the
-steps you can, then guide me through any sign-in, authorization, approval
-settings or skill upload that needs my input. Keep passwords and tokens in
-private prompts or sign-in forms. Check which connected clients can publish.
+Connection page. If you cannot reach my signed-in cabinet, ask me to paste its
+Copy setup instructions text for the relevant coding agent. Do the steps you
+can, and guide me through sign-in, authorization or skill upload where needed.
+For a new connector, ask how often it should request approval.
+For a new CLI token, give me the installer's exact terminal command and ask
+me to use its hidden prompt. Keep passwords and tokens in private prompts or
+sign-in forms. Tell me which clients you can verify, and use the cabinet or
+CLI if a cloud client has no write access.
 
 Publish a small HTML page titled "Publish setup check" with sample text,
-link access and a one-day expiry. Open the link, then update that same material
-to say "Version 2". Return the original link so I can verify it on my phone.
+link access and a one-day expiry. Save the returned material ID and stable link.
+Open the link, then update that ID to say "Version 2" without changing access
+or expiry. Verify the new content at the original link. If a second client can
+publish, use it for the update. Return the link and say what I can check on my
+phone if you cannot test the phone yourself.
 ```
 
 ## What you can publish
