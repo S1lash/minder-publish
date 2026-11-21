@@ -11,6 +11,8 @@ the same API. Each instance manages its account and data locally.
 Review the required [security acceptance checks](docs/SECURITY.md#release-acceptance)
 before exposing a self-hosted build publicly.
 
+[Set up with your agent](#run-your-own-instance)
+
 ## Watch the demo
 
 [![Watch the 50-second Minder Publish demo](https://publish.minder.world/assets/publish-demo-poster.webp)](https://publish.minder.world/#demo)
@@ -19,6 +21,55 @@ Follow one report from an agent’s terminal to a phone, then update and share i
 
 - [Publish a Claude artifact as a website](https://publish.minder.world/guides/publish-claude-artifact/)
 - [Share an HTML file with a password](https://publish.minder.world/guides/share-html-with-password/)
+
+## Run your own instance
+
+Set up one server, then connect the agents you already use.
+
+1. **Deploy Minder Publish.** Follow the Docker Compose guide for your server,
+   domain and TLS. Create the owner account and sign in to the cabinet.
+   [Self-hosting guide](docs/SELF_HOSTING.md)
+2. **Install the CLI and skill in your coding agents.** In the cabinet, go to
+   **Connection**, choose **Codex** or **Claude Code**, and click **Copy setup
+   instructions**. Paste the result into that agent. Repeat for each runtime and
+   machine you use, including remote machines where the files live. The installer
+   sets up both the CLI and its skill. If it asks for a new device token, enter it
+   in the hidden terminal prompt. Other agents with terminal access can use the
+   CLI and install the skill if supported. [CLI and skill setup](#connect-the-cli)
+3. **Connect ChatGPT and Claude.** Enable remote MCP on your instance, then
+   open **Connection → ChatGPT** or **Claude**. Start on the web and follow the
+   steps to authorize the custom app or connector and choose when it asks for
+   approval. Download the skill ZIP there and import it if your account
+   supports skills. Try the connected app and skill in a fresh chat on each
+   device you use, including your phone. Write access and skill availability
+   depend on the app, account and workspace. The browser cabinet and CLI are
+   available as alternatives.
+   [Connection guide](docs/SELF_HOSTING.md#connect-an-ai-tool) ·
+   [ChatGPT app availability](https://help.openai.com/en/articles/12584461-connecting-custom-mcp-servers-in-chatgpt) ·
+   [Claude connector availability](https://support.claude.com/en/articles/11176164-use-connectors-to-extend-claude-s-capabilities)
+4. **Make one test publication.** Create a small HTML page with sample text,
+   open its link on your phone and update it from another connected client.
+   Check that the new version opens at the original address. Use
+   **Settings → Publication defaults** to set the access and expiry you want
+   for future publications.
+
+### Give this to your coding agent
+
+```text
+Help me set up Minder Publish from https://github.com/S1lash/minder-publish.
+Use its self-hosting guide for the current release. Verify an existing instance
+or help me deploy one. Ask me for the intended server and domain if needed.
+
+Set up the coding agents, ChatGPT and Claude that I use by following the
+Connection page. Use its copied setup instruction in each coding agent. Do the
+steps you can, then guide me through any sign-in, authorization, approval
+settings or skill upload that needs my input. Keep passwords and tokens in
+private prompts or sign-in forms. Check which connected clients can publish.
+
+Publish a small HTML page titled "Publish setup check" with sample text,
+link access and a one-day expiry. Open the link, then update that same material
+to say "Version 2". Return the original link so I can verify it on my phone.
+```
 
 ## What you can publish
 
@@ -69,30 +120,13 @@ or executable material.
 
 For discussion of other environments, see [Contributing](CONTRIBUTING.md).
 
-## Run your own instance
-
-Follow the [self-hosting guide](docs/SELF_HOSTING.md) for DNS and
-wildcard TLS, a non-root Compose deployment, local owner bootstrap, budgets, backups,
-restore and legacy import.
-
-Sign in at your configured control hostname. **Materials** publishes and manages
-files; **Settings** sets publication defaults, storage limits and version retention; **Connection** guides Codex, Claude Code, ChatGPT, Claude and other assistants
-through installation, authorization, skills and a connection check. There is no default account or password. Existing materials
-keep their publication policies when defaults change. History retention is an
-instance-wide setting and can remove saved previous files during cleanup.
-
 ## Connect the CLI
 
-In the cabinet, choose **Connection → Codex** or **Claude Code**, then **Copy
-setup instructions**. Paste the instruction into your agent. It verifies the
-instance's installer, installs the CLI and matching skill in your user profile,
-and checks an existing connection. For a new connection, create one device token
-in the cabinet and enter it in the private terminal prompt supplied by the agent.
-Never paste the token into chat. No PATH changes are required. Each runtime's skill
-remembers the instance selected by its latest setup and verifies that server before
-publishing; an unrelated global CLI default remains unchanged. The operator must
-provide the CLI-only release wheel; the supplied Docker image includes it. No public
-package-registry entry is assumed.
+The [recommended setup](#run-your-own-instance) verifies the instance's installer
+and checks the connection. Each runtime's skill remembers its selected instance
+and verifies it before publishing. The supplied Docker image includes the
+CLI-only release wheel. See [the self-hosting guide](docs/SELF_HOSTING.md#connect-an-ai-tool)
+for supplying the wheel with a direct source installation.
 
 To install the CLI manually, use an isolated Python environment and an inspected
 source release:
