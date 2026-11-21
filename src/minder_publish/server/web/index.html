@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en" data-theme="light" data-sidebar="expanded" data-surface="public">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Minder Publish</title>
+  <script src="/static/preferences.js"></script>
+  <link rel="stylesheet" href="/static/theme.css">
+  <link rel="stylesheet" href="/static/ui.css">
+  <link rel="stylesheet" href="/static/guest.css">
+  <link rel="stylesheet" href="/static/connection.css">
+  <link rel="stylesheet" href="/static/materials.css">
+  <link rel="stylesheet" href="/static/capacity.css">
+  <link rel="stylesheet" href="/static/viewer.css">
+  <script type="module" src="/static/app.js"></script>
+  <script defer src="/static/controls.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#main" data-i18n="Skip to content">Skip to content</a>
+<div class="shell">
+  <aside class="sidebar">
+    <div class="sidebar-top">
+      <a href="/" class="brand brand-lockup" aria-label="Minder Publish home" data-i18n-aria-label="Minder Publish home"><span class="mark"><!-- brand-lockup --></span><span class="wordmark">minder publish<span class="dot">.</span></span></a>
+      <a href="/" class="brand brand-standalone" aria-label="Minder Publish home" data-i18n-aria-label="Minder Publish home"><span class="mark"><!-- brand-standalone --></span></a>
+    </div>
+    <nav id="sidebar-navigation" class="nav" aria-label="Sections">
+      <button class="nav-button" type="button" data-nav="materials" aria-current="page"><span data-icon="materials"></span><span class="nav-label" data-i18n="Materials">Materials</span></button>
+      <button class="nav-button" type="button" data-nav="settings"><span data-icon="settings"></span><span class="nav-label" data-i18n="Settings">Settings</span></button>
+      <button class="nav-button" type="button" data-nav="connection"><span data-icon="connection"></span><span class="nav-label" data-i18n="Connection">Connection</span></button>
+    </nav>
+    <div class="sidebar-bottom">
+      <details id="capacity" class="capacity" hidden>
+        <summary>
+          <svg class="capacity-meter" viewBox="0 0 36 36" aria-hidden="true"><circle class="capacity-track" cx="18" cy="18" r="15"/><circle class="capacity-fill" cx="18" cy="18" r="15" pathLength="100" stroke-dasharray="0 100"/></svg>
+          <span class="capacity-label" data-i18n="Usage">Usage</span>
+          <span class="capacity-percent" aria-hidden="true"></span>
+        </summary>
+        <section class="capacity-panel" aria-labelledby="capacity-title">
+          <h2 id="capacity-title" data-i18n="Capacity">Capacity</h2>
+          <dl class="capacity-values">
+            <div><dt data-i18n="Storage in use">Storage in use</dt><dd data-capacity="storage"></dd></div>
+            <div><dt data-i18n="Catalog records">Catalog records</dt><dd data-capacity="records"></dd></div>
+            <div><dt data-i18n="Reserved">Reserved</dt><dd data-capacity="reserved"></dd></div>
+          </dl>
+          <p data-i18n="Retained records count towards the catalog limit.">Retained records count towards the catalog limit.</p>
+          <div class="capacity-footer">
+            <p data-capacity="updated"></p>
+            <button type="button" data-capacity="refresh" data-i18n="Refresh usage">Refresh usage</button>
+          </div>
+          <p role="status" data-capacity="status" hidden></p>
+        </section>
+      </details>
+      <label class="language-label" for="language-select" data-i18n="Language">Language</label>
+      <select id="language-select" aria-label="Language"><option value="en">English</option><option value="ru">Русский</option><option value="es">Español</option><option value="fr">Français</option></select>
+      <button id="theme-button" type="button"><span class="theme-glyph" aria-hidden="true"></span><span class="button-label" id="theme-label">Theme</span></button>
+      <button id="owner-button" data-session-no-refresh type="button"><span data-icon="owner"></span><span class="button-label" id="owner-label" data-i18n="Sign in">Sign in</span></button>
+      <div class="sidebar-footer-row">
+        <p class="subtext" id="instance-name"></p>
+        <button id="sidebar-toggle" type="button" aria-label="Collapse menu" aria-expanded="true" aria-controls="sidebar-navigation" data-icon="sidebar"></button>
+      </div>
+    </div>
+  </aside>
+  <main class="main" id="main" tabindex="-1">
+    <header class="topbar"><div><h1 id="view-title" data-i18n="Materials">Materials</h1><p class="subtext" id="view-description"></p></div><div class="top-actions"><button id="create-material" type="button" class="primary" hidden><span data-icon="plus"></span><span data-i18n="Publish">Publish</span></button></div></header>
+    <div id="page-error" class="callout error" role="alert" hidden></div>
+    <div id="view"><section class="guest-home" data-page="public"><h1 data-i18n="Shared files and sites">Shared files and sites</h1><p data-i18n="Open the link you received to view a material.">Open the link you received to view a material.</p></section></div>
+  </main>
+  <!-- source-footer -->
+</div>
+<dialog id="dialog" class="dialog" aria-labelledby="dialog-title"></dialog>
+<dialog id="manual-copy-dialog" class="dialog" aria-labelledby="manual-copy-title">
+  <header class="dialog-head"><h2 id="manual-copy-title"></h2></header>
+  <div class="dialog-body"><textarea id="manual-copy-text" aria-labelledby="manual-copy-title" class="secret" readonly autofocus></textarea></div>
+  <form class="dialog-actions" method="dialog"><button type="submit" data-i18n="Close">Close</button></form>
+</dialog>
+<div id="toast" class="toast" role="status" hidden></div>
+</body>
+</html>

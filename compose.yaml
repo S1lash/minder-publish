@@ -1,0 +1,77 @@
+name: minder-publish
+services:
+  app:
+    image: minder-publish:0.3.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file: .env
+    environment:
+      PUBLISH_DATA_DIR: /data
+      # Only nginx and app join this dedicated network; app has no published port.
+      PUBLISH_TRUSTED_PROXIES: "${PUBLISH_TRUSTED_PROXIES:-*}"
+    user: "10001:10001"
+    read_only: true
+    init: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    volumes:
+      - publish-data:/data
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,nodev,size=64m,mode=1777
+    expose: ["8080"]
+    cpus: 1.0
+    mem_limit: 1g
+    memswap_limit: 1g
+    pids_limit: 128
+    restart: unless-stopped
+    stop_grace_period: 45s
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+    networks: [backend]
+
+  proxy:
+    image: nginx:1.30.7@sha256:7fad6c0dff97965adbddf28027d934b111fc0221a554315dc274712f3fba24d3
+    entrypoint: [nginx, -g, "daemon off;"]
+    user: "101:101"
+    read_only: true
+    init: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    ports:
+      - "80:8080"
+      - "443:8443"
+    volumes:
+      - ./deploy/publish/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./deploy/publish/tls:/etc/nginx/tls:ro
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,nodev,size=32m,mode=1777
+    depends_on:
+      app:
+        condition: service_healthy
+    healthcheck:
+      test: [CMD, nginx, -t, -q]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    cpus: 0.5
+    mem_limit: 128m
+    memswap_limit: 128m
+    pids_limit: 64
+    restart: unless-stopped
+    stop_grace_period: 15s
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+    networks: [backend]
+
+volumes:
+  publish-data:
+
+networks:
+  backend:

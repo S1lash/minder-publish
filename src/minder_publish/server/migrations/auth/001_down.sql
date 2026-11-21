@@ -1,0 +1,10 @@
+DROP TABLE IF EXISTS auth_attempts;
+DROP TABLE IF EXISTS auth_readers;
+DROP TABLE IF EXISTS auth_handoffs;
+DROP TABLE IF EXISTS auth_intents;
+DROP TABLE IF EXISTS auth_unlocks;
+DROP TABLE IF EXISTS auth_viewers;
+DROP TABLE IF EXISTS auth_devices;
+DROP TABLE IF EXISTS auth_sessions;
+DROP TABLE IF EXISTS auth_owner;
+DROP TABLE IF EXISTS auth_schema_version;

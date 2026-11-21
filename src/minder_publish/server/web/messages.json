@@ -1,0 +1,3494 @@
+{
+  "Install the publishing skill": {
+    "en": "Install the publishing skill",
+    "ru": "Установите скилл публикации",
+    "es": "Instala la habilidad de publicación",
+    "fr": "Installer le skill de publication"
+  },
+  "Publish a file": {
+    "en": "Publish a file",
+    "ru": "Опубликуйте файл",
+    "es": "Publica un archivo",
+    "fr": "Publier un fichier"
+  },
+  "In ChatGPT, go to Plugins → Skills → Create → Upload from your computer and select the ZIP.": {
+    "en": "In ChatGPT, go to Plugins → Skills → Create → Upload from your computer and select the ZIP.",
+    "ru": "В ChatGPT откройте Plugins → Skills → Create → Upload from your computer и выберите ZIP.",
+    "es": "En ChatGPT, abre Plugins → Skills → Create → Upload from your computer y elige el ZIP.",
+    "fr": "Dans ChatGPT, ouvrez Plugins → Skills → Create → Upload from your computer et choisissez le ZIP."
+  },
+  "In Claude, go to Customize (or Plugins) → Skills → + → Create skill → Upload a skill. Select the ZIP and turn on the skill.": {
+    "en": "In Claude, go to Customize (or Plugins) → Skills → + → Create skill → Upload a skill. Select the ZIP and turn on the skill.",
+    "ru": "В Claude откройте Customize (или Plugins) → Skills → + → Create skill → Upload a skill. Выберите ZIP и включите скилл.",
+    "es": "En Claude, abre Customize (o Plugins) → Skills → + → Create skill → Upload a skill. Elige el ZIP y activa la habilidad.",
+    "fr": "Dans Claude, ouvrez Customize (ou Plugins) → Skills → + → Create skill → Upload a skill. Sélectionnez le ZIP et activez le skill."
+  },
+  "If your account cannot upload skills, continue with the connection alone.": {
+    "en": "If your account cannot upload skills, continue with the connection alone.",
+    "ru": "Если аккаунт не поддерживает загрузку скиллов, продолжайте с одним подключением.",
+    "es": "Si tu cuenta no admite la carga de habilidades, continúa solo con la conexión.",
+    "fr": "Si votre compte ne permet pas d’importer des skills, continuez avec la connexion seule."
+  },
+  "Skip to content": {
+    "en": "Skip to content",
+    "ru": "К содержимому",
+    "es": "Ir al contenido",
+    "fr": "Aller au contenu"
+  },
+  "Materials": {
+    "en": "Materials",
+    "ru": "Материалы",
+    "es": "Materiales",
+    "fr": "Contenus"
+  },
+  "Settings": {
+    "en": "Settings",
+    "ru": "Настройки",
+    "es": "Ajustes",
+    "fr": "Paramètres"
+  },
+  "Connection": {
+    "en": "Connection",
+    "ru": "Подключение",
+    "es": "Conexión",
+    "fr": "Connexion"
+  },
+  "Language": {
+    "en": "Language",
+    "ru": "Язык",
+    "es": "Idioma",
+    "fr": "Langue"
+  },
+  "Sections": {
+    "en": "Sections",
+    "ru": "Разделы",
+    "es": "Secciones",
+    "fr": "Sections"
+  },
+  "Sign in": {
+    "en": "Sign in",
+    "ru": "Войти",
+    "es": "Iniciar sesión",
+    "fr": "Se connecter"
+  },
+  "Sign out": {
+    "en": "Sign out",
+    "ru": "Выйти",
+    "es": "Cerrar sesión",
+    "fr": "Se déconnecter"
+  },
+  "Publish": {
+    "en": "Publish",
+    "ru": "Опубликовать",
+    "es": "Publicar",
+    "fr": "Publier"
+  },
+  "Loading…": {
+    "en": "Loading…",
+    "ru": "Загрузка…",
+    "es": "Cargando…",
+    "fr": "Chargement…"
+  },
+  "System": {
+    "en": "System",
+    "ru": "Как в системе",
+    "es": "Sistema",
+    "fr": "Système"
+  },
+  "Light": {
+    "en": "Light",
+    "ru": "Светлая",
+    "es": "Claro",
+    "fr": "Clair"
+  },
+  "Dark": {
+    "en": "Dark",
+    "ru": "Тёмная",
+    "es": "Oscuro",
+    "fr": "Sombre"
+  },
+  "Change theme": {
+    "en": "Change theme",
+    "ru": "Сменить тему",
+    "es": "Cambiar tema",
+    "fr": "Changer de thème"
+  },
+  "Collapse menu": {
+    "en": "Collapse menu",
+    "ru": "Свернуть меню",
+    "es": "Contraer menú",
+    "fr": "Réduire le menu"
+  },
+  "Expand menu": {
+    "en": "Expand menu",
+    "ru": "Развернуть меню",
+    "es": "Expandir menú",
+    "fr": "Développer le menu"
+  },
+  "Your results, files and complete sites.": {
+    "en": "Your results, files and complete sites.",
+    "ru": "Твои результаты, файлы и готовые сайты.",
+    "es": "Tus resultados, archivos y sitios completos.",
+    "fr": "Vos résultats, fichiers et sites complets."
+  },
+  "Manage publication defaults, storage and security.": {
+    "en": "Manage publication defaults, storage and security.",
+    "ru": "Настройте правила публикации, хранилище и защиту.",
+    "es": "Configura las publicaciones, el almacenamiento y la seguridad.",
+    "fr": "Gérez les paramètres de publication, le stockage et la sécurité."
+  },
+  "New materials use these defaults when your agent, CLI or API omits a setting. An explicit choice applies to that material within the server’s limits. Existing materials keep their saved policy.": {
+    "en": "New materials use these defaults when your agent, CLI or API omits a setting. An explicit choice applies to that material within the server’s limits. Existing materials keep their saved policy.",
+    "ru": "Новый материал получает эти настройки, если агент, CLI или API не передали свои. Явно заданные параметры действуют для этого материала в пределах ограничений сервера. У существующих материалов сохраняются их правила.",
+    "es": "Los materiales nuevos usan estos valores cuando tu agente, CLI o API omite un ajuste. Una elección explícita se aplica a ese material dentro de los límites del servidor. Los materiales existentes conservan sus ajustes.",
+    "fr": "Les nouveaux contenus utilisent ces valeurs si votre agent, la CLI ou l’API omet un réglage. Un choix explicite s’applique à ce contenu dans les limites du serveur. Les contenus existants conservent leurs réglages."
+  },
+  "Example publication": {
+    "en": "Example publication",
+    "ru": "Пример публикации",
+    "es": "Ejemplo de publicación",
+    "fr": "Exemple de publication"
+  },
+  "After saving these defaults, this is what a new material will use unless its own settings are supplied.": {
+    "en": "After saving these defaults, this is what a new material will use unless its own settings are supplied.",
+    "ru": "Так будет опубликован новый материал после сохранения, если для него не задать свои параметры.",
+    "es": "Tras guardar estos valores, así se publicará un material nuevo si no tiene ajustes propios.",
+    "fr": "Après enregistrement, voici les réglages d’un nouveau contenu si aucun réglage propre n’est fourni."
+  },
+  "While files are kept": {
+    "en": "While files are kept",
+    "ru": "Остаётся, пока хранятся файлы",
+    "es": "Se conserva mientras existan los archivos",
+    "fr": "Conservée tant que les fichiers le sont"
+  },
+  "{days} days after file deletion": {
+    "en": "{days} days after file deletion",
+    "ru": "Через {days} дн. после удаления файлов",
+    "es": "{days} días después de borrar los archivos",
+    "fr": "{days} jours après la suppression des fichiers"
+  },
+  "Enter valid durations to see the example.": {
+    "en": "Enter valid durations to see the example.",
+    "ru": "Укажи допустимые сроки, чтобы увидеть пример.",
+    "es": "Introduce plazos válidos para ver el ejemplo.",
+    "fr": "Saisissez des durées valides pour voir l’exemple."
+  },
+  "Connect your tools with a separate device token.": {
+    "en": "Connect your tools with a separate device token.",
+    "ru": "Подключи свои инструменты отдельным токеном устройства.",
+    "es": "Conecta tus herramientas con un token de dispositivo independiente.",
+    "fr": "Connectez vos outils avec un jeton d’appareil distinct."
+  },
+  "Owner sign-in": {
+    "en": "Owner sign-in",
+    "ru": "Вход владельца",
+    "es": "Acceso del propietario",
+    "fr": "Connexion du propriétaire"
+  },
+  "Username": {
+    "en": "Username",
+    "ru": "Имя пользователя",
+    "es": "Usuario",
+    "fr": "Nom d’utilisateur"
+  },
+  "Account": {
+    "en": "Account",
+    "ru": "Аккаунт",
+    "es": "Cuenta",
+    "fr": "Compte"
+  },
+  "Password": {
+    "en": "Password",
+    "ru": "Пароль",
+    "es": "Contraseña",
+    "fr": "Mot de passe"
+  },
+  "The operator must create the owner account on the server first.": {
+    "en": "The operator must create the owner account on the server first.",
+    "ru": "Сначала оператор должен создать аккаунт владельца на сервере.",
+    "es": "El operador debe crear primero la cuenta del propietario en el servidor.",
+    "fr": "L’opérateur doit d’abord créer le compte propriétaire sur le serveur."
+  },
+  "Your session expired. Sign in again.": {
+    "en": "Your session expired. Sign in again.",
+    "ru": "Сессия завершилась. Войди снова.",
+    "es": "La sesión ha caducado. Vuelve a iniciar sesión.",
+    "fr": "Votre session a expiré. Reconnectez-vous."
+  },
+  "Could not complete the request.": {
+    "en": "Could not complete the request.",
+    "ru": "Не удалось выполнить запрос.",
+    "es": "No se pudo completar la solicitud.",
+    "fr": "La requête n’a pas pu aboutir."
+  },
+  "The server is unavailable. Check your connection and try again.": {
+    "en": "The server is unavailable. Check your connection and try again.",
+    "ru": "Сервер недоступен. Проверь соединение и попробуй снова.",
+    "es": "El servidor no está disponible. Comprueba la conexión e inténtalo de nuevo.",
+    "fr": "Le serveur est indisponible. Vérifiez la connexion et réessayez."
+  },
+  "Invalid username or password.": {
+    "en": "Invalid username or password.",
+    "ru": "Неверное имя пользователя или пароль.",
+    "es": "Usuario o contraseña incorrectos.",
+    "fr": "Nom d’utilisateur ou mot de passe incorrect."
+  },
+  "Request rejected. Refresh the page and try again.": {
+    "en": "Request rejected. Refresh the page and try again.",
+    "ru": "Запрос отклонён. Обнови страницу и попробуй снова.",
+    "es": "Solicitud rechazada. Actualiza la página e inténtalo de nuevo.",
+    "fr": "Requête refusée. Actualisez la page et réessayez."
+  },
+  "Too many attempts. Try again later.": {
+    "en": "Too many attempts. Try again later.",
+    "ru": "Слишком много попыток. Попробуй позже.",
+    "es": "Demasiados intentos. Inténtalo más tarde.",
+    "fr": "Trop de tentatives. Réessayez plus tard."
+  },
+  "Title, description or filename": {
+    "en": "Title, description or filename",
+    "ru": "Название, описание или имя файла",
+    "es": "Título, descripción o nombre de archivo",
+    "fr": "Titre, description ou nom de fichier"
+  },
+  "Search materials": {
+    "en": "Search materials",
+    "ru": "Поиск материалов",
+    "es": "Buscar materiales",
+    "fr": "Rechercher des contenus"
+  },
+  "All": {
+    "en": "All",
+    "ru": "Все",
+    "es": "Todos",
+    "fr": "Tous"
+  },
+  "Files": {
+    "en": "Files",
+    "ru": "Файлы",
+    "es": "Archivos",
+    "fr": "Fichiers"
+  },
+  "Sites": {
+    "en": "Sites",
+    "ru": "Сайты",
+    "es": "Sitios",
+    "fr": "Sites"
+  },
+  "All statuses": {
+    "en": "All statuses",
+    "ru": "Все состояния",
+    "es": "Todos los estados",
+    "fr": "Tous les états"
+  },
+  "Available": {
+    "en": "Available",
+    "ru": "Доступны",
+    "es": "Disponibles",
+    "fr": "Disponibles"
+  },
+  "Paused": {
+    "en": "Paused",
+    "ru": "На паузе",
+    "es": "En pausa",
+    "fr": "En pause"
+  },
+  "Expired": {
+    "en": "Expired",
+    "ru": "Срок истёк",
+    "es": "Caducado",
+    "fr": "Expiré"
+  },
+  "Files deleted": {
+    "en": "Files deleted",
+    "ru": "Файлы удалены",
+    "es": "Archivos eliminados",
+    "fr": "Fichiers supprimés"
+  },
+  "Deletion pending": {
+    "en": "Deletion pending",
+    "ru": "Ожидает удаления",
+    "es": "Eliminación pendiente",
+    "fr": "Suppression en attente"
+  },
+  "Deleting files": {
+    "en": "Deleting files",
+    "ru": "Удаление файлов",
+    "es": "Eliminando archivos",
+    "fr": "Suppression des fichiers"
+  },
+  "List": {
+    "en": "List",
+    "ru": "Список",
+    "es": "Lista",
+    "fr": "Liste"
+  },
+  "Grid": {
+    "en": "Grid",
+    "ru": "Сетка",
+    "es": "Cuadrícula",
+    "fr": "Grille"
+  },
+  "Preview": {
+    "en": "Preview",
+    "ru": "Предпросмотр",
+    "es": "Vista previa",
+    "fr": "Aperçu"
+  },
+  "Open in a new tab": {
+    "en": "Open in a new tab",
+    "ru": "Открыть в новой вкладке",
+    "es": "Abrir en otra pestaña",
+    "fr": "Ouvrir dans un nouvel onglet"
+  },
+  "Copy link": {
+    "en": "Copy link",
+    "ru": "Скопировать ссылку",
+    "es": "Copiar enlace",
+    "fr": "Copier le lien"
+  },
+  "Details": {
+    "en": "Details",
+    "ru": "Сведения",
+    "es": "Detalles",
+    "fr": "Détails"
+  },
+  "Link copied.": {
+    "en": "Link copied.",
+    "ru": "Ссылка скопирована.",
+    "es": "Enlace copiado.",
+    "fr": "Lien copié."
+  },
+  "Copy this link": {
+    "en": "Copy this link",
+    "ru": "Скопируй эту ссылку",
+    "es": "Copia este enlace",
+    "fr": "Copiez ce lien"
+  },
+  "No materials yet": {
+    "en": "No materials yet",
+    "ru": "Пока нет материалов",
+    "es": "Aún no hay materiales",
+    "fr": "Aucun contenu pour le moment"
+  },
+  "Publish a file or a ZIP containing a built static site.": {
+    "en": "Publish a file or a ZIP containing a built static site.",
+    "ru": "Опубликуй файл или ZIP с готовым статическим сайтом.",
+    "es": "Publica un archivo o un ZIP con un sitio estático compilado.",
+    "fr": "Publiez un fichier ou un ZIP contenant un site statique généré."
+  },
+  "Nothing found": {
+    "en": "Nothing found",
+    "ru": "Ничего не найдено",
+    "es": "No se han encontrado resultados",
+    "fr": "Aucun résultat"
+  },
+  "Try another search or clear the filters.": {
+    "en": "Try another search or clear the filters.",
+    "ru": "Измени запрос или сбрось фильтры.",
+    "es": "Prueba otra búsqueda o borra los filtros.",
+    "fr": "Modifiez la recherche ou effacez les filtres."
+  },
+  "Clear filters": {
+    "en": "Clear filters",
+    "ru": "Сбросить фильтры",
+    "es": "Borrar filtros",
+    "fr": "Effacer les filtres"
+  },
+  "Previous": {
+    "en": "Previous",
+    "ru": "Назад",
+    "es": "Anterior",
+    "fr": "Précédent"
+  },
+  "Next": {
+    "en": "Next",
+    "ru": "Дальше",
+    "es": "Siguiente",
+    "fr": "Suivant"
+  },
+  "{count} of {total}": {
+    "en": "{count} of {total}",
+    "ru": "{count} из {total}",
+    "es": "{count} de {total}",
+    "fr": "{count} sur {total}"
+  },
+  "Only me": {
+    "en": "Only me",
+    "ru": "Только мне",
+    "es": "Solo yo",
+    "fr": "Moi uniquement"
+  },
+  "Anyone with the link": {
+    "en": "Anyone with the link",
+    "ru": "По ссылке",
+    "es": "Cualquiera con el enlace",
+    "fr": "Toute personne avec le lien"
+  },
+  "Password-protected": {
+    "en": "Password-protected",
+    "ru": "По паролю",
+    "es": "Con contraseña",
+    "fr": "Avec mot de passe"
+  },
+  "No expiry": {
+    "en": "No expiry",
+    "ru": "Без срока",
+    "es": "Sin caducidad",
+    "fr": "Sans échéance"
+  },
+  "Until {date}": {
+    "en": "Until {date}",
+    "ru": "До {date}",
+    "es": "Hasta {date}",
+    "fr": "Jusqu’au {date}"
+  },
+  "Close": {
+    "en": "Close",
+    "ru": "Закрыть",
+    "es": "Cerrar",
+    "fr": "Fermer"
+  },
+  "Cancel": {
+    "en": "Cancel",
+    "ru": "Отмена",
+    "es": "Cancelar",
+    "fr": "Annuler"
+  },
+  "Save": {
+    "en": "Save",
+    "ru": "Сохранить",
+    "es": "Guardar",
+    "fr": "Enregistrer"
+  },
+  "Download original": {
+    "en": "Download original",
+    "ru": "Скачать оригинал",
+    "es": "Descargar original",
+    "fr": "Télécharger l’original"
+  },
+  "Download site ZIP": {
+    "en": "Download site ZIP",
+    "ru": "Скачать ZIP сайта",
+    "es": "Descargar ZIP del sitio",
+    "fr": "Télécharger le ZIP du site"
+  },
+  "Material details": {
+    "en": "Material details",
+    "ru": "Сведения о материале",
+    "es": "Detalles del material",
+    "fr": "Détails du contenu"
+  },
+  "Title": {
+    "en": "Title",
+    "ru": "Название",
+    "es": "Título",
+    "fr": "Titre"
+  },
+  "Description": {
+    "en": "Description",
+    "ru": "Описание",
+    "es": "Descripción",
+    "fr": "Description"
+  },
+  "Optional": {
+    "en": "Optional",
+    "ru": "Необязательно",
+    "es": "Opcional",
+    "fr": "Facultatif"
+  },
+  "Access": {
+    "en": "Access",
+    "ru": "Доступ",
+    "es": "Acceso",
+    "fr": "Accès"
+  },
+  "New publication password": {
+    "en": "New publication password",
+    "ru": "Новый пароль публикации",
+    "es": "Nueva contraseña de publicación",
+    "fr": "Nouveau mot de passe de publication"
+  },
+  "Leave blank to keep the existing password.": {
+    "en": "Leave blank to keep the existing password.",
+    "ru": "Оставь пустым, чтобы сохранить текущий пароль.",
+    "es": "Deja vacío para conservar la contraseña actual.",
+    "fr": "Laissez vide pour conserver le mot de passe actuel."
+  },
+  "Publication passwords are separate from your owner password.": {
+    "en": "Publication passwords are separate from your owner password.",
+    "ru": "Пароль публикации отличается от пароля владельца.",
+    "es": "La contraseña de publicación es independiente de la del propietario.",
+    "fr": "Le mot de passe de publication est distinct de celui du propriétaire."
+  },
+  "Expiry": {
+    "en": "Expiry",
+    "ru": "Срок доступа",
+    "es": "Caducidad del acceso",
+    "fr": "Échéance de l’accès"
+  },
+  "Use default": {
+    "en": "Use default",
+    "ru": "По умолчанию",
+    "es": "Usar valor predeterminado",
+    "fr": "Valeur par défaut"
+  },
+  "Keep current expiry": {
+    "en": "Keep current expiry",
+    "ru": "Сохранить текущий срок",
+    "es": "Conservar caducidad actual",
+    "fr": "Conserver l’échéance actuelle"
+  },
+  "After a number of days": {
+    "en": "After a number of days",
+    "ru": "Через указанное число дней",
+    "es": "Tras un número de días",
+    "fr": "Après un nombre de jours"
+  },
+  "Days": {
+    "en": "Days",
+    "ru": "Дни",
+    "es": "Días",
+    "fr": "Jours"
+  },
+  "Hours": {
+    "en": "Hours",
+    "ru": "Часы",
+    "es": "Horas",
+    "fr": "Heures"
+  },
+  "Choose an explicit expiry when sharing a private material.": {
+    "en": "Choose an explicit expiry when sharing a private material.",
+    "ru": "При открытии личного материала выбери срок явно.",
+    "es": "Elige una caducidad explícita al compartir un material privado.",
+    "fr": "Choisissez une échéance explicite pour partager un contenu privé."
+  },
+  "Pause access": {
+    "en": "Pause access",
+    "ru": "Приостановить доступ",
+    "es": "Pausar acceso",
+    "fr": "Suspendre l’accès"
+  },
+  "Resume access": {
+    "en": "Resume access",
+    "ru": "Возобновить доступ",
+    "es": "Reanudar acceso",
+    "fr": "Rétablir l’accès"
+  },
+  "Expire now": {
+    "en": "Expire now",
+    "ru": "Завершить срок сейчас",
+    "es": "Cerrar acceso ahora",
+    "fr": "Fermer l’accès maintenant"
+  },
+  "Extend access": {
+    "en": "Extend access",
+    "ru": "Продлить доступ",
+    "es": "Ampliar acceso",
+    "fr": "Prolonger l’accès"
+  },
+  "Replace files": {
+    "en": "Replace files",
+    "ru": "Заменить файлы",
+    "es": "Sustituir archivos",
+    "fr": "Remplacer les fichiers"
+  },
+  "Delete material": {
+    "en": "Delete material",
+    "ru": "Удалить материал",
+    "es": "Eliminar material",
+    "fr": "Supprimer le contenu"
+  },
+  "Delete this material and its files? Access closes immediately. File cleanup may finish in the background.": {
+    "en": "Delete this material and its files? Access closes immediately. File cleanup may finish in the background.",
+    "ru": "Удалить материал и его файлы? Доступ закроется сразу. Очистка файлов может завершиться в фоне.",
+    "es": "¿Eliminar este material y sus archivos? El acceso se cierra de inmediato. La limpieza puede terminar en segundo plano.",
+    "fr": "Supprimer ce contenu et ses fichiers ? L’accès se ferme immédiatement. Le nettoyage peut se terminer en arrière-plan."
+  },
+  "Delete": {
+    "en": "Delete",
+    "ru": "Удалить",
+    "es": "Eliminar",
+    "fr": "Supprimer"
+  },
+  "Access closed. The saved cleanup policy still applies.": {
+    "en": "Access closed. The saved cleanup policy still applies.",
+    "ru": "Доступ закрыт. Сохранённая политика очистки действует.",
+    "es": "Acceso cerrado. Se mantiene la política de limpieza guardada.",
+    "fr": "Accès fermé. La politique de nettoyage enregistrée s’applique."
+  },
+  "Saved.": {
+    "en": "Saved.",
+    "ru": "Сохранено.",
+    "es": "Guardado.",
+    "fr": "Enregistré."
+  },
+  "File": {
+    "en": "File",
+    "ru": "Файл",
+    "es": "Archivo",
+    "fr": "Fichier"
+  },
+  "Static site ZIP": {
+    "en": "Static site ZIP",
+    "ru": "ZIP статического сайта",
+    "es": "ZIP de sitio estático",
+    "fr": "ZIP de site statique"
+  },
+  "Publication type": {
+    "en": "Publication type",
+    "ru": "Тип публикации",
+    "es": "Tipo de publicación",
+    "fr": "Type de publication"
+  },
+  "A ZIP is an ordinary file unless site mode is selected explicitly.": {
+    "en": "A ZIP is an ordinary file unless site mode is selected explicitly.",
+    "ru": "ZIP остаётся обычным файлом, пока явно не выбран режим сайта.",
+    "es": "Un ZIP es un archivo normal salvo que elijas el modo sitio.",
+    "fr": "Un ZIP reste un fichier ordinaire sauf si le mode site est choisi."
+  },
+  "Choose file": {
+    "en": "Choose file",
+    "ru": "Выбери файл",
+    "es": "Elegir archivo",
+    "fr": "Choisir un fichier"
+  },
+  "Entry path": {
+    "en": "Entry path",
+    "ru": "Входной файл",
+    "es": "Archivo de entrada",
+    "fr": "Fichier d’entrée"
+  },
+  "Routing": {
+    "en": "Routing",
+    "ru": "Маршрутизация",
+    "es": "Enrutamiento",
+    "fr": "Routage"
+  },
+  "Existing files only": {
+    "en": "Existing files only",
+    "ru": "Только существующие файлы",
+    "es": "Solo archivos existentes",
+    "fr": "Fichiers existants uniquement"
+  },
+  "SPA page fallback": {
+    "en": "SPA page fallback",
+    "ru": "SPA: возврат входной страницы",
+    "es": "Página de entrada para SPA",
+    "fr": "Page d’entrée pour SPA"
+  },
+  "Missing scripts, styles and media still return 404.": {
+    "en": "Missing scripts, styles and media still return 404.",
+    "ru": "Отсутствующие скрипты, стили и медиа возвращают 404.",
+    "es": "Los scripts, estilos y medios ausentes siguen devolviendo 404.",
+    "fr": "Les scripts, styles et médias absents renvoient toujours 404."
+  },
+  "External resources": {
+    "en": "External resources",
+    "ru": "Внешние ресурсы",
+    "es": "Recursos externos",
+    "fr": "Ressources externes"
+  },
+  "Allow HTTPS and APIs": {
+    "en": "Allow HTTPS and APIs",
+    "ru": "Разрешать HTTPS и API",
+    "es": "Permitir HTTPS y API",
+    "fr": "Autoriser HTTPS et API"
+  },
+  "Build resources only": {
+    "en": "Build resources only",
+    "ru": "Только ресурсы сборки",
+    "es": "Solo recursos de la compilación",
+    "fr": "Ressources du build uniquement"
+  },
+  "External fonts, CDNs and APIs may stop working in the local-only profile.": {
+    "en": "External fonts, CDNs and APIs may stop working in the local-only profile.",
+    "ru": "В локальном профиле внешние шрифты, CDN и API могут не работать.",
+    "es": "Las fuentes, CDN y API externas pueden fallar en el perfil local.",
+    "fr": "Les polices, CDN et API externes peuvent ne plus fonctionner avec le profil local."
+  },
+  "Uploading…": {
+    "en": "Uploading…",
+    "ru": "Загрузка файла…",
+    "es": "Subiendo…",
+    "fr": "Envoi du fichier…"
+  },
+  "Preparing publication…": {
+    "en": "Preparing publication…",
+    "ru": "Подготовка публикации…",
+    "es": "Preparando publicación…",
+    "fr": "Préparation de la publication…"
+  },
+  "Published.": {
+    "en": "Published.",
+    "ru": "Опубликовано.",
+    "es": "Publicado.",
+    "fr": "Publié."
+  },
+  "Upload cancelled.": {
+    "en": "Upload cancelled.",
+    "ru": "Загрузка отменена.",
+    "es": "Carga cancelada.",
+    "fr": "Envoi annulé."
+  },
+  "The file exceeds the server upload limit.": {
+    "en": "The file exceeds the server upload limit.",
+    "ru": "Размер файла превышает лимит сервера.",
+    "es": "El archivo supera el límite de carga del servidor.",
+    "fr": "Le fichier dépasse la limite d’envoi du serveur."
+  },
+  "Choose a file first.": {
+    "en": "Choose a file first.",
+    "ru": "Сначала выбери файл.",
+    "es": "Elige primero un archivo.",
+    "fr": "Choisissez d’abord un fichier."
+  },
+  "Select a static-site ZIP archive.": {
+    "en": "Select a static-site ZIP archive.",
+    "ru": "Выбери ZIP-архив статического сайта.",
+    "es": "Elige un archivo ZIP de sitio estático.",
+    "fr": "Choisissez une archive ZIP de site statique."
+  },
+  "Access and cleanup": {
+    "en": "Access and cleanup",
+    "ru": "Доступ и очистка",
+    "es": "Acceso y limpieza",
+    "fr": "Accès et nettoyage"
+  },
+  "Delete files after access expires": {
+    "en": "Delete files after access expires",
+    "ru": "Очистка файлов после истечения срока",
+    "es": "Eliminar archivos al caducar el acceso",
+    "fr": "Supprimer les fichiers après expiration de l’accès"
+  },
+  "Immediately": {
+    "en": "Immediately",
+    "ru": "Сразу",
+    "es": "Inmediatamente",
+    "fr": "Immédiatement"
+  },
+  "After a recovery period": {
+    "en": "After a recovery period",
+    "ru": "Через период восстановления",
+    "es": "Tras un plazo de recuperación",
+    "fr": "Après un délai de récupération"
+  },
+  "Never automatically": {
+    "en": "Never automatically",
+    "ru": "Никогда автоматически",
+    "es": "Nunca automáticamente",
+    "fr": "Jamais automatiquement"
+  },
+  "Recovery period": {
+    "en": "Recovery period",
+    "ru": "Период восстановления",
+    "es": "Periodo de recuperación",
+    "fr": "Délai de récupération"
+  },
+  "Library record after file deletion": {
+    "en": "Library record after file deletion",
+    "ru": "Запись в библиотеке после очистки файлов",
+    "es": "Ficha tras eliminar los archivos",
+    "fr": "Fiche après suppression des fichiers"
+  },
+  "Keep until manually deleted": {
+    "en": "Keep until manually deleted",
+    "ru": "До ручного удаления",
+    "es": "Hasta eliminarla manualmente",
+    "fr": "Jusqu’à suppression manuelle"
+  },
+  "Delete with files": {
+    "en": "Delete with files",
+    "ru": "Удалить вместе с файлами",
+    "es": "Eliminar con los archivos",
+    "fr": "Supprimer avec les fichiers"
+  },
+  "Delete after a set period": {
+    "en": "Delete after a set period",
+    "ru": "Удалить через срок",
+    "es": "Eliminar tras un plazo",
+    "fr": "Supprimer après un délai"
+  },
+  "Record retention, days": {
+    "en": "Record retention, days",
+    "ru": "Хранение записи, дней",
+    "es": "Conservación de la ficha, días",
+    "fr": "Conservation de la fiche, jours"
+  },
+  "Access ends on time. File deletion is a separate background step. Record retention starts after actual file deletion.": {
+    "en": "Access ends on time. File deletion is a separate background step. Record retention starts after actual file deletion.",
+    "ru": "Доступ закрывается в срок. Удаление файлов выполняется отдельно в фоне. Срок записи отсчитывается с фактического удаления файлов.",
+    "es": "El acceso termina a tiempo. La eliminación de archivos es un paso aparte. La conservación de la ficha empieza tras eliminar los archivos.",
+    "fr": "L’accès prend fin à l’échéance. La suppression des fichiers est une étape distincte. La conservation de la fiche commence après suppression effective des fichiers."
+  },
+  "The file is no longer stored. Upload a new revision to restore content.": {
+    "en": "The file is no longer stored. Upload a new revision to restore content.",
+    "ru": "Файл больше не хранится. Загрузи новую версию для восстановления содержимого.",
+    "es": "El archivo ya no se conserva. Sube una nueva versión para restaurar el contenido.",
+    "fr": "Le fichier n’est plus conservé. Envoyez une nouvelle version pour restaurer le contenu."
+  },
+  "Publication defaults": {
+    "en": "Publication defaults",
+    "ru": "Настройки новых публикаций",
+    "es": "Valores de publicación",
+    "fr": "Valeurs de publication par défaut"
+  },
+  "Private expiry, days": {
+    "en": "Private expiry, days",
+    "ru": "Срок личных материалов, дней",
+    "es": "Caducidad de materiales privados, días",
+    "fr": "Durée d’accès des contenus privés, jours"
+  },
+  "Leave blank for no expiry.": {
+    "en": "Leave blank for no expiry.",
+    "ru": "Пустое поле — без срока.",
+    "es": "Deja vacío para no fijar un plazo.",
+    "fr": "Laissez vide pour ne pas fixer d’échéance."
+  },
+  "External link expiry, days": {
+    "en": "External link expiry, days",
+    "ru": "Срок внешних ссылок, дней",
+    "es": "Caducidad de enlaces externos, días",
+    "fr": "Durée d’accès des liens externes, jours"
+  },
+  "Owner viewing": {
+    "en": "Owner viewing",
+    "ru": "Просмотр владельцем",
+    "es": "Visualización del propietario",
+    "fr": "Consultation du propriétaire"
+  },
+  "Open my protected materials without separate passwords": {
+    "en": "Open my protected materials without separate passwords",
+    "ru": "Открывать мои защищённые материалы без отдельных паролей",
+    "es": "Abrir mis materiales protegidos sin contraseñas individuales",
+    "fr": "Ouvrir mes contenus protégés sans mots de passe individuels"
+  },
+  "File opening": {
+    "en": "File opening",
+    "ru": "Открытие файлов",
+    "es": "Apertura de archivos",
+    "fr": "Ouverture des fichiers"
+  },
+  "Preview when supported": {
+    "en": "Preview when supported",
+    "ru": "Просмотр, если поддерживается",
+    "es": "Vista previa si es compatible",
+    "fr": "Aperçu si disponible"
+  },
+  "Download first": {
+    "en": "Download first",
+    "ru": "Сначала скачивание",
+    "es": "Descargar primero",
+    "fr": "Télécharger d’abord"
+  },
+  "Count guest views": {
+    "en": "Count guest views",
+    "ru": "Считать гостевые открытия",
+    "es": "Contar aperturas de invitados",
+    "fr": "Compter les consultations des visiteurs"
+  },
+  "Allow search indexing of public links": {
+    "en": "Allow search indexing of public links",
+    "ru": "Разрешать индексацию открытых ссылок",
+    "es": "Permitir indexar enlaces públicos",
+    "fr": "Autoriser l’indexation des liens publics"
+  },
+  "Private and password-protected materials always use noindex.": {
+    "en": "Private and password-protected materials always use noindex.",
+    "ru": "Личные и защищённые паролем материалы всегда noindex.",
+    "es": "Los materiales privados y protegidos siempre usan noindex.",
+    "fr": "Les contenus privés et protégés utilisent toujours noindex."
+  },
+  "Limits and storage": {
+    "en": "Limits and storage",
+    "ru": "Лимиты и хранилище",
+    "es": "Límites y almacenamiento",
+    "fr": "Limites et stockage"
+  },
+  "Expanded site, MiB": {
+    "en": "Expanded site, MiB",
+    "ru": "Сайт после распаковки, MiB",
+    "es": "Sitio extraído, MiB",
+    "fr": "Site extrait, Mio"
+  },
+  "Files per site": {
+    "en": "Files per site",
+    "ru": "Файлов в сайте",
+    "es": "Archivos por sitio",
+    "fr": "Fichiers par site"
+  },
+  "Storage quota, GiB": {
+    "en": "Storage quota, GiB",
+    "ru": "Квота хранилища, GiB",
+    "es": "Cuota de almacenamiento, GiB",
+    "fr": "Quota de stockage, Gio"
+  },
+  "Concurrent uploads": {
+    "en": "Concurrent uploads",
+    "ru": "Параллельных загрузок",
+    "es": "Cargas simultáneas",
+    "fr": "Envois simultanés"
+  },
+  "Lowering a limit never deletes existing files. Deployment ceilings and free disk checks still apply.": {
+    "en": "Lowering a limit never deletes existing files. Deployment ceilings and free disk checks still apply.",
+    "ru": "Снижение лимита не удаляет файлы. Максимумы деплоя и проверка свободного диска продолжают действовать.",
+    "es": "Reducir un límite no elimina archivos. Siguen vigentes los máximos del despliegue y las comprobaciones de disco.",
+    "fr": "Réduire une limite ne supprime aucun fichier. Les plafonds du déploiement et les contrôles disque restent actifs."
+  },
+  "Save for new publications": {
+    "en": "Save for new publications",
+    "ru": "Сохранить для новых публикаций",
+    "es": "Guardar para nuevas publicaciones",
+    "fr": "Enregistrer pour les nouvelles publications"
+  },
+  "Storage in use": {
+    "en": "Storage in use",
+    "ru": "Занято в хранилище",
+    "es": "Almacenamiento usado",
+    "fr": "Stockage utilisé"
+  },
+  "Reserved": {
+    "en": "Reserved",
+    "ru": "Зарезервировано",
+    "es": "Reservado",
+    "fr": "Réservé"
+  },
+  "Date time zone": {
+    "en": "Date time zone",
+    "ru": "Часовой пояс дат",
+    "es": "Zona horaria de las fechas",
+    "fr": "Fuseau horaire des dates"
+  },
+  "Browser time zone": {
+    "en": "Browser time zone",
+    "ru": "Часовой пояс браузера",
+    "es": "Zona horaria del navegador",
+    "fr": "Fuseau horaire du navigateur"
+  },
+  "Device tokens": {
+    "en": "Device tokens",
+    "ru": "Токены устройств",
+    "es": "Tokens de dispositivo",
+    "fr": "Jetons d’appareil"
+  },
+  "Create token": {
+    "en": "Create token",
+    "ru": "Создать токен",
+    "es": "Crear token",
+    "fr": "Créer un jeton"
+  },
+  "Name": {
+    "en": "Name",
+    "ru": "Название",
+    "es": "Nombre",
+    "fr": "Nom"
+  },
+  "Scope": {
+    "en": "Scope",
+    "ru": "Права",
+    "es": "Permisos",
+    "fr": "Droits"
+  },
+  "Manage materials": {
+    "en": "Manage materials",
+    "ru": "Управление материалами",
+    "es": "Gestionar materiales",
+    "fr": "Gérer les contenus"
+  },
+  "Read materials": {
+    "en": "Read materials",
+    "ru": "Чтение материалов",
+    "es": "Leer materiales",
+    "fr": "Lire les contenus"
+  },
+  "Revoke": {
+    "en": "Revoke",
+    "ru": "Отозвать",
+    "es": "Revocar",
+    "fr": "Révoquer"
+  },
+  "Revoke this device token?": {
+    "en": "Revoke this device token?",
+    "ru": "Отозвать токен устройства?",
+    "es": "¿Revocar este token de dispositivo?",
+    "fr": "Révoquer ce jeton d’appareil ?"
+  },
+  "No device tokens": {
+    "en": "No device tokens",
+    "ru": "Нет токенов устройств",
+    "es": "No hay tokens de dispositivo",
+    "fr": "Aucun jeton d’appareil"
+  },
+  "Token created — save it now": {
+    "en": "Token created — save it now",
+    "ru": "Токен создан — сохрани сейчас",
+    "es": "Token creado: guárdalo ahora",
+    "fr": "Jeton créé — enregistrez-le maintenant"
+  },
+  "This secret is shown once. Store it in your tool’s credential configuration, never in a skill or publication.": {
+    "en": "This secret is shown once. Store it in your tool’s credential configuration, never in a skill or publication.",
+    "ru": "Секрет показан один раз. Сохрани его в конфигурации учётных данных инструмента, а не в skill или публикации.",
+    "es": "Este secreto se muestra una sola vez. Guárdalo en las credenciales de tu herramienta, nunca en un skill o publicación.",
+    "fr": "Ce secret n’est affiché qu’une fois. Conservez-le dans les identifiants de votre outil, jamais dans un skill ou une publication."
+  },
+  "Copy token": {
+    "en": "Copy token",
+    "ru": "Скопировать токен",
+    "es": "Copiar token",
+    "fr": "Copier le jeton"
+  },
+  "Copied.": {
+    "en": "Copied.",
+    "ru": "Скопировано.",
+    "es": "Copiado.",
+    "fr": "Copié."
+  },
+  "Server address": {
+    "en": "Server address",
+    "ru": "Адрес сервера",
+    "es": "Dirección del servidor",
+    "fr": "Adresse du serveur"
+  },
+  "CLI and skills": {
+    "en": "CLI and skills",
+    "ru": "CLI и скиллы",
+    "es": "CLI y skills",
+    "fr": "CLI et skills"
+  },
+  "Use the versioned CLI release with this server address and a separate device token. Skills describe publishing and preflight; MCP is an optional adapter over the same API.": {
+    "en": "Use the versioned CLI release with this server address and a separate device token. Skills describe publishing and preflight; MCP is an optional adapter over the same API.",
+    "ru": "Используй версионный релиз CLI, адрес этого сервера и отдельный токен устройства. Скиллы описывают публикацию и проверки; MCP — дополнительный адаптер того же API.",
+    "es": "Usa la versión publicada de la CLI con este servidor y un token independiente. Los skills explican la publicación y las comprobaciones; MCP es un adaptador opcional de la misma API.",
+    "fr": "Utilisez la version publiée de la CLI avec cette adresse et un jeton distinct. Les skills décrivent la publication et les vérifications ; MCP est un adaptateur facultatif de la même API."
+  },
+  "Created": {
+    "en": "Created",
+    "ru": "Создано",
+    "es": "Creado",
+    "fr": "Créé"
+  },
+  "Revision": {
+    "en": "Revision",
+    "ru": "Версия",
+    "es": "Versión",
+    "fr": "Révision"
+  },
+  "Files in this revision": {
+    "en": "Files in this revision",
+    "ru": "Файлы текущей версии",
+    "es": "Archivos de esta versión",
+    "fr": "Fichiers de cette révision"
+  },
+  "This action cannot be undone.": {
+    "en": "This action cannot be undone.",
+    "ru": "Это действие нельзя отменить.",
+    "es": "Esta acción no se puede deshacer.",
+    "fr": "Cette action est irréversible."
+  },
+  "Please enter a valid positive number.": {
+    "en": "Please enter a valid positive number.",
+    "ru": "Укажи положительное число.",
+    "es": "Introduce un número positivo válido.",
+    "fr": "Saisissez un nombre positif valide."
+  },
+  "Password required": {
+    "en": "Password required",
+    "ru": "Нужен пароль",
+    "es": "Contraseña necesaria",
+    "fr": "Mot de passe requis"
+  },
+  "Enter the publication password to continue.": {
+    "en": "Enter the publication password to continue.",
+    "ru": "Введи пароль публикации для продолжения.",
+    "es": "Introduce la contraseña de publicación para continuar.",
+    "fr": "Saisissez le mot de passe de publication pour continuer."
+  },
+  "Unlock": {
+    "en": "Unlock",
+    "ru": "Открыть",
+    "es": "Desbloquear",
+    "fr": "Déverrouiller"
+  },
+  "Incorrect publication password.": {
+    "en": "Incorrect publication password.",
+    "ru": "Неверный пароль публикации.",
+    "es": "Contraseña de publicación incorrecta.",
+    "fr": "Mot de passe de publication incorrect."
+  },
+  "Not found": {
+    "en": "Not found",
+    "ru": "Не найдено",
+    "es": "No encontrado",
+    "fr": "Introuvable"
+  },
+  "This material is unavailable.": {
+    "en": "This material is unavailable.",
+    "ru": "Материал недоступен.",
+    "es": "Este material no está disponible.",
+    "fr": "Ce contenu est indisponible."
+  },
+  "Access has expired.": {
+    "en": "Access has expired.",
+    "ru": "Срок доступа истёк.",
+    "es": "El acceso ha caducado.",
+    "fr": "L’accès a expiré."
+  },
+  "Access is paused.": {
+    "en": "Access is paused.",
+    "ru": "Доступ приостановлен.",
+    "es": "El acceso está en pausa.",
+    "fr": "L’accès est suspendu."
+  },
+  "Continue": {
+    "en": "Continue",
+    "ru": "Продолжить",
+    "es": "Continuar",
+    "fr": "Continuer"
+  },
+  "Download": {
+    "en": "Download",
+    "ru": "Скачать",
+    "es": "Descargar",
+    "fr": "Télécharger"
+  },
+  "Upload request limit, MiB": {
+    "en": "Upload request limit, MiB",
+    "ru": "Лимит передаваемого файла, MiB",
+    "es": "Límite de carga, MiB",
+    "fr": "Limite d’envoi, Mio"
+  },
+  "Single file limit, MiB": {
+    "en": "Single file limit, MiB",
+    "ru": "Лимит одного файла, MiB",
+    "es": "Límite por archivo, MiB",
+    "fr": "Limite par fichier, Mio"
+  },
+  "Only the signed-in owner can view this material.": {
+    "en": "Only the signed-in owner can view this material.",
+    "ru": "Материал виден только вошедшему владельцу.",
+    "es": "Solo el propietario que ha iniciado sesión puede verlo.",
+    "fr": "Seul le propriétaire connecté peut consulter ce contenu."
+  },
+  "Anyone with the link can open it until access expires.": {
+    "en": "Anyone with the link can open it until access expires.",
+    "ru": "Любой получатель ссылки сможет открыть материал до окончания срока.",
+    "es": "Cualquiera con el enlace puede abrirlo hasta que caduque el acceso.",
+    "fr": "Toute personne disposant du lien peut ouvrir le contenu avant expiration."
+  },
+  "Recipients need the publication password. Your owner login stays separate.": {
+    "en": "Recipients need the publication password. Your owner login stays separate.",
+    "ru": "Получателю нужен пароль публикации. Вход владельца — отдельный доступ.",
+    "es": "Los destinatarios necesitan la contraseña de la publicación.",
+    "fr": "Les destinataires ont besoin du mot de passe de la publication."
+  },
+  "Close access at expiry and queue file deletion without a recovery period.": {
+    "en": "Close access at expiry and queue file deletion without a recovery period.",
+    "ru": "Закрыть доступ в срок и поставить файлы на очистку без периода восстановления.",
+    "es": "Cerrar el acceso al caducar y poner los archivos en cola de eliminación sin plazo de recuperación.",
+    "fr": "Fermer l’accès à l’expiration et programmer la suppression sans délai de récupération."
+  },
+  "Keep files for the chosen recovery period after access expires.": {
+    "en": "Keep files for the chosen recovery period after access expires.",
+    "ru": "После закрытия доступа хранить файлы ещё выбранное время, чтобы можно было продлить срок.",
+    "es": "Conservar los archivos durante el plazo elegido después de caducar el acceso.",
+    "fr": "Conserver les fichiers pendant le délai choisi après expiration de l’accès."
+  },
+  "Keep files until you delete them. Expired links still stop working.": {
+    "en": "Keep files until you delete them. Expired links still stop working.",
+    "ru": "Хранить файлы до ручного удаления. Просроченная ссылка всё равно перестанет открываться.",
+    "es": "Conservar los archivos hasta su eliminación manual. Los enlaces caducados dejarán de funcionar.",
+    "fr": "Conserver les fichiers jusqu’à leur suppression manuelle. Les liens expirés restent fermés."
+  },
+  "Keep the title, description and dates in your library after the files are deleted.": {
+    "en": "Keep the title, description and dates in your library after the files are deleted.",
+    "ru": "Оставить в библиотеке название, описание и даты. Сам файл уже нельзя открыть.",
+    "es": "Conservar el título, la descripción y las fechas en la biblioteca tras eliminar los archivos.",
+    "fr": "Conserver le titre, la description et les dates après suppression des fichiers."
+  },
+  "Remove the library entry when its files are actually deleted.": {
+    "en": "Remove the library entry when its files are actually deleted.",
+    "ru": "Убрать запись из библиотеки, когда файлы действительно удалены.",
+    "es": "Eliminar la ficha de la biblioteca cuando se eliminen sus archivos.",
+    "fr": "Supprimer la fiche de la bibliothèque lors de la suppression effective des fichiers."
+  },
+  "Keep the entry for an additional period, counted from actual file deletion.": {
+    "en": "Keep the entry for an additional period, counted from actual file deletion.",
+    "ru": "Сохранить запись ещё на срок, который считается с фактического удаления файлов.",
+    "es": "Conservar la ficha durante un plazo adicional desde la eliminación efectiva de los archivos.",
+    "fr": "Conserver la fiche pendant un délai supplémentaire après suppression effective des fichiers."
+  },
+  "The site may load HTTPS resources and call external APIs from the visitor’s browser.": {
+    "en": "The site may load HTTPS resources and call external APIs from the visitor’s browser.",
+    "ru": "Сайт может загружать HTTPS-ресурсы и обращаться к внешним API из браузера посетителя.",
+    "es": "El sitio puede cargar recursos HTTPS y usar API externas desde el navegador.",
+    "fr": "Le site peut charger des ressources HTTPS et appeler des API externes depuis le navigateur."
+  },
+  "Load resources from this build. External fonts, CDNs and APIs may stop working.": {
+    "en": "Load resources from this build. External fonts, CDNs and APIs may stop working.",
+    "ru": "Загружать ресурсы этой сборки. Внешние шрифты, CDN и API могут перестать работать.",
+    "es": "Cargar recursos de esta versión. Las fuentes, CDN y API externas pueden dejar de funcionar.",
+    "fr": "Charger les ressources de cette version. Les polices, CDN et API externes peuvent ne plus fonctionner."
+  },
+  "Serve existing files and directory indexes. Missing paths return 404.": {
+    "en": "Serve existing files and directory indexes. Missing paths return 404.",
+    "ru": "Открывать существующие файлы и index страниц. Отсутствующий путь — 404.",
+    "es": "Servir archivos e índices existentes. Las rutas ausentes devuelven 404.",
+    "fr": "Servir les fichiers et index existants. Les chemins absents renvoient 404."
+  },
+  "Use the entry for page navigation only. Missing scripts, styles and media stay 404.": {
+    "en": "Use the entry for page navigation only. Missing scripts, styles and media stay 404.",
+    "ru": "Для переходов между страницами возвращать entry. Отсутствующие JS, CSS и медиа — 404.",
+    "es": "Usar el archivo de entrada al navegar. Los scripts, estilos y medios ausentes siguen devolviendo 404.",
+    "fr": "Utiliser l’entrée pour la navigation. Les scripts, styles et médias absents restent en 404."
+  },
+  "Open": {
+    "en": "Open",
+    "ru": "Открыть",
+    "es": "Abrir",
+    "fr": "Ouvrir"
+  },
+  "Theme": {
+    "en": "Theme",
+    "ru": "Тема",
+    "es": "Tema",
+    "fr": "Thème"
+  },
+  "This publication is unavailable.": {
+    "en": "This publication is unavailable.",
+    "ru": "Публикация недоступна.",
+    "es": "Esta publicación no está disponible.",
+    "fr": "Cette publication est indisponible."
+  },
+  "This material is configured to download.": {
+    "en": "This material is configured to download.",
+    "ru": "Для этого материала выбрано скачивание.",
+    "es": "Este material está configurado para descargarse.",
+    "fr": "Ce contenu est configuré pour être téléchargé."
+  },
+  "This file type does not have a browser preview.": {
+    "en": "This file type does not have a browser preview.",
+    "ru": "Для этого типа файла нет браузерного просмотра.",
+    "es": "Este tipo de archivo no tiene vista previa en el navegador.",
+    "fr": "Ce type de fichier n’a pas d’aperçu dans le navigateur."
+  },
+  "Upload and review": {
+    "en": "Upload and review",
+    "ru": "Загрузить и проверить",
+    "es": "Subir y revisar",
+    "fr": "Envoyer et vérifier"
+  },
+  "Dependency report": {
+    "en": "Dependency report",
+    "ru": "Отчёт о зависимостях",
+    "es": "Informe de dependencias",
+    "fr": "Rapport de dépendances"
+  },
+  "Static HTML/CSS analysis only. JavaScript, runtime requests and browser behavior are not evaluated.": {
+    "en": "Static HTML/CSS analysis only. JavaScript, runtime requests and browser behavior are not evaluated.",
+    "ru": "Только статический анализ HTML/CSS. JavaScript, запросы во время работы и поведение браузера не проверяются.",
+    "es": "Solo análisis estático de HTML/CSS. No se evalúan JavaScript, solicitudes en ejecución ni el comportamiento del navegador.",
+    "fr": "Analyse statique HTML/CSS uniquement. JavaScript, les requêtes à l’exécution et le comportement du navigateur ne sont pas évalués."
+  },
+  "Analysis reached a limit. Some references may be missing from this report.": {
+    "en": "Analysis reached a limit. Some references may be missing from this report.",
+    "ru": "Достигнут лимит анализа. Часть ссылок может отсутствовать в отчёте.",
+    "es": "El análisis alcanzó un límite. Pueden faltar referencias en este informe.",
+    "fr": "L’analyse a atteint une limite. Certaines références peuvent manquer dans ce rapport."
+  },
+  "Files checked: {count} · {size}": {
+    "en": "Files checked: {count} · {size}",
+    "ru": "Проверено файлов: {count} · {size}",
+    "es": "Archivos analizados: {count} · {size}",
+    "fr": "Fichiers analysés : {count} · {size}"
+  },
+  "Detected external origins": {
+    "en": "Detected external origins",
+    "ru": "Обнаруженные внешние источники",
+    "es": "Orígenes externos detectados",
+    "fr": "Origines externes détectées"
+  },
+  "No external origins found in the scanned HTML/CSS.": {
+    "en": "No external origins found in the scanned HTML/CSS.",
+    "ru": "В проверенных HTML/CSS внешние источники не найдены.",
+    "es": "No se encontraron orígenes externos en el HTML/CSS analizado.",
+    "fr": "Aucune origine externe trouvée dans le HTML/CSS analysé."
+  },
+  "Missing local assets": {
+    "en": "Missing local assets",
+    "ru": "Отсутствующие локальные ресурсы",
+    "es": "Recursos locales ausentes",
+    "fr": "Ressources locales manquantes"
+  },
+  "No missing local assets found in the scanned references.": {
+    "en": "No missing local assets found in the scanned references.",
+    "ru": "В проверенных ссылках отсутствующие локальные ресурсы не найдены.",
+    "es": "No se encontraron recursos locales ausentes en las referencias analizadas.",
+    "fr": "Aucune ressource locale manquante trouvée dans les références analysées."
+  },
+  "Review publication": {
+    "en": "Review publication",
+    "ru": "Проверка публикации",
+    "es": "Revisar publicación",
+    "fr": "Vérifier la publication"
+  },
+  "Uploaded files are not live until you confirm. Cancel removes this pending upload.": {
+    "en": "Uploaded files are not live until you confirm. Cancel removes this pending upload.",
+    "ru": "Загруженные файлы станут доступны после подтверждения. Отмена удалит эту незавершённую загрузку.",
+    "es": "Los archivos no se publican hasta que confirmes. Cancelar elimina esta carga pendiente.",
+    "fr": "Les fichiers ne sont pas publiés avant votre confirmation. Annuler supprime cet envoi en attente."
+  },
+  "Prepared size": {
+    "en": "Prepared size",
+    "ru": "Размер после подготовки",
+    "es": "Tamaño preparado",
+    "fr": "Taille préparée"
+  },
+  "Review before {date}": {
+    "en": "Review before {date}",
+    "ru": "Подтверди до {date}",
+    "es": "Revisar antes de {date}",
+    "fr": "Vérifier avant le {date}"
+  },
+  "Included files": {
+    "en": "Included files",
+    "ru": "Включённые файлы",
+    "es": "Archivos incluidos",
+    "fr": "Fichiers inclus"
+  },
+  "Dependency analysis is unavailable. Check the files before publishing.": {
+    "en": "Dependency analysis is unavailable. Check the files before publishing.",
+    "ru": "Анализ зависимостей недоступен. Проверь файлы перед публикацией.",
+    "es": "El análisis de dependencias no está disponible. Revisa los archivos antes de publicar.",
+    "fr": "L’analyse des dépendances est indisponible. Vérifiez les fichiers avant de publier."
+  },
+  "Publish now": {
+    "en": "Publish now",
+    "ru": "Опубликовать",
+    "es": "Publicar ahora",
+    "fr": "Publier maintenant"
+  },
+  "Publishing…": {
+    "en": "Publishing…",
+    "ru": "Публикация…",
+    "es": "Publicando…",
+    "fr": "Publication…"
+  },
+  "Upload stopped. Any pending server cleanup may finish in the background.": {
+    "en": "Upload stopped. Any pending server cleanup may finish in the background.",
+    "ru": "Загрузка остановлена. Сервер может завершить очистку в фоне.",
+    "es": "Carga detenida. La limpieza pendiente puede terminar en segundo plano.",
+    "fr": "Envoi arrêté. Le nettoyage restant peut se terminer en arrière-plan."
+  },
+  "The file is ready to publish.": {
+    "en": "The file is ready to publish.",
+    "ru": "Файл готов к публикации.",
+    "es": "El archivo está listo para publicarse.",
+    "fr": "Le fichier est prêt à être publié."
+  },
+  "Check guest view": {
+    "en": "Check guest view",
+    "ru": "Проверить как гость",
+    "es": "Comprobar vista de invitado",
+    "fr": "Vérifier la vue invité"
+  },
+  "Time unit": {
+    "en": "Time unit",
+    "ru": "Единица времени",
+    "es": "Unidad de tiempo",
+    "fr": "Unité de temps"
+  },
+  "Maximum: {value}": {
+    "en": "Maximum: {value}",
+    "ru": "Максимум: {value}",
+    "es": "Máximo: {value}",
+    "fr": "Maximum : {value}"
+  },
+  "Set up Minder Publish on this computer.": {
+    "en": "Set up Minder Publish on this computer.",
+    "ru": "Настрой Minder Publish на этом компьютере.",
+    "es": "Configura Minder Publish en este equipo.",
+    "fr": "Configurez Minder Publish sur cet ordinateur."
+  },
+  "Install the CLI from an inspected source release. In that release directory, run:": {
+    "en": "Install the CLI from an inspected source release. In that release directory, run:",
+    "ru": "Установи CLI из проверенного исходного релиза. В его каталоге выполни:",
+    "es": "Instala la CLI desde una versión de código fuente revisada. En su carpeta, ejecuta:",
+    "fr": "Installez la CLI depuis une version source vérifiée. Dans son dossier, exécutez :"
+  },
+  "Create a device token in Connection, then run:": {
+    "en": "Create a device token in Connection, then run:",
+    "ru": "Создай токен устройства в «Подключении», затем выполни:",
+    "es": "Crea un token de dispositivo en Conexión y ejecuta:",
+    "fr": "Créez un jeton d’appareil dans Connexion, puis exécutez :"
+  },
+  "Paste the token only into the hidden terminal prompt. Never paste it into an AI chat or put it in a command.": {
+    "en": "Paste the token only into the hidden terminal prompt. Never paste it into an AI chat or put it in a command.",
+    "ru": "Вставь токен только в скрытый запрос терминала. Не отправляй его в чат с AI и не добавляй в команду.",
+    "es": "Pega el token solo en la entrada oculta del terminal. No lo envíes a un chat de IA ni lo incluyas en un comando.",
+    "fr": "Collez le jeton uniquement dans la saisie masquée du terminal. Ne le transmettez pas au chat IA et ne l’insérez pas dans une commande."
+  },
+  "Verify the connection:": {
+    "en": "Verify the connection:",
+    "ru": "Проверь подключение:",
+    "es": "Comprueba la conexión:",
+    "fr": "Vérifiez la connexion :"
+  },
+  "Preview skill installation for Codex and Claude Code:": {
+    "en": "Preview skill installation for Codex and Claude Code:",
+    "ru": "Посмотри изменения перед установкой скиллов для Codex и Claude Code:",
+    "es": "Revisa la instalación de skills para Codex y Claude Code:",
+    "fr": "Prévisualisez l’installation des skills pour Codex et Claude Code :"
+  },
+  "After reviewing the changes, install the skills:": {
+    "en": "After reviewing the changes, install the skills:",
+    "ru": "После проверки изменений установи скиллы:",
+    "es": "Tras revisar los cambios, instala los skills:",
+    "fr": "Après vérification des modifications, installez les skills :"
+  },
+  "Then ask your agent to publish a finished file or built static site using the Minder Publish skill.": {
+    "en": "Then ask your agent to publish a finished file or built static site using the Minder Publish skill.",
+    "ru": "Затем попроси агента опубликовать готовый файл или собранный статический сайт со скиллом Minder Publish.",
+    "es": "Después pide a tu agente que publique un archivo terminado o un sitio estático compilado con el skill de Minder Publish.",
+    "fr": "Demandez ensuite à votre agent de publier un fichier terminé ou un site statique compilé avec le skill Minder Publish."
+  },
+  "Connect in three steps": {
+    "en": "Connect in three steps",
+    "ru": "Подключение за три шага",
+    "es": "Conecta en tres pasos",
+    "fr": "Connexion en trois étapes"
+  },
+  "The token authorizes your tool. Configure it once on each computer; the skill teaches your agent how to publish.": {
+    "en": "The token authorizes your tool. Configure it once on each computer; the skill teaches your agent how to publish.",
+    "ru": "Токен даёт инструменту доступ. Настрой его один раз на каждом компьютере; скилл объяснит агенту, как публиковать.",
+    "es": "El token autoriza tu herramienta. Configúrala una vez en cada equipo; el skill enseña al agente a publicar.",
+    "fr": "Le jeton autorise votre outil. Configurez-le une fois par ordinateur ; le skill explique à l’agent comment publier."
+  },
+  "Copy setup instructions": {
+    "en": "Copy setup instructions",
+    "ru": "Скопировать инструкцию",
+    "es": "Copiar instrucciones",
+    "fr": "Copier les instructions"
+  },
+  "Copy connection command": {
+    "en": "Copy connection command",
+    "ru": "Скопировать команду подключения",
+    "es": "Copiar comando de conexión",
+    "fr": "Copier la commande de connexion"
+  },
+  "Install the CLI": {
+    "en": "Install the CLI",
+    "ru": "Установи CLI",
+    "es": "Instala la CLI",
+    "fr": "Installer la CLI"
+  },
+  "A source release is required until a public package is available. Ask the operator for the reviewed release.": {
+    "en": "A source release is required until a public package is available. Ask the operator for the reviewed release.",
+    "ru": "Пока публичный пакет не выпущен, нужен исходный релиз. Проверенную сборку можно получить у владельца сервиса.",
+    "es": "Hasta que exista un paquete público, necesitas una versión fuente revisada del operador.",
+    "fr": "En attendant le paquet public, demandez la version source vérifiée à l’opérateur."
+  },
+  "Connect this computer": {
+    "en": "Connect this computer",
+    "ru": "Подключи этот компьютер",
+    "es": "Conecta este equipo",
+    "fr": "Connecter cet ordinateur"
+  },
+  "Create a device token below, copy it, then run this command in your terminal:": {
+    "en": "Create a device token below, copy it, then run this command in your terminal:",
+    "ru": "Создай токен устройства ниже, скопируй его и выполни в терминале:",
+    "es": "Crea un token abajo, cópialo y ejecuta este comando en el terminal:",
+    "fr": "Créez un jeton ci-dessous, copiez-le, puis exécutez cette commande dans le terminal :"
+  },
+  "Add the publishing skill": {
+    "en": "Add the publishing skill",
+    "ru": "Добавь скилл публикации",
+    "es": "Añade el skill de publicación",
+    "fr": "Ajouter le skill de publication"
+  },
+  "Use a separate named token for each computer or harness. Revoking one token does not disconnect the others.": {
+    "en": "Use a separate named token for each computer or harness. Revoking one token does not disconnect the others.",
+    "ru": "Создавай отдельный именованный токен для каждого компьютера или harness. Отзыв одного токена не отключит остальные.",
+    "es": "Usa un token con nombre para cada equipo o harness. Revocar uno no desconecta los demás.",
+    "fr": "Utilisez un jeton nommé par ordinateur ou harness. Révoquer un jeton ne déconnecte pas les autres."
+  },
+  "Next: run the connection command and paste this token into its hidden prompt.": {
+    "en": "Next: run the connection command and paste this token into its hidden prompt.",
+    "ru": "Дальше выполни команду подключения и вставь этот токен в её скрытый запрос.",
+    "es": "Ahora ejecuta el comando de conexión y pega el token en su entrada oculta.",
+    "fr": "Exécutez ensuite la commande de connexion et collez ce jeton dans sa saisie masquée."
+  },
+  "Minder Publish home": {
+    "en": "Minder Publish home",
+    "ru": "Главная Minder Publish",
+    "es": "Inicio de Minder Publish",
+    "fr": "Accueil de Minder Publish"
+  },
+  "Shared files and sites": {
+    "en": "Shared files and sites",
+    "ru": "Файлы и сайты по ссылке",
+    "es": "Archivos y sitios compartidos",
+    "fr": "Fichiers et sites partagés"
+  },
+  "Open the link you received to view a material.": {
+    "en": "Open the link you received to view a material.",
+    "ru": "Чтобы посмотреть материал, откройте ссылку, которой с вами поделились.",
+    "es": "Para ver un contenido, abre el enlace que te han enviado.",
+    "fr": "Pour consulter un contenu, ouvrez le lien qui vous a été envoyé."
+  },
+  "Back to the homepage": {
+    "en": "Back to the homepage",
+    "ru": "На главную",
+    "es": "Volver al inicio",
+    "fr": "Revenir à l’accueil"
+  },
+  "Choose your assistant": {
+    "en": "Choose your assistant",
+    "ru": "Выбери помощника",
+    "es": "Elige tu asistente",
+    "fr": "Choisissez votre assistant"
+  },
+  "Choose where you work. We’ll show what to copy, where to paste it and how to check the connection.": {
+    "en": "Choose where you work. We’ll show what to copy, where to paste it and how to check the connection.",
+    "ru": "Выбери, где ты работаешь. Покажем, что скопировать, куда вставить и как проверить подключение.",
+    "es": "Elige dónde trabajas. Te mostraremos qué copiar, dónde pegarlo y cómo comprobar la conexión.",
+    "fr": "Choisissez votre environnement. Nous vous montrerons quoi copier, où le coller et comment vérifier la connexion."
+  },
+  "Other": {
+    "en": "Other",
+    "ru": "Другое",
+    "es": "Otro",
+    "fr": "Autre"
+  },
+  "On your computer": {
+    "en": "On your computer",
+    "ru": "На твоём компьютере",
+    "es": "En tu ordenador",
+    "fr": "Sur votre ordinateur"
+  },
+  "Another app": {
+    "en": "Another app",
+    "ru": "Другой помощник",
+    "es": "Otra aplicación",
+    "fr": "Une autre application"
+  },
+  "Use Publish from {app}": {
+    "en": "Use Publish from {app}",
+    "ru": "Publish в {app}",
+    "es": "Usa Publish desde {app}",
+    "fr": "Utilisez Publish depuis {app}"
+  },
+  "Your assistant can publish finished files and sites from this computer.": {
+    "en": "Your assistant can publish finished files and sites from this computer.",
+    "ru": "Помощник сможет публиковать готовые файлы и сайты с этого компьютера.",
+    "es": "Tu asistente podrá publicar archivos y sitios terminados desde este ordenador.",
+    "fr": "Votre assistant pourra publier des fichiers et des sites terminés depuis cet ordinateur."
+  },
+  "Copy these instructions into {app}. Your agent will download and install the verified client.": {
+    "en": "Copy these instructions into {app}. Your agent will download and install the verified client.",
+    "ru": "Вставь эту инструкцию в {app}. Агент скачает и установит проверенный клиент.",
+    "es": "Pega estas instrucciones en {app}. Tu agente descargará e instalará el cliente verificado.",
+    "fr": "Collez ces instructions dans {app}. Votre agent téléchargera et installera le client vérifié."
+  },
+  "Copy instructions for agent": {
+    "en": "Copy instructions for agent",
+    "ru": "Скопировать инструкцию для агента",
+    "es": "Copiar instrucciones para el agente",
+    "fr": "Copier les instructions pour l’agent"
+  },
+  "Download client": {
+    "en": "Download client",
+    "ru": "Скачать клиент",
+    "es": "Descargar cliente",
+    "fr": "Télécharger le client"
+  },
+  "Release details": {
+    "en": "Release details",
+    "ru": "Данные сборки",
+    "es": "Detalles de la versión",
+    "fr": "Détails de la version"
+  },
+  "Client version": {
+    "en": "Client version",
+    "ru": "Версия клиента",
+    "es": "Versión del cliente",
+    "fr": "Version du client"
+  },
+  "Client download is not available. Ask the operator to provide the client release.": {
+    "en": "Client download is not available. Ask the operator to provide the client release.",
+    "ru": "Клиент пока нельзя скачать. Попроси администратора добавить сборку клиента.",
+    "es": "La descarga del cliente no está disponible. Pide al administrador que añada la versión del cliente.",
+    "fr": "Le téléchargement du client est indisponible. Demandez à l’administrateur d’ajouter la version du client."
+  },
+  "Install the publishing tool": {
+    "en": "Install the publishing tool",
+    "ru": "Установи инструмент публикации",
+    "es": "Instala la herramienta de publicación",
+    "fr": "Installez l’outil de publication"
+  },
+  "Create a device token, then run the connection command in a terminal.": {
+    "en": "Create a device token, then run the connection command in a terminal.",
+    "ru": "Создай токен устройства и выполни команду подключения в терминале.",
+    "es": "Crea un token de dispositivo y ejecuta el comando de conexión en un terminal.",
+    "fr": "Créez un jeton d’appareil, puis exécutez la commande de connexion dans un terminal."
+  },
+  "Paste these instructions into {app}. The skill teaches your assistant to choose files, access and expiry.": {
+    "en": "Paste these instructions into {app}. The skill teaches your assistant to choose files, access and expiry.",
+    "ru": "Вставь эту инструкцию в {app}. Скилл объяснит помощнику, как выбирать файлы, доступ и срок публикации.",
+    "es": "Pega estas instrucciones en {app}. La habilidad enseña al asistente a elegir archivos, acceso y caducidad.",
+    "fr": "Collez ces instructions dans {app}. La compétence explique à votre assistant comment choisir les fichiers, l’accès et l’expiration."
+  },
+  "Copy skill instructions": {
+    "en": "Copy skill instructions",
+    "ru": "Скопировать инструкцию скилла",
+    "es": "Copiar instrucciones de la habilidad",
+    "fr": "Copier les instructions de la compétence"
+  },
+  "Check the connection": {
+    "en": "Check the connection",
+    "ru": "Проверьте подключение",
+    "es": "Comprueba la conexión",
+    "fr": "Vérifiez la connexion"
+  },
+  "Run the check in the same environment where your assistant works.": {
+    "en": "Run the check in the same environment where your assistant works.",
+    "ru": "Выполни проверку там же, где работает помощник.",
+    "es": "Ejecuta la comprobación en el mismo entorno que utiliza tu asistente.",
+    "fr": "Exécutez la vérification dans l’environnement utilisé par votre assistant."
+  },
+  "Copy check command": {
+    "en": "Copy check command",
+    "ru": "Скопировать команду проверки",
+    "es": "Copiar comando de comprobación",
+    "fr": "Copier la commande de vérification"
+  },
+  "Open ChatGPT Plugins, choose +, then Add custom MCP server.": {
+    "en": "Open ChatGPT Plugins, choose +, then Add custom MCP server.",
+    "ru": "Открой Plugins в ChatGPT, нажми + и выбери Add custom MCP server.",
+    "es": "Abre Plugins en ChatGPT, pulsa + y elige Add custom MCP server.",
+    "fr": "Ouvrez Plugins dans ChatGPT, cliquez sur +, puis sur Add custom MCP server."
+  },
+  "Connect Publish": {
+    "en": "Connect Publish",
+    "ru": "Подключи Publish",
+    "es": "Conecta Publish",
+    "fr": "Connectez Publish"
+  },
+  "Paste the server address, choose OAuth and sign in to Minder Publish.": {
+    "en": "Paste the server address, choose OAuth and sign in to Minder Publish.",
+    "ru": "Вставь адрес сервера, выбери OAuth и войди в Minder Publish.",
+    "es": "Pega la dirección del servidor, elige OAuth e inicia sesión en Minder Publish.",
+    "fr": "Collez l’adresse du serveur, choisissez OAuth et connectez-vous à Minder Publish."
+  },
+  "Copy server address": {
+    "en": "Copy server address",
+    "ru": "Скопировать адрес сервера",
+    "es": "Copiar dirección del servidor",
+    "fr": "Copier l’adresse du serveur"
+  },
+  "Approve only the access you need. Each app can be disconnected below.": {
+    "en": "Approve only the access you need. Each app can be disconnected below.",
+    "ru": "Разреши только нужный доступ. Каждое приложение можно отключить ниже.",
+    "es": "Autoriza solo el acceso necesario. Puedes desconectar cada aplicación abajo.",
+    "fr": "N’autorisez que les accès nécessaires. Chaque application peut être déconnectée ci-dessous."
+  },
+  "Download the ChatGPT plugin package.": {
+    "en": "Download the ChatGPT plugin package.",
+    "ru": "Скачай пакет плагина для ChatGPT.",
+    "es": "Descarga el paquete del plugin para ChatGPT.",
+    "fr": "Téléchargez le paquet du plugin ChatGPT."
+  },
+  "Use ChatGPT’s personal plugin installation flow to install this package. Downloading it does not connect your account.": {
+    "en": "Use ChatGPT’s personal plugin installation flow to install this package. Downloading it does not connect your account.",
+    "ru": "Установи пакет через установку личных плагинов ChatGPT. Само скачивание не подключает аккаунт.",
+    "es": "Instala este paquete mediante el flujo de plugins personales de ChatGPT. Descargarlo no conecta tu cuenta.",
+    "fr": "Installez ce paquet avec le processus d’installation des plugins personnels de ChatGPT. Le téléchargement seul ne connecte pas votre compte."
+  },
+  "Download package": {
+    "en": "Download package",
+    "ru": "Скачать пакет",
+    "es": "Descargar paquete",
+    "fr": "Télécharger le paquet"
+  },
+  "Open installation guide": {
+    "en": "Open installation guide",
+    "ru": "Открыть инструкцию установки",
+    "es": "Abrir guía de instalación",
+    "fr": "Ouvrir le guide d’installation"
+  },
+  "Enable code execution and file creation if the Skills section is unavailable.": {
+    "en": "Enable code execution and file creation if the Skills section is unavailable.",
+    "ru": "Если раздела Skills нет, включи выполнение кода и создание файлов в настройках Claude.",
+    "es": "Si no aparece Skills, activa la ejecución de código y la creación de archivos.",
+    "fr": "Si la section Skills est indisponible, activez l’exécution de code et la création de fichiers."
+  },
+  "Download skill": {
+    "en": "Download skill",
+    "ru": "Скачать скилл",
+    "es": "Descargar habilidad",
+    "fr": "Télécharger la compétence"
+  },
+  "Your assistant may ask you to select or upload a file. Complete that step before expecting a published link.": {
+    "en": "Your assistant may ask you to select or upload a file. Complete that step before expecting a published link.",
+    "ru": "Помощник может попросить выбрать или загрузить файл. Заверши этот шаг, чтобы получить опубликованную ссылку.",
+    "es": "Tu asistente puede pedirte que selecciones o subas un archivo. Completa ese paso para obtener el enlace publicado.",
+    "fr": "Votre assistant peut vous demander de sélectionner ou d’envoyer un fichier. Effectuez cette étape pour obtenir un lien publié."
+  },
+  "Use on your phone": {
+    "en": "Use on your phone",
+    "ru": "Используй на телефоне",
+    "es": "Úsalo en tu móvil",
+    "fr": "Utilisez-le sur votre téléphone"
+  },
+  "Complete setup on web or desktop if the mobile app has no setup controls. Then enable the connected app and skill in your mobile conversation.": {
+    "en": "Complete setup on web or desktop if the mobile app has no setup controls. Then enable the connected app and skill in your mobile conversation.",
+    "ru": "Если в мобильном приложении нет настроек подключения, настрой всё в вебе или на компьютере. Затем включи подключённое приложение и скилл в беседе на телефоне.",
+    "es": "Si la app móvil no ofrece controles de configuración, termina la instalación en la web o el escritorio. Después activa la aplicación conectada y la habilidad en tu conversación móvil.",
+    "fr": "Si l’application mobile n’offre pas ces réglages, terminez la configuration sur le web ou sur ordinateur. Activez ensuite l’application connectée et la compétence dans votre conversation mobile."
+  },
+  "Advanced: use a device token in Claude": {
+    "en": "Advanced: use a device token in Claude",
+    "ru": "Дополнительно: токен устройства для Claude",
+    "es": "Avanzado: usar un token de dispositivo en Claude",
+    "fr": "Avancé : utiliser un jeton d’appareil dans Claude"
+  },
+  "Instead of OAuth, Claude can send an Authorization request header. Enter the token only in Claude’s connector settings.": {
+    "en": "Instead of OAuth, Claude can send an Authorization request header. Enter the token only in Claude’s connector settings.",
+    "ru": "Вместо OAuth Claude может отправлять заголовок Authorization. Вводи токен только в настройках коннектора Claude.",
+    "es": "En lugar de OAuth, Claude puede enviar una cabecera Authorization. Introduce el token solo en los ajustes del conector de Claude.",
+    "fr": "À la place d’OAuth, Claude peut envoyer un en-tête Authorization. Saisissez le jeton uniquement dans les réglages du connecteur Claude."
+  },
+  "Header name": {
+    "en": "Header name",
+    "ru": "Имя заголовка",
+    "es": "Nombre de la cabecera",
+    "fr": "Nom de l’en-tête"
+  },
+  "Header value": {
+    "en": "Header value",
+    "ru": "Значение заголовка",
+    "es": "Valor de la cabecera",
+    "fr": "Valeur de l’en-tête"
+  },
+  "Do not paste your actual token into a prompt, skill or this page.": {
+    "en": "Do not paste your actual token into a prompt, skill or this page.",
+    "ru": "Не вставляй настоящий токен в запрос, скилл или на эту страницу.",
+    "es": "No pegues tu token real en una petición, habilidad o en esta página.",
+    "fr": "Ne collez pas votre vrai jeton dans une requête, une compétence ou sur cette page."
+  },
+  "Remote connections are disabled on this instance. Ask the operator to enable them before connecting.": {
+    "en": "Remote connections are disabled on this instance. Ask the operator to enable them before connecting.",
+    "ru": "Удалённые подключения отключены на этом сервере. Попроси администратора включить их перед настройкой.",
+    "es": "Las conexiones remotas están desactivadas en esta instancia. Pide al administrador que las active antes de conectar.",
+    "fr": "Les connexions distantes sont désactivées sur cette instance. Demandez à l’administrateur de les activer avant de vous connecter."
+  },
+  "Use another assistant": {
+    "en": "Use another assistant",
+    "ru": "Другой помощник",
+    "es": "Usa otro asistente",
+    "fr": "Utiliser un autre assistant"
+  },
+  "Choose the method your assistant supports.": {
+    "en": "Choose the method your assistant supports.",
+    "ru": "Выбери способ, который поддерживает твой помощник.",
+    "es": "Elige el método compatible con tu asistente.",
+    "fr": "Choisissez une méthode prise en charge par votre assistant."
+  },
+  "From this computer": {
+    "en": "From this computer",
+    "ru": "С этого компьютера",
+    "es": "Desde este ordenador",
+    "fr": "Depuis cet ordinateur"
+  },
+  "Use the downloadable client for an assistant that can run terminal commands. Install its skill only if that assistant supports Agent Skills.": {
+    "en": "Use the downloadable client for an assistant that can run terminal commands. Install its skill only if that assistant supports Agent Skills.",
+    "ru": "Если помощник умеет выполнять команды терминала, используй скачиваемый клиент. Установи скилл, если помощник поддерживает Agent Skills.",
+    "es": "Usa el cliente descargable si tu asistente puede ejecutar comandos de terminal. Instala la habilidad solo si admite Agent Skills.",
+    "fr": "Utilisez le client téléchargeable si votre assistant peut exécuter des commandes de terminal. Installez la compétence s’il prend en charge Agent Skills."
+  },
+  "From a connected cloud app": {
+    "en": "From a connected cloud app",
+    "ru": "Из облачного приложения",
+    "es": "Desde una aplicación en la nube",
+    "fr": "Depuis une application cloud"
+  },
+  "Add this server in the app’s remote MCP settings and authorize it with OAuth. Follow that app’s installation guide.": {
+    "en": "Add this server in the app’s remote MCP settings and authorize it with OAuth. Follow that app’s installation guide.",
+    "ru": "Добавь этот сервер в настройки удалённого MCP приложения и авторизуй его через OAuth. Следуй инструкции этого приложения.",
+    "es": "Añade este servidor en los ajustes MCP remotos de la aplicación y autorízalo con OAuth. Sigue su guía de instalación.",
+    "fr": "Ajoutez ce serveur dans les réglages MCP distants de l’application et autorisez-le avec OAuth. Suivez son guide d’installation."
+  },
+  "Try asking your assistant": {
+    "en": "Try asking your assistant",
+    "ru": "Попробуй попросить помощника",
+    "es": "Prueba a pedirle a tu asistente",
+    "fr": "Essayez de demander à votre assistant"
+  },
+  "Publish this finished result and give me a link I can share.": {
+    "en": "Publish this finished result and give me a link I can share.",
+    "ru": "Опубликуй этот готовый результат и дай ссылку, которой можно поделиться.",
+    "es": "Publica este resultado terminado y dame un enlace para compartir.",
+    "fr": "Publie ce résultat terminé et donne-moi un lien à partager."
+  },
+  "Copy example request": {
+    "en": "Copy example request",
+    "ru": "Скопировать пример запроса",
+    "es": "Copiar ejemplo de petición",
+    "fr": "Copier l’exemple de requête"
+  },
+  "Manage connected apps and devices": {
+    "en": "Manage connected apps and devices",
+    "ru": "Управление приложениями и устройствами",
+    "es": "Gestionar aplicaciones y dispositivos conectados",
+    "fr": "Gérer les applications et appareils connectés"
+  },
+  "Connected apps": {
+    "en": "Connected apps",
+    "ru": "Подключённые приложения",
+    "es": "Aplicaciones conectadas",
+    "fr": "Applications connectées"
+  },
+  "No connected apps": {
+    "en": "No connected apps",
+    "ru": "Нет подключённых приложений",
+    "es": "No hay aplicaciones conectadas",
+    "fr": "Aucune application connectée"
+  },
+  "Copy manually": {
+    "en": "Copy manually",
+    "ru": "Скопировать вручную",
+    "es": "Copiar manualmente",
+    "fr": "Copier manuellement"
+  },
+  "Your browser blocked clipboard access. Select and copy these instructions.": {
+    "en": "Your browser blocked clipboard access. Select and copy these instructions.",
+    "ru": "Браузер заблокировал копирование. Выдели и скопируй эту инструкцию вручную.",
+    "es": "Tu navegador bloqueó el portapapeles. Selecciona y copia estas instrucciones.",
+    "fr": "Votre navigateur a bloqué le presse-papiers. Sélectionnez et copiez ces instructions."
+  },
+  "Instructions to copy": {
+    "en": "Instructions to copy",
+    "ru": "Инструкция для копирования",
+    "es": "Instrucciones para copiar",
+    "fr": "Instructions à copier"
+  },
+  "Open details: {title}": {
+    "en": "Open details: {title}",
+    "ru": "Открыть детали: {title}",
+    "es": "Abrir detalles: {title}",
+    "fr": "Ouvrir les détails : {title}"
+  },
+  "Material actions": {
+    "en": "Material actions",
+    "ru": "Действия с материалом",
+    "es": "Acciones del material",
+    "fr": "Actions sur le contenu"
+  },
+  "Manage access and deletion": {
+    "en": "Manage access and deletion",
+    "ru": "Управление доступом и удалением",
+    "es": "Gestionar acceso y eliminación",
+    "fr": "Gérer l’accès et la suppression"
+  },
+  "Pausing is reversible. Expiring closes access and follows the saved cleanup policy. Deleting removes the material and its files.": {
+    "en": "Pausing is reversible. Expiring closes access and follows the saved cleanup policy. Deleting removes the material and its files.",
+    "ru": "Паузу можно отменить. Истечение срока закрывает доступ и запускает сохранённую политику очистки. Удаление убирает материал и его файлы.",
+    "es": "La pausa es reversible. El vencimiento cierra el acceso y aplica la política de limpieza guardada. La eliminación borra el material y sus archivos.",
+    "fr": "La pause est réversible. L’expiration ferme l’accès et applique la politique de nettoyage enregistrée. La suppression efface le contenu et ses fichiers."
+  },
+  "Revoke this application connection?": {
+    "en": "Revoke this application connection?",
+    "ru": "Отозвать доступ этого приложения?",
+    "es": "¿Revocar la conexión de esta aplicación?",
+    "fr": "Révoquer la connexion de cette application ?"
+  },
+  "Authorize application": {
+    "en": "Authorize application",
+    "ru": "Авторизация приложения",
+    "es": "Autorizar aplicación",
+    "fr": "Autoriser l’application"
+  },
+  "Redirect URI": {
+    "en": "Redirect URI",
+    "ru": "Адрес возврата",
+    "es": "URI de redirección",
+    "fr": "URI de redirection"
+  },
+  "Requested permissions": {
+    "en": "Requested permissions",
+    "ru": "Запрашиваемые разрешения",
+    "es": "Permisos solicitados",
+    "fr": "Autorisations demandées"
+  },
+  "Confirm owner password": {
+    "en": "Confirm owner password",
+    "ru": "Подтвердите пароль владельца",
+    "es": "Confirma la contraseña del propietario",
+    "fr": "Confirmez le mot de passe du propriétaire"
+  },
+  "The application can read your publications.": {
+    "en": "The application can read your publications.",
+    "ru": "Приложение сможет читать ваши публикации.",
+    "es": "La aplicación puede leer tus publicaciones.",
+    "fr": "L’application peut lire vos publications."
+  },
+  "The application can create, change and delete your publications.": {
+    "en": "The application can create, change and delete your publications.",
+    "ru": "Приложение сможет создавать, изменять и удалять ваши публикации.",
+    "es": "La aplicación puede crear, modificar y eliminar tus publicaciones.",
+    "fr": "L’application peut créer, modifier et supprimer vos publications."
+  },
+  "You are granting access to this instance only.": {
+    "en": "You are granting access to this instance only.",
+    "ru": "Вы предоставляете доступ только к этому экземпляру сервиса.",
+    "es": "Solo estás concediendo acceso a esta instancia.",
+    "fr": "Vous accordez l’accès à cette instance uniquement."
+  },
+  "Approve": {
+    "en": "Approve",
+    "ru": "Разрешить",
+    "es": "Aprobar",
+    "fr": "Autoriser"
+  },
+  "Deny": {
+    "en": "Deny",
+    "ru": "Отказать",
+    "es": "Denegar",
+    "fr": "Refuser"
+  },
+  "Confirmation cancelled.": {
+    "en": "Confirmation cancelled.",
+    "ru": "Подтверждение отменено.",
+    "es": "Confirmación cancelada.",
+    "fr": "Confirmation annulée."
+  },
+  "Upload requested by your assistant": {
+    "en": "Upload requested by your assistant",
+    "ru": "Загрузка по запросу ассистента",
+    "es": "Carga solicitada por tu asistente",
+    "fr": "Envoi demandé par votre assistant"
+  },
+  "Choose a file here. Your assistant will receive the published link.": {
+    "en": "Choose a file here. Your assistant will receive the published link.",
+    "ru": "Выберите файл здесь. Ассистент получит ссылку после публикации.",
+    "es": "Elige un archivo aquí. Tu asistente recibirá el enlace publicado.",
+    "fr": "Choisissez un fichier ici. Votre assistant recevra le lien publié."
+  },
+  "Ready to choose a file": {
+    "en": "Ready to choose a file",
+    "ru": "Можно выбрать файл",
+    "es": "Listo para elegir un archivo",
+    "fr": "Prêt à choisir un fichier"
+  },
+  "An upload is already in progress in this session.": {
+    "en": "An upload is already in progress in this session.",
+    "ru": "В этой сессии уже выполняется загрузка.",
+    "es": "Ya hay una carga en curso en esta sesión.",
+    "fr": "Un envoi est déjà en cours dans cette session."
+  },
+  "Published. Return to your assistant to continue.": {
+    "en": "Published. Return to your assistant to continue.",
+    "ru": "Опубликовано. Вернитесь к ассистенту, чтобы продолжить.",
+    "es": "Publicado. Vuelve a tu asistente para continuar.",
+    "fr": "Publié. Revenez à votre assistant pour continuer."
+  },
+  "This upload request expired. Ask your assistant for a new one.": {
+    "en": "This upload request expired. Ask your assistant for a new one.",
+    "ru": "Срок запроса истёк. Попросите ассистента создать новый.",
+    "es": "Esta solicitud caducó. Pide una nueva a tu asistente.",
+    "fr": "Cette demande a expiré. Demandez-en une nouvelle à votre assistant."
+  },
+  "The upload failed. Ask your assistant for a new request.": {
+    "en": "The upload failed. Ask your assistant for a new request.",
+    "ru": "Загрузка не удалась. Попросите ассистента создать новый запрос.",
+    "es": "La carga falló. Pide una nueva solicitud a tu asistente.",
+    "fr": "L’envoi a échoué. Demandez une nouvelle demande à votre assistant."
+  },
+  "The requesting application no longer has access.": {
+    "en": "The requesting application no longer has access.",
+    "ru": "У запросившего приложения больше нет доступа.",
+    "es": "La aplicación solicitante ya no tiene acceso.",
+    "fr": "L’application à l’origine de la demande n’a plus accès."
+  },
+  "Connect your assistant to your own instance.": {
+    "en": "Connect your assistant to your own instance.",
+    "ru": "Подключите ассистента к своему сервису.",
+    "es": "Conecta tu asistente a tu propia instancia.",
+    "fr": "Connectez votre assistant à votre propre instance."
+  },
+  "Use this server address, configure OAuth, then choose Create as a plugin.": {
+    "en": "Use this server address, configure OAuth, then choose Create as a plugin.",
+    "ru": "Вставь этот адрес сервера, настрой OAuth и выбери Create as a plugin.",
+    "es": "Usa esta dirección del servidor, configura OAuth y elige Create as a plugin.",
+    "fr": "Utilisez cette adresse de serveur, configurez OAuth, puis choisissez Create as a plugin."
+  },
+  "Choose Sign in now. Under OAuth client, choose Register automatically, then sign in to Minder Publish.": {
+    "en": "Choose Sign in now. Under OAuth client, choose Register automatically, then sign in to Minder Publish.",
+    "ru": "Выбери Sign in now. В поле OAuth client выбери Register automatically и войди в Minder Publish.",
+    "es": "Elige Sign in now. En OAuth client, selecciona Register automatically e inicia sesión en Minder Publish.",
+    "fr": "Choisissez Sign in now. Sous OAuth client, choisissez Register automatically, puis connectez-vous à Minder Publish."
+  },
+  "Personal plugin availability and setup controls depend on your account and app. Complete setup on web or desktop, then check the connection and skill on your phone.": {
+    "en": "Personal plugin availability and setup controls depend on your account and app. Complete setup on web or desktop, then check the connection and skill on your phone.",
+    "ru": "Доступность личных плагинов и настроек зависит от аккаунта и приложения. Заверши установку в вебе или на компьютере, затем проверь подключение и скилл на телефоне.",
+    "es": "La disponibilidad de plugins personales y controles depende de tu cuenta y aplicación. Completa la configuración en la web o el escritorio y comprueba la conexión y la habilidad en el móvil.",
+    "fr": "La disponibilité des plugins personnels et des réglages dépend du compte et de l’application. Terminez la configuration sur le web ou sur ordinateur, puis vérifiez la connexion et la compétence sur votre téléphone."
+  },
+  "Password hint (public)": {
+    "en": "Password hint (public)",
+    "ru": "Подсказка к паролю (видна всем)",
+    "es": "Pista de contraseña (pública)",
+    "fr": "Indice du mot de passe (public)"
+  },
+  "Shown before the password is entered. Do not include passwords or secrets.": {
+    "en": "Shown before the password is entered. Do not include passwords or secrets.",
+    "ru": "Видна до ввода пароля. Не указывайте пароли и другие секреты.",
+    "es": "Se muestra antes de introducir la contraseña. No incluyas contraseñas ni secretos.",
+    "fr": "Visible avant la saisie du mot de passe. N’incluez aucun mot de passe ni secret."
+  },
+  "Check publication status": {
+    "en": "Check publication status",
+    "ru": "Проверить статус публикации",
+    "es": "Comprobar estado de publicación",
+    "fr": "Vérifier l’état de publication"
+  },
+  "The publication outcome is unknown. Check this upload before creating another material.": {
+    "en": "The publication outcome is unknown. Check this upload before creating another material.",
+    "ru": "Результат публикации пока неизвестен. Проверьте эту загрузку перед созданием другого материала.",
+    "es": "El resultado es desconocido. Comprueba esta carga antes de crear otro material.",
+    "fr": "Le résultat de la publication est inconnu. Vérifiez cet envoi avant de créer un autre contenu."
+  },
+  "This upload is prepared. You can publish this same upload.": {
+    "en": "This upload is prepared. You can publish this same upload.",
+    "ru": "Эта загрузка подготовлена. Можно опубликовать её без повторной загрузки файла.",
+    "es": "Esta carga está preparada. Puedes publicar esta misma carga.",
+    "fr": "Cet envoi est prêt. Vous pouvez publier ce même envoi."
+  },
+  "The publication is not confirmed. Check again shortly; do not create a duplicate.": {
+    "en": "The publication is not confirmed. Check again shortly; do not create a duplicate.",
+    "ru": "Публикация ещё не подтверждена. Проверьте чуть позже; не создавайте дубликат.",
+    "es": "La publicación aún no está confirmada. Comprueba de nuevo en breve; no crees un duplicado.",
+    "fr": "La publication n’est pas confirmée. Revérifiez dans un instant ; ne créez pas de doublon."
+  },
+  "Status": {
+    "en": "Status",
+    "ru": "Статус",
+    "es": "Estado",
+    "fr": "Statut"
+  },
+  "Show materials": {
+    "en": "Show materials",
+    "ru": "Показывать материалы",
+    "es": "Mostrar materiales",
+    "fr": "Afficher les contenus"
+  },
+  "Expired and deleted files are hidden by default.": {
+    "en": "Expired and deleted files are hidden by default.",
+    "ru": "По умолчанию материалы с истёкшим сроком доступа и удалёнными файлами скрыты.",
+    "es": "Los materiales caducados y con archivos eliminados se ocultan por defecto.",
+    "fr": "Les contenus expirés et ceux dont les fichiers ont été supprimés sont masqués par défaut."
+  },
+  "Choose a status": {
+    "en": "Choose a status",
+    "ru": "Выберите статус",
+    "es": "Elige un estado",
+    "fr": "Choisissez un statut"
+  },
+  "Select at least one status to show materials.": {
+    "en": "Select at least one status to show materials.",
+    "ru": "Отметьте хотя бы один статус, чтобы показать материалы.",
+    "es": "Selecciona al menos un estado para mostrar materiales.",
+    "fr": "Sélectionnez au moins un statut pour afficher des contenus."
+  },
+  "No active materials": {
+    "en": "No active materials",
+    "ru": "Нет активных материалов",
+    "es": "No hay materiales activos",
+    "fr": "Aucun contenu actif"
+  },
+  "Publish a material or include expired and deleted files in the status filter.": {
+    "en": "Publish a material or include expired and deleted files in the status filter.",
+    "ru": "Опубликуйте материал или включите истёкшие и удалённые в фильтре статусов.",
+    "es": "Publica un material o incluye los caducados y con archivos eliminados en el filtro de estado.",
+    "fr": "Publiez un contenu ou incluez les contenus expirés et aux fichiers supprimés dans le filtre de statut."
+  },
+  "Files deleted shows retained records. Permanently deleted materials cannot be searched.": {
+    "en": "Files deleted shows retained records. Permanently deleted materials cannot be searched.",
+    "ru": "«Файлы удалены» показывает сохранённые карточки. Полностью удалённые материалы найти нельзя.",
+    "es": "«Archivos eliminados» muestra los registros conservados. No se pueden buscar materiales eliminados de forma permanente.",
+    "fr": "« Fichiers supprimés » affiche les fiches conservées. Les contenus supprimés définitivement ne peuvent plus être recherchés."
+  },
+  "Confirm your owner password to continue. Your other work stays open.": {
+    "en": "Confirm your owner password to continue. Your other work stays open.",
+    "ru": "Подтвердите пароль владельца, чтобы продолжить. Остальная работа останется открытой.",
+    "es": "Confirma tu contraseña de propietario para continuar. El resto de tu trabajo seguirá abierto.",
+    "fr": "Confirmez votre mot de passe propriétaire pour continuer. Vos autres tâches restent ouvertes."
+  },
+  "Copy password": {
+    "en": "Copy password",
+    "ru": "Копировать пароль",
+    "es": "Copiar contraseña",
+    "fr": "Copier le mot de passe"
+  },
+  "Password copied.": {
+    "en": "Password copied.",
+    "ru": "Пароль скопирован.",
+    "es": "Contraseña copiada.",
+    "fr": "Mot de passe copié."
+  },
+  "Copies the saved password. Save changes before copying a new password.": {
+    "en": "Copies the saved password. Save changes before copying a new password.",
+    "ru": "Копируется сохранённый пароль. Если задали новый, сначала сохраните изменения.",
+    "es": "Copia la contraseña guardada. Guarda los cambios antes de copiar una contraseña nueva.",
+    "fr": "Copie le mot de passe enregistré. Enregistrez les modifications avant de copier un nouveau mot de passe."
+  },
+  "This password has no saved copy. Set and save a new password to enable copying.": {
+    "en": "This password has no saved copy. Set and save a new password to enable copying.",
+    "ru": "Копия этого пароля не сохранена. Задайте и сохраните новый пароль, чтобы его можно было копировать.",
+    "es": "Esta contraseña no tiene una copia guardada. Establece y guarda una contraseña nueva para poder copiarla.",
+    "fr": "Ce mot de passe n’a pas de copie enregistrée. Définissez et enregistrez un nouveau mot de passe pour pouvoir le copier."
+  },
+  "Copy this password": {
+    "en": "Copy this password",
+    "ru": "Скопируйте этот пароль",
+    "es": "Copia esta contraseña",
+    "fr": "Copiez ce mot de passe"
+  },
+  "Hide password": {
+    "en": "Hide password",
+    "ru": "Скрыть пароль",
+    "es": "Ocultar contraseña",
+    "fr": "Masquer le mot de passe"
+  },
+  "Copy entered password": {
+    "en": "Copy entered password",
+    "ru": "Скопировать введённый пароль",
+    "es": "Copiar la contraseña introducida",
+    "fr": "Copier le mot de passe saisi"
+  },
+  "Copy saved password": {
+    "en": "Copy saved password",
+    "ru": "Скопировать сохранённый пароль",
+    "es": "Copiar la contraseña guardada",
+    "fr": "Copier le mot de passe enregistré"
+  },
+  "Generate strong password": {
+    "en": "Generate strong password",
+    "ru": "Сгенерировать надёжный пароль",
+    "es": "Generar una contraseña segura",
+    "fr": "Générer un mot de passe fort"
+  },
+  "Strong password generated. Save or publish to apply it.": {
+    "en": "Strong password generated. Save or publish to apply it.",
+    "ru": "Надёжный пароль создан. Он начнёт действовать после сохранения или публикации.",
+    "es": "Contraseña segura generada. Guarda o publica para aplicarla.",
+    "fr": "Mot de passe fort généré. Enregistrez ou publiez pour l’appliquer."
+  },
+  "Secure password generation is unavailable. Enter a password manually.": {
+    "en": "Secure password generation is unavailable. Enter a password manually.",
+    "ru": "Безопасная генерация недоступна. Введите пароль вручную.",
+    "es": "La generación segura no está disponible. Introduce una contraseña manualmente.",
+    "fr": "La génération sécurisée est indisponible. Saisissez un mot de passe manuellement."
+  },
+  "Entered password copied.": {
+    "en": "Entered password copied.",
+    "ru": "Введённый пароль скопирован.",
+    "es": "Contraseña introducida copiada.",
+    "fr": "Mot de passe saisi copié."
+  },
+  "Copy entered password manually": {
+    "en": "Copy entered password manually",
+    "ru": "Скопируйте введённый пароль вручную",
+    "es": "Copia manualmente la contraseña introducida",
+    "fr": "Copiez manuellement le mot de passe saisi"
+  },
+  "Link options": {
+    "en": "Link options",
+    "ru": "Настройки ссылки",
+    "es": "Opciones del enlace",
+    "fr": "Options du lien"
+  },
+  "Custom link name": {
+    "en": "Custom link name",
+    "ru": "Своё имя ссылки",
+    "es": "Nombre personalizado del enlace",
+    "fr": "Nom de lien personnalisé"
+  },
+  "Optional: 2–64 lowercase letters, digits or dashes; start with a letter or digit. You can edit it after publishing. Short names are not secrets.": {
+    "en": "Optional: 2–64 lowercase letters, digits or dashes; start with a letter or digit. You can edit it after publishing. Short names are not secrets.",
+    "ru": "Необязательно: 2–64 строчные латинские буквы, цифры или дефисы. Начните с буквы или цифры. Имя можно изменить после публикации. Короткое имя не защищает доступ.",
+    "es": "Opcional: entre 2 y 64 letras minúsculas, dígitos o guiones. Empieza con una letra o un dígito. Puedes editarlo tras publicar. Los nombres cortos no son secretos.",
+    "fr": "Facultatif : de 2 à 64 lettres minuscules, chiffres ou tirets. Commencez par une lettre ou un chiffre. Vous pouvez modifier le nom après publication. Les noms courts ne sont pas secrets."
+  },
+  "Edit link": {
+    "en": "Edit link",
+    "ru": "Изменить ссылку",
+    "es": "Editar enlace",
+    "fr": "Modifier le lien"
+  },
+  "Current address": {
+    "en": "Current address",
+    "ru": "Текущий адрес",
+    "es": "Dirección actual",
+    "fr": "Adresse actuelle"
+  },
+  "Link name": {
+    "en": "Link name",
+    "ru": "Имя ссылки",
+    "es": "Nombre del enlace",
+    "fr": "Nom du lien"
+  },
+  "Use 2–64 lowercase letters, digits or dashes. Start with a letter or digit.": {
+    "en": "Use 2–64 lowercase letters, digits or dashes. Start with a letter or digit.",
+    "ru": "Используйте 2–64 строчные латинские буквы, цифры или дефисы. Начните с буквы или цифры.",
+    "es": "Usa de 2 a 64 letras minúsculas, dígitos o guiones. Empieza con una letra o un dígito.",
+    "fr": "Utilisez de 2 à 64 lettres minuscules, chiffres ou tirets. Commencez par une lettre ou un chiffre."
+  },
+  "New address": {
+    "en": "New address",
+    "ru": "Новый адрес",
+    "es": "Nueva dirección",
+    "fr": "Nouvelle adresse"
+  },
+  "Keep previous address active": {
+    "en": "Keep previous address active",
+    "ru": "Оставить прежний адрес активным",
+    "es": "Mantener activa la dirección anterior",
+    "fr": "Garder l’ancienne adresse active"
+  },
+  "Previous links": {
+    "en": "Previous links",
+    "ru": "Предыдущие ссылки",
+    "es": "Enlaces anteriores",
+    "fr": "Liens précédents"
+  },
+  "Copy new link": {
+    "en": "Copy new link",
+    "ru": "Скопировать новую ссылку",
+    "es": "Copiar el enlace nuevo",
+    "fr": "Copier le nouveau lien"
+  },
+  "People can still open the material through the previous address.": {
+    "en": "People can still open the material through the previous address.",
+    "ru": "Материал по-прежнему можно будет открыть по старому адресу.",
+    "es": "El material seguirá abriéndose desde la dirección anterior.",
+    "fr": "Le contenu restera accessible depuis l’ancienne adresse."
+  },
+  "The previous address will stop opening.": {
+    "en": "The previous address will stop opening.",
+    "ru": "Прежний адрес перестанет открываться.",
+    "es": "La dirección anterior dejará de funcionar.",
+    "fr": "L’ancienne adresse cessera de fonctionner."
+  },
+  "Disable previous link?": {
+    "en": "Disable previous link?",
+    "ru": "Отключить прежнюю ссылку?",
+    "es": "¿Desactivar el enlace anterior?",
+    "fr": "Désactiver l’ancien lien ?"
+  },
+  "People using this address will lose access through it.": {
+    "en": "People using this address will lose access through it.",
+    "ru": "Люди, у которых есть этот адрес, больше не смогут открыть его.",
+    "es": "Quienes usen esta dirección ya no podrán acceder desde ella.",
+    "fr": "Les personnes qui utilisent cette adresse ne pourront plus y accéder."
+  },
+  "Disable link": {
+    "en": "Disable link",
+    "ru": "Отключить ссылку",
+    "es": "Desactivar enlace",
+    "fr": "Désactiver le lien"
+  },
+  "Disable {name}": {
+    "en": "Disable {name}",
+    "ru": "Отключить {name}",
+    "es": "Desactivar {name}",
+    "fr": "Désactiver {name}"
+  },
+  "Link saved.": {
+    "en": "Link saved.",
+    "ru": "Ссылка сохранена.",
+    "es": "Enlace guardado.",
+    "fr": "Lien enregistré."
+  },
+  "This link name is reserved. Choose another name.": {
+    "en": "This link name is reserved. Choose another name.",
+    "ru": "Это имя ссылки зарезервировано. Выберите другое имя.",
+    "es": "Este nombre de enlace está reservado. Elige otro nombre.",
+    "fr": "Ce nom de lien est réservé. Choisissez un autre nom."
+  },
+  "This link name is already in use.": {
+    "en": "This link name is already in use.",
+    "ru": "Это имя ссылки уже занято.",
+    "es": "Ese nombre de enlace ya está en uso.",
+    "fr": "Ce nom de lien est déjà utilisé."
+  },
+  "The current address changed. Review it before saving again.": {
+    "en": "The current address changed. Review it before saving again.",
+    "ru": "Текущий адрес изменился. Проверьте его перед повторным сохранением.",
+    "es": "La dirección actual ha cambiado. Revísala antes de volver a guardar.",
+    "fr": "L’adresse actuelle a changé. Vérifiez-la avant d’enregistrer à nouveau."
+  },
+  "Previous link disabled.": {
+    "en": "Previous link disabled.",
+    "ru": "Прежняя ссылка отключена.",
+    "es": "Enlace anterior desactivado.",
+    "fr": "Ancien lien désactivé."
+  },
+  "Link names": {
+    "en": "Link names",
+    "ru": "Имена ссылок",
+    "es": "Nombres de enlace",
+    "fr": "Noms des liens"
+  },
+  "Minimum random name length": {
+    "en": "Minimum random name length",
+    "ru": "Минимальная длина случайного имени",
+    "es": "Longitud mínima del nombre aleatorio",
+    "fr": "Longueur minimale du nom aléatoire"
+  },
+  "Maximum random name length": {
+    "en": "Maximum random name length",
+    "ru": "Максимальная длина случайного имени",
+    "es": "Longitud máxima del nombre aleatorio",
+    "fr": "Longueur maximale du nom aléatoire"
+  },
+  "Allowed: {minimum}–{maximum} characters.": {
+    "en": "Allowed: {minimum}–{maximum} characters.",
+    "ru": "Допустимо: от {minimum} до {maximum} символов.",
+    "es": "Permitido: entre {minimum} y {maximum} caracteres.",
+    "fr": "Valeurs autorisées : de {minimum} à {maximum} caractères."
+  },
+  "Automatic names start at the minimum length and grow on collisions, up to the maximum.": {
+    "en": "Automatic names start at the minimum length and grow on collisions, up to the maximum.",
+    "ru": "Случайное имя начинается с минимальной длины. Если оно занято, длина увеличивается до максимальной.",
+    "es": "Los nombres automáticos empiezan con la longitud mínima y crecen si ya existen, hasta la máxima.",
+    "fr": "Les noms automatiques commencent à la longueur minimale et s’allongent en cas de collision, jusqu’à la longueur maximale."
+  },
+  "Shorter names are easier to guess. Use password protection or Only me for confidential materials.": {
+    "en": "Shorter names are easier to guess. Use password protection or Only me for confidential materials.",
+    "ru": "Короткие имена легче угадать. Для конфиденциальных материалов используйте пароль или доступ «Только мне».",
+    "es": "Los nombres cortos son más fáciles de adivinar. Usa protección con contraseña o «Solo yo» para materiales confidenciales.",
+    "fr": "Les noms courts sont plus faciles à deviner. Protégez les contenus confidentiels par un mot de passe ou choisissez « Moi uniquement »."
+  },
+  "Existing links and custom link names stay unchanged.": {
+    "en": "Existing links and custom link names stay unchanged.",
+    "ru": "Существующие ссылки и заданные вручную имена не меняются.",
+    "es": "Los enlaces existentes y los nombres personalizados no cambian.",
+    "fr": "Les liens existants et les noms personnalisés restent inchangés."
+  },
+  "Maximum length must be at least the minimum length.": {
+    "en": "Maximum length must be at least the minimum length.",
+    "ru": "Максимальная длина должна быть не меньше минимальной.",
+    "es": "La longitud máxima debe ser igual o mayor que la mínima.",
+    "fr": "La longueur maximale doit être supérieure ou égale à la longueur minimale."
+  },
+  "Owner tools": {
+    "en": "Owner tools",
+    "ru": "Управление",
+    "es": "Gestionar",
+    "fr": "Gérer"
+  },
+  "Your material": {
+    "en": "Your material",
+    "ru": "Ваш материал",
+    "es": "Tu material",
+    "fr": "Votre contenu"
+  },
+  "Versions": {
+    "en": "Versions",
+    "ru": "Версии",
+    "es": "Versiones",
+    "fr": "Versions"
+  },
+  "Interface theme": {
+    "en": "Interface theme",
+    "ru": "Тема интерфейса",
+    "es": "Tema de la interfaz",
+    "fr": "Thème de l’interface"
+  },
+  "Current": {
+    "en": "Current",
+    "ru": "Текущая",
+    "es": "Actual",
+    "fr": "Actuelle"
+  },
+  "Imported version": {
+    "en": "Imported version",
+    "ru": "Импортированная версия",
+    "es": "Versión importada",
+    "fr": "Version importée"
+  },
+  "{available} available of {total}": {
+    "en": "{available} available of {total}",
+    "ru": "Доступны {available} из {total}",
+    "es": "{available} de {total} disponibles",
+    "fr": "{available} disponibles sur {total}"
+  },
+  "Stored until {date}": {
+    "en": "Stored until {date}",
+    "ru": "Хранится до {date}",
+    "es": "Conservada hasta {date}",
+    "fr": "Conservée jusqu’au {date}"
+  },
+  "Files removed by retention policy": {
+    "en": "Files removed by retention policy",
+    "ru": "Файлы удалены по правилам хранения",
+    "es": "Archivos eliminados por la política de retención",
+    "fr": "Fichiers supprimés selon la politique de conservation"
+  },
+  "Selecting a version only previews it. The shared link opens the current version.": {
+    "en": "Selecting a version only previews it. The shared link opens the current version.",
+    "ru": "Выбор версии открывает её для просмотра. Общая ссылка ведёт на текущую версию.",
+    "es": "Seleccionar una versión solo muestra su vista previa. El enlace compartido abre la actual.",
+    "fr": "Sélectionner une version ouvre son aperçu. Le lien partagé ouvre la version actuelle."
+  },
+  "Make this version current": {
+    "en": "Make this version current",
+    "ru": "Сделать эту версию текущей",
+    "es": "Usar esta versión como actual",
+    "fr": "Utiliser cette version comme actuelle"
+  },
+  "This publishes a new version from these files. Your current password, access and expiry are preserved.": {
+    "en": "This publishes a new version from these files. Your current password, access and expiry are preserved.",
+    "ru": "Будет опубликована новая версия из этих файлов. Текущие пароль, доступ и срок действия сохранятся.",
+    "es": "Se publicará una nueva versión de estos archivos. Se conservarán la contraseña, el acceso y la caducidad actuales.",
+    "fr": "Une nouvelle version sera publiée à partir de ces fichiers. Le mot de passe, l’accès et l’expiration actuels seront conservés."
+  },
+  "Publish this version": {
+    "en": "Publish this version",
+    "ru": "Опубликовать эту версию",
+    "es": "Publicar esta versión",
+    "fr": "Publier cette version"
+  },
+  "Back to current": {
+    "en": "Back to current",
+    "ru": "К текущей версии",
+    "es": "Volver a la actual",
+    "fr": "Version actuelle"
+  },
+  "View without owner tools": {
+    "en": "View without owner tools",
+    "ru": "Посмотреть без панели",
+    "es": "Ver sin controles",
+    "fr": "Voir sans les commandes"
+  },
+  "Keep your owner access": {
+    "en": "Keep your owner access",
+    "ru": "Сохранить доступ владельца",
+    "es": "Conservar el acceso del propietario",
+    "fr": "Conserver votre accès propriétaire"
+  },
+  "Check guest access": {
+    "en": "Check guest access",
+    "ru": "Проверить доступ гостя",
+    "es": "Comprobar acceso de invitado",
+    "fr": "Tester l’accès visiteur"
+  },
+  "Test the password and access rules": {
+    "en": "Test the password and access rules",
+    "ru": "Проверить пароль и ограничения",
+    "es": "Probar contraseña y restricciones",
+    "fr": "Vérifier le mot de passe et les restrictions"
+  },
+  "Edit in your library": {
+    "en": "Edit in your library",
+    "ru": "Изменить в библиотеке",
+    "es": "Editar en tu biblioteca",
+    "fr": "Modifier dans votre bibliothèque"
+  },
+  "The files for this version are no longer stored.": {
+    "en": "The files for this version are no longer stored.",
+    "ru": "Файлы этой версии больше не хранятся.",
+    "es": "Los archivos de esta versión ya no están almacenados.",
+    "fr": "Les fichiers de cette version ne sont plus conservés."
+  },
+  "Open original": {
+    "en": "Open original",
+    "ru": "Открыть оригинал",
+    "es": "Abrir original",
+    "fr": "Ouvrir l’original"
+  },
+  "Download version {version}": {
+    "en": "Download version {version}",
+    "ru": "Скачать версию {version}",
+    "es": "Descargar versión {version}",
+    "fr": "Télécharger la version {version}"
+  },
+  "The material changed. Reload it before restoring a version.": {
+    "en": "The material changed. Reload it before restoring a version.",
+    "ru": "Материал изменился. Обновите страницу перед восстановлением версии.",
+    "es": "El material ha cambiado. Recárgalo antes de restaurar una versión.",
+    "fr": "Le contenu a changé. Rechargez-le avant de restaurer une version."
+  },
+  "Sign in to manage this material.": {
+    "en": "Sign in to manage this material.",
+    "ru": "Войдите для управления материалом.",
+    "es": "Inicia sesión para gestionar este material.",
+    "fr": "Connectez-vous pour gérer ce contenu."
+  },
+  "Guest openings": {
+    "en": "Guest openings",
+    "ru": "Открытия гостями",
+    "es": "Aperturas de invitados",
+    "fr": "Ouvertures par les visiteurs"
+  },
+  "Period": {
+    "en": "Period",
+    "ru": "Период",
+    "es": "Periodo",
+    "fr": "Période"
+  },
+  "{days} days": {
+    "en": "{days} days",
+    "ru": "{days} дней",
+    "es": "{days} días",
+    "fr": "{days} jours"
+  },
+  "openings in this period": {
+    "en": "openings in this period",
+    "ru": "открытий за период",
+    "es": "aperturas en este periodo",
+    "fr": "ouvertures sur cette période"
+  },
+  "Daily guest openings, UTC": {
+    "en": "Daily guest openings, UTC",
+    "ru": "Открытия гостями по дням, UTC",
+    "es": "Aperturas diarias de invitados, UTC",
+    "fr": "Ouvertures quotidiennes, UTC"
+  },
+  "Total since collection started": {
+    "en": "Total since collection started",
+    "ru": "Всего с начала сбора",
+    "es": "Total desde el inicio de la recopilación",
+    "fr": "Total depuis le début du suivi"
+  },
+  "Last guest opening": {
+    "en": "Last guest opening",
+    "ru": "Последнее открытие гостем",
+    "es": "Última apertura de invitado",
+    "fr": "Dernière ouverture par un visiteur"
+  },
+  "No openings yet": {
+    "en": "No openings yet",
+    "ru": "Открытий пока нет",
+    "es": "Todavía no hay aperturas",
+    "fr": "Aucune ouverture"
+  },
+  "Collection started": {
+    "en": "Collection started",
+    "ru": "Начало сбора",
+    "es": "Inicio de la recopilación",
+    "fr": "Début du suivi"
+  },
+  "Collection is paused for this material. Existing counts are retained.": {
+    "en": "Collection is paused for this material. Existing counts are retained.",
+    "ru": "Сбор для материала приостановлен. Накопленные значения сохранены.",
+    "es": "La recopilación está pausada. Se conservan los recuentos existentes.",
+    "fr": "Le suivi est suspendu. Les compteurs existants sont conservés."
+  },
+  "Some daily history is unavailable. The total still includes those openings.": {
+    "en": "Some daily history is unavailable. The total still includes those openings.",
+    "ru": "Часть дневной истории недоступна. Общий счётчик включает эти открытия.",
+    "es": "Parte del historial diario no está disponible. El total incluye esas aperturas.",
+    "fr": "Une partie de l’historique quotidien est indisponible. Le total inclut ces ouvertures."
+  },
+  "Earlier counter": {
+    "en": "Earlier counter",
+    "ru": "Прежний счётчик",
+    "es": "Contador anterior",
+    "fr": "Compteur antérieur"
+  },
+  "Earlier counts may include owner checks and failed openings.": {
+    "en": "Earlier counts may include owner checks and failed openings.",
+    "ru": "Прежние значения могут включать проверки владельца и неудачные открытия.",
+    "es": "Los valores anteriores pueden incluir pruebas del propietario y aperturas fallidas.",
+    "fr": "Les anciens chiffres peuvent inclure des tests du propriétaire et des ouvertures échouées."
+  },
+  "Counts accepted guest openings through the shared link, not unique people or completed reading. Owner views and guest access checks are excluded.": {
+    "en": "Counts accepted guest openings through the shared link, not unique people or completed reading. Owner views and guest access checks are excluded.",
+    "ru": "Считаются разрешённые открытия общей ссылки гостями, а не уникальные люди или прочтения. Просмотры владельца и проверки гостевого доступа исключены.",
+    "es": "Cuenta las aperturas autorizadas del enlace por invitados, no personas únicas ni lecturas completas. Excluye las vistas del propietario y sus pruebas de acceso.",
+    "fr": "Compte les ouvertures autorisées du lien par des visiteurs, pas les personnes uniques ni les lectures complètes. Exclut les vues du propriétaire et ses tests d’accès."
+  },
+  "Daily counts": {
+    "en": "Daily counts",
+    "ru": "Значения по дням",
+    "es": "Recuentos diarios",
+    "fr": "Compteurs quotidiens"
+  },
+  "Openings": {
+    "en": "Openings",
+    "ru": "Открытия",
+    "es": "Aperturas",
+    "fr": "Ouvertures"
+  },
+  "Date": {
+    "en": "Date",
+    "ru": "Дата",
+    "es": "Fecha",
+    "fr": "Date"
+  },
+  "Versions and owner tools": {
+    "en": "Versions and owner tools",
+    "ru": "Версии и управление",
+    "es": "Versiones y gestión",
+    "fr": "Versions et gestion"
+  },
+  "What changed?": {
+    "en": "What changed?",
+    "ru": "Что изменилось?",
+    "es": "¿Qué ha cambiado?",
+    "fr": "Qu’est-ce qui a changé ?"
+  },
+  "Optional short note for this version.": {
+    "en": "Optional short note for this version.",
+    "ru": "Необязательное короткое описание изменений версии.",
+    "es": "Nota breve opcional para esta versión.",
+    "fr": "Note brève facultative pour cette version."
+  },
+  "Count guest openings": {
+    "en": "Count guest openings",
+    "ru": "Считать открытия гостями",
+    "es": "Contar aperturas de invitados",
+    "fr": "Compter les ouvertures des visiteurs"
+  },
+  "Clear statistics": {
+    "en": "Clear statistics",
+    "ru": "Очистить статистику",
+    "es": "Borrar estadísticas",
+    "fr": "Effacer les statistiques"
+  },
+  "Delete all collected opening counts for this material? This cannot be undone.": {
+    "en": "Delete all collected opening counts for this material? This cannot be undone.",
+    "ru": "Удалить все накопленные счётчики открытий материала? Отменить это действие нельзя.",
+    "es": "¿Eliminar todos los recuentos de aperturas de este material? No se puede deshacer.",
+    "fr": "Supprimer tous les compteurs d’ouvertures de ce contenu ? Cette action est irréversible."
+  },
+  "Previous versions to keep": {
+    "en": "Previous versions to keep",
+    "ru": "Сохранять предыдущих версий",
+    "es": "Versiones anteriores a conservar",
+    "fr": "Versions précédentes à conserver"
+  },
+  "Older versions count towards your storage quota.": {
+    "en": "Older versions count towards your storage quota.",
+    "ru": "Предыдущие версии занимают место в общей квоте.",
+    "es": "Las versiones anteriores cuentan para la cuota de almacenamiento.",
+    "fr": "Les anciennes versions sont incluses dans votre quota de stockage."
+  },
+  "Keep previous versions, days": {
+    "en": "Keep previous versions, days",
+    "ru": "Хранить предыдущие версии, дней",
+    "es": "Conservar versiones anteriores, días",
+    "fr": "Conserver les anciennes versions, jours"
+  },
+  "History share of storage budget, %": {
+    "en": "History share of storage budget, %",
+    "ru": "Доля дискового бюджета для истории, %",
+    "es": "Parte del presupuesto de almacenamiento para historial, %",
+    "fr": "Part du budget de stockage pour l’historique, %"
+  },
+  "The earliest count, time or storage limit applies. Current files are never removed by history cleanup.": {
+    "en": "The earliest count, time or storage limit applies. Current files are never removed by history cleanup.",
+    "ru": "Срабатывает первое ограничение по количеству, сроку или объёму. Очистка истории не удаляет текущие файлы.",
+    "es": "Se aplica el primer límite de cantidad, tiempo o espacio alcanzado. La limpieza del historial nunca elimina los archivos actuales.",
+    "fr": "La première limite atteinte de nombre, durée ou espace s’applique. Le nettoyage de l’historique ne supprime jamais les fichiers actuels."
+  },
+  "Version history": {
+    "en": "Version history",
+    "ru": "История версий",
+    "es": "Historial de versiones",
+    "fr": "Historique des versions"
+  },
+  "Show owner tools when opening my links": {
+    "en": "Show owner tools when opening my links",
+    "ru": "Показывать панель владельца при открытии моих ссылок",
+    "es": "Mostrar controles de propietario al abrir mis enlaces",
+    "fr": "Afficher les outils du propriétaire en ouvrant mes liens"
+  },
+  "Set any history limit to zero to stop retaining previous files. Lowering limits removes older files during cleanup; they cannot be recovered.": {
+    "en": "Set any history limit to zero to stop retaining previous files. Lowering limits removes older files during cleanup; they cannot be recovered.",
+    "ru": "Установите любой лимит истории в ноль, чтобы не хранить прежние файлы. При снижении лимитов старые файлы удаляются во время очистки без возможности восстановления.",
+    "es": "Pon cualquier límite del historial en cero para dejar de guardar archivos anteriores. Al reducir los límites, la limpieza elimina archivos antiguos sin posibilidad de recuperación.",
+    "fr": "Mettez une limite d’historique à zéro pour ne plus conserver les anciens fichiers. Réduire les limites supprime les anciens fichiers lors du nettoyage, sans récupération possible."
+  },
+  "Please enter zero or a positive whole number.": {
+    "en": "Please enter zero or a positive whole number.",
+    "ru": "Введите ноль или положительное целое число.",
+    "es": "Introduce cero o un número entero positivo.",
+    "fr": "Saisissez zéro ou un entier positif."
+  },
+  "Save settings": {
+    "en": "Save settings",
+    "ru": "Сохранить настройки",
+    "es": "Guardar ajustes",
+    "fr": "Enregistrer les paramètres"
+  },
+  "Copy material link": {
+    "en": "Copy material link",
+    "ru": "Копировать ссылку на материал",
+    "es": "Copiar enlace del material",
+    "fr": "Copier le lien du contenu"
+  },
+  "Material link copied.": {
+    "en": "Material link copied.",
+    "ru": "Ссылка на материал скопирована.",
+    "es": "Enlace del material copiado.",
+    "fr": "Lien du contenu copié."
+  },
+  "Set password": {
+    "en": "Set password",
+    "ru": "Задать пароль",
+    "es": "Establecer contraseña",
+    "fr": "Définir un mot de passe"
+  },
+  "Change password": {
+    "en": "Change password",
+    "ru": "Изменить пароль",
+    "es": "Cambiar contraseña",
+    "fr": "Modifier le mot de passe"
+  },
+  "Remove password": {
+    "en": "Remove password",
+    "ru": "Убрать пароль",
+    "es": "Quitar contraseña",
+    "fr": "Supprimer le mot de passe"
+  },
+  "Set publication password": {
+    "en": "Set publication password",
+    "ru": "Задать пароль материала",
+    "es": "Establecer contraseña del material",
+    "fr": "Définir le mot de passe du contenu"
+  },
+  "Change publication password": {
+    "en": "Change publication password",
+    "ru": "Изменить пароль материала",
+    "es": "Cambiar contraseña del material",
+    "fr": "Modifier le mot de passe du contenu"
+  },
+  "Remove publication password": {
+    "en": "Remove publication password",
+    "ru": "Убрать пароль материала",
+    "es": "Quitar contraseña del material",
+    "fr": "Supprimer le mot de passe du contenu"
+  },
+  "Save password": {
+    "en": "Save password",
+    "ru": "Сохранить пароль",
+    "es": "Guardar contraseña",
+    "fr": "Enregistrer le mot de passe"
+  },
+  "Generate a password or enter your own. Save to apply it.": {
+    "en": "Generate a password or enter your own. Save to apply it.",
+    "ru": "Сгенерируйте пароль или введите свой. Он начнёт действовать после сохранения.",
+    "es": "Genera una contraseña o escribe la tuya. Guarda para aplicarla.",
+    "fr": "Générez un mot de passe ou saisissez le vôtre. Enregistrez pour l’appliquer."
+  },
+  "A password lets recipients open this private material. Choose how long the shared link will remain available.": {
+    "en": "A password lets recipients open this private material. Choose how long the shared link will remain available.",
+    "ru": "Пароль позволит получателям открыть этот личный материал. Выберите срок доступности ссылки.",
+    "es": "Una contraseña permitirá a los destinatarios abrir este material privado. Elige cuánto tiempo estará disponible el enlace.",
+    "fr": "Un mot de passe permettra aux destinataires d’ouvrir ce contenu privé. Choisissez la durée de disponibilité du lien."
+  },
+  "The current expiry and cleanup rules stay unchanged.": {
+    "en": "The current expiry and cleanup rules stay unchanged.",
+    "ru": "Текущий срок доступа и правила очистки сохраняются.",
+    "es": "El vencimiento y las reglas de limpieza actuales no cambian.",
+    "fr": "L’expiration et les règles de nettoyage actuelles restent inchangées."
+  },
+  "Choose who may open the material after removing its password. The current expiry and cleanup rules stay unchanged.": {
+    "en": "Choose who may open the material after removing its password. The current expiry and cleanup rules stay unchanged.",
+    "ru": "Выберите, кто сможет открыть материал без пароля. Текущий срок доступа и правила очистки сохраняются.",
+    "es": "Elige quién podrá abrir el material sin contraseña. El vencimiento y las reglas de limpieza no cambian.",
+    "fr": "Choisissez qui pourra ouvrir le contenu sans mot de passe. L’expiration et les règles de nettoyage restent inchangées."
+  },
+  "Change expiry": {
+    "en": "Change expiry",
+    "ru": "Изменить срок",
+    "es": "Cambiar vencimiento",
+    "fr": "Modifier l’expiration"
+  },
+  "Set expiry": {
+    "en": "Set expiry",
+    "ru": "Задать срок",
+    "es": "Establecer vencimiento",
+    "fr": "Définir l’expiration"
+  },
+  "Remove expiry": {
+    "en": "Remove expiry",
+    "ru": "Убрать срок",
+    "es": "Quitar vencimiento",
+    "fr": "Supprimer l’expiration"
+  },
+  "Add time from the later of now or the current expiry.": {
+    "en": "Add time from the later of now or the current expiry.",
+    "ru": "Добавляем время к текущему сроку, а если он прошёл — к сегодняшней дате.",
+    "es": "Añade tiempo desde ahora o desde el vencimiento actual, lo que sea posterior.",
+    "fr": "Ajoute du temps à partir de maintenant ou de l’expiration actuelle, selon la date la plus tardive."
+  },
+  "+{days} days": {
+    "en": "+{days} days",
+    "ru": "+{days} дн.",
+    "es": "+{days} días",
+    "fr": "+{days} jours"
+  },
+  "Changing expiry preserves access, passwords and cleanup rules. A paused material stays paused.": {
+    "en": "Changing expiry preserves access, passwords and cleanup rules. A paused material stays paused.",
+    "ru": "Изменение срока сохраняет доступ, пароль и правила очистки. Приостановленный материал остаётся на паузе.",
+    "es": "Cambiar el vencimiento conserva el acceso, la contraseña y las reglas de limpieza. Un material pausado sigue en pausa.",
+    "fr": "Modifier l’expiration conserve l’accès, le mot de passe et les règles de nettoyage. Un contenu en pause le reste."
+  },
+  "This link will have no access expiry. Its access and cleanup settings stay unchanged.": {
+    "en": "This link will have no access expiry. Its access and cleanup settings stay unchanged.",
+    "ru": "У ссылки не будет срока окончания доступа. Настройки доступа и очистки сохраняются.",
+    "es": "Este enlace no tendrá vencimiento. Sus ajustes de acceso y limpieza no cambian.",
+    "fr": "Ce lien n’aura pas de date d’expiration. Ses paramètres d’accès et de nettoyage restent inchangés."
+  },
+  "Access closes now. The saved cleanup policy may delete the files, including saved versions.": {
+    "en": "Access closes now. The saved cleanup policy may delete the files, including saved versions.",
+    "ru": "Доступ закроется сейчас. По сохранённой политике очистки могут быть удалены файлы, включая прежние версии.",
+    "es": "El acceso se cierra ahora. La política de limpieza guardada puede eliminar los archivos, incluidas las versiones guardadas.",
+    "fr": "L’accès se ferme maintenant. La politique de nettoyage enregistrée peut supprimer les fichiers, y compris les versions conservées."
+  },
+  "Delete this material and all its saved versions? Access closes immediately. File cleanup may finish in the background.": {
+    "en": "Delete this material and all its saved versions? Access closes immediately. File cleanup may finish in the background.",
+    "ru": "Удалить материал и все сохранённые версии? Доступ закроется сразу. Очистка файлов может завершиться в фоне.",
+    "es": "¿Eliminar este material y todas sus versiones guardadas? El acceso se cierra de inmediato. La limpieza puede finalizar en segundo plano.",
+    "fr": "Supprimer ce contenu et toutes ses versions conservées ? L’accès se ferme immédiatement. Le nettoyage peut se terminer en arrière-plan."
+  },
+  "Anyone with the link · No password": {
+    "en": "Anyone with the link · No password",
+    "ru": "По ссылке · Без пароля",
+    "es": "Cualquiera con el enlace · Sin contraseña",
+    "fr": "Toute personne ayant le lien · Sans mot de passe"
+  },
+  "Time is added from now or the current expiry, whichever is later. Access and cleanup rules stay unchanged.": {
+    "en": "Time is added from now or the current expiry, whichever is later. Access and cleanup rules stay unchanged.",
+    "ru": "Время добавляется к текущему сроку, а если он прошёл — к сегодняшней дате. Доступ и правила очистки сохраняются.",
+    "es": "El tiempo se añade desde ahora o desde el vencimiento actual, lo que sea posterior. El acceso y la limpieza no cambian.",
+    "fr": "Le temps s’ajoute à partir de maintenant ou de l’expiration actuelle, selon la date la plus tardive. L’accès et le nettoyage restent inchangés."
+  },
+  "Access and cleanup rules stay unchanged.": {
+    "en": "Access and cleanup rules stay unchanged.",
+    "ru": "Доступ и правила очистки сохраняются.",
+    "es": "El acceso y las reglas de limpieza no cambian.",
+    "fr": "L’accès et les règles de nettoyage restent inchangés."
+  },
+  "A paused material stays paused.": {
+    "en": "A paused material stays paused.",
+    "ru": "Приостановленный материал остаётся на паузе.",
+    "es": "Un material pausado sigue en pausa.",
+    "fr": "Un contenu en pause le reste."
+  },
+  "Version {version}": {
+    "en": "Version {version}",
+    "ru": "Версия {version}",
+    "es": "Versión {version}",
+    "fr": "Version {version}"
+  },
+  "Share this version": {
+    "en": "Share this version",
+    "ru": "Поделиться этой версией",
+    "es": "Compartir esta versión",
+    "fr": "Partager cette version"
+  },
+  "Stop sharing this version": {
+    "en": "Stop sharing this version",
+    "ru": "Отключить ссылку на версию",
+    "es": "Dejar de compartir esta versión",
+    "fr": "Cesser de partager cette version"
+  },
+  "This link opens these exact files. The material’s current access, password and expiry still apply.": {
+    "en": "This link opens these exact files. The material’s current access, password and expiry still apply.",
+    "ru": "Ссылка открывает именно эти файлы. Действуют текущие настройки доступа, пароль и срок материала.",
+    "es": "Este enlace abre estos archivos exactos. Se aplican el acceso, la contraseña y el vencimiento actuales del material.",
+    "fr": "Ce lien ouvre exactement ces fichiers. L’accès, le mot de passe et l’expiration actuels du contenu s’appliquent."
+  },
+  "The version link will stop opening for guests. The material link and saved files stay unchanged.": {
+    "en": "The version link will stop opening for guests. The material link and saved files stay unchanged.",
+    "ru": "Ссылка на версию перестанет открываться у гостей. Ссылка на материал и сохранённые файлы не изменятся.",
+    "es": "El enlace de versión dejará de abrirse para invitados. El enlace del material y los archivos guardados no cambian.",
+    "fr": "Le lien de version ne s’ouvrira plus pour les invités. Le lien du contenu et les fichiers conservés restent inchangés."
+  },
+  "Sharing does not reserve files. History cleanup can remove this version when its age, count or storage limit is reached.": {
+    "en": "Sharing does not reserve files. History cleanup can remove this version when its age, count or storage limit is reached.",
+    "ru": "Публикация ссылки не резервирует файлы. Очистка истории может удалить версию по сроку, количеству версий или лимиту места.",
+    "es": "Compartir no reserva los archivos. La limpieza puede eliminar esta versión al alcanzar el límite de antigüedad, cantidad o almacenamiento.",
+    "fr": "Le partage ne réserve pas les fichiers. Le nettoyage peut supprimer cette version lorsque la limite d’âge, de nombre ou de stockage est atteinte."
+  },
+  "This material is private. Its version link also requires owner sign-in.": {
+    "en": "This material is private. Its version link also requires owner sign-in.",
+    "ru": "Это личный материал. Для открытия ссылки на версию тоже нужен вход владельца.",
+    "es": "Este material es privado. Su enlace de versión también requiere iniciar sesión como propietario.",
+    "fr": "Ce contenu est privé. Son lien de version nécessite aussi la connexion du propriétaire."
+  },
+  "Share and copy link": {
+    "en": "Share and copy link",
+    "ru": "Включить ссылку и скопировать",
+    "es": "Compartir y copiar enlace",
+    "fr": "Partager et copier le lien"
+  },
+  "Stop sharing": {
+    "en": "Stop sharing",
+    "ru": "Отключить ссылку",
+    "es": "Dejar de compartir",
+    "fr": "Cesser le partage"
+  },
+  "Copy version link": {
+    "en": "Copy version link",
+    "ru": "Копировать ссылку на версию",
+    "es": "Copiar enlace de versión",
+    "fr": "Copier le lien de version"
+  },
+  "Version link enabled": {
+    "en": "Version link enabled",
+    "ru": "Ссылка включена",
+    "es": "Enlace de versión activado",
+    "fr": "Lien de version activé"
+  },
+  "Version link off": {
+    "en": "Version link off",
+    "ru": "Ссылка выключена",
+    "es": "Enlace de versión desactivado",
+    "fr": "Lien de version désactivé"
+  },
+  "Uses the material’s access rules. History cleanup may remove the files; sharing does not keep them forever.": {
+    "en": "Uses the material’s access rules. History cleanup may remove the files; sharing does not keep them forever.",
+    "ru": "Действуют правила доступа материала. Очистка истории может удалить файлы — ссылка не сохраняет их навсегда.",
+    "es": "Usa las reglas de acceso del material. La limpieza puede eliminar los archivos; compartir no los conserva para siempre.",
+    "fr": "Suit les règles d’accès du contenu. Le nettoyage peut supprimer les fichiers ; le partage ne les conserve pas indéfiniment."
+  },
+  "Shared version": {
+    "en": "Shared version",
+    "ru": "Ссылка включена",
+    "es": "Versión compartida",
+    "fr": "Version partagée"
+  },
+  "Version link copied.": {
+    "en": "Version link copied.",
+    "ru": "Ссылка на версию скопирована.",
+    "es": "Enlace de versión copiado.",
+    "fr": "Lien de version copié."
+  },
+  "Version sharing stopped.": {
+    "en": "Version sharing stopped.",
+    "ru": "Ссылка на версию отключена.",
+    "es": "Se dejó de compartir la versión.",
+    "fr": "Le partage de la version est désactivé."
+  },
+  "Check current material access": {
+    "en": "Check current material access",
+    "ru": "Проверить доступ к текущему материалу",
+    "es": "Comprobar acceso al material actual",
+    "fr": "Vérifier l’accès au contenu actuel"
+  },
+  "Viewing version {version}. The material link opens the current version.": {
+    "en": "Viewing version {version}. The material link opens the current version.",
+    "ru": "Вы смотрите версию {version}. Ссылка на материал открывает текущую версию.",
+    "es": "Viendo la versión {version}. El enlace del material abre la versión actual.",
+    "fr": "Version {version} affichée. Le lien du contenu ouvre la version actuelle."
+  },
+  "Paste one instruction into {app}. Your assistant will install the publishing tool and skill, then give you a command for your private terminal.": {
+    "en": "Paste one instruction into {app}. Your assistant will install the publishing tool and skill, then give you a command for your private terminal.",
+    "ru": "Вставь одну инструкцию в {app}. Ассистент установит инструмент публикации и скилл, затем даст команду для твоего терминала.",
+    "es": "Pega una instrucción en {app}. Tu asistente instalará la herramienta de publicación y la habilidad, y después te dará un comando para tu terminal privado.",
+    "fr": "Collez une seule instruction dans {app}. Votre assistant installera l’outil de publication et la compétence, puis vous donnera une commande à exécuter dans votre terminal privé."
+  },
+  "Manual setup and repair": {
+    "en": "Manual setup and repair",
+    "ru": "Ручная установка и восстановление",
+    "es": "Instalación manual y reparación",
+    "fr": "Installation manuelle et réparation"
+  },
+  "The installer reports the full executable path. Use that path if the command is not available in your terminal.": {
+    "en": "The installer reports the full executable path. Use that path if the command is not available in your terminal.",
+    "ru": "Установщик сообщает полный путь к программе. Используй его, если команда недоступна в терминале.",
+    "es": "El instalador muestra la ruta completa del ejecutable. Úsala si el comando no está disponible en tu terminal.",
+    "fr": "Le programme d’installation indique le chemin complet de l’exécutable. Utilisez-le si la commande n’est pas disponible dans votre terminal."
+  },
+  "The separate skill instructions are for repairing or updating an existing installation.": {
+    "en": "The separate skill instructions are for repairing or updating an existing installation.",
+    "ru": "Отдельная инструкция скилла нужна для восстановления или обновления существующей установки.",
+    "es": "Las instrucciones separadas de la habilidad sirven para reparar o actualizar una instalación existente.",
+    "fr": "Les instructions séparées de la compétence servent à réparer ou mettre à jour une installation existante."
+  },
+  "Install the tool and skill": {
+    "en": "Install the tool and skill",
+    "ru": "Установи инструмент и скилл",
+    "es": "Instala la herramienta y la habilidad",
+    "fr": "Installez l’outil et la compétence"
+  },
+  "Connect with your token": {
+    "en": "Connect with your token",
+    "ru": "Подключись с токеном",
+    "es": "Conecta con tu token",
+    "fr": "Connectez-vous avec votre jeton"
+  },
+  "Create a device token, then run the connection command your assistant provided in your own terminal.": {
+    "en": "Create a device token, then run the connection command your assistant provided in your own terminal.",
+    "ru": "Создай токен устройства и выполни команду подключения от ассистента в своём терминале.",
+    "es": "Crea un token de dispositivo y ejecuta en tu terminal el comando de conexión que te dio el asistente.",
+    "fr": "Créez un jeton d’appareil, puis exécutez dans votre terminal la commande de connexion fournie par votre assistant."
+  },
+  "Paste the token once into the hidden terminal prompt. Never paste it into an AI chat or put it in a command.": {
+    "en": "Paste the token once into the hidden terminal prompt. Never paste it into an AI chat or put it in a command.",
+    "ru": "Вставь токен один раз в скрытый ввод терминала. Не отправляй его в AI-чат и не добавляй в команду.",
+    "es": "Pega el token una sola vez en la entrada oculta del terminal. Nunca lo pegues en un chat de IA ni lo incluyas en un comando.",
+    "fr": "Collez le jeton une seule fois dans la saisie masquée du terminal. Ne le collez jamais dans une conversation avec l’IA ni dans une commande."
+  },
+  "Paste this token only into your tool’s private connection prompt or credential settings, never into a chat.": {
+    "en": "Paste this token only into your tool’s private connection prompt or credential settings, never into a chat.",
+    "ru": "Вставляй этот токен только в скрытый запрос подключения инструмента или в его настройки доступа, никогда — в чат.",
+    "es": "Pega este token solo en la solicitud privada de conexión de tu herramienta o en sus ajustes de credenciales, nunca en un chat.",
+    "fr": "Collez ce jeton uniquement dans l’invite privée de connexion de votre outil ou dans ses paramètres d’identification, jamais dans une conversation."
+  },
+  "The setup verifies your connection. Continue when it reports that the connection is working.": {
+    "en": "The setup verifies your connection. Continue when it reports that the connection is working.",
+    "ru": "Установка проверит подключение. Продолжай, когда появится сообщение об успешной проверке.",
+    "es": "La instalación verifica la conexión. Continúa cuando indique que la conexión funciona.",
+    "fr": "La configuration vérifie la connexion. Continuez lorsqu’elle indique que la connexion fonctionne."
+  },
+  "Open Claude Plugins (or Customize in the older layout), then add a custom web connector.": {
+    "en": "Open Claude Plugins (or Customize in the older layout), then add a custom web connector.",
+    "ru": "Открой в Claude Plugins (Customize в старом интерфейсе) и добавь свой веб-коннектор.",
+    "es": "Abre Plugins de Claude (Customize en la interfaz anterior) y añade un conector web personalizado.",
+    "fr": "Ouvrez Plugins dans Claude (Customize dans l’ancienne interface), puis ajoutez un connecteur web personnalisé."
+  },
+  "Connect your account on web or desktop. Availability on other devices depends on your account and app.": {
+    "en": "Connect your account on web or desktop. Availability on other devices depends on your account and app.",
+    "ru": "Подключи аккаунт в веб-версии или приложении для компьютера. Доступность на других устройствах зависит от аккаунта и приложения.",
+    "es": "Conecta tu cuenta en la web o en la aplicación de escritorio. La disponibilidad en otros dispositivos depende de tu cuenta y aplicación.",
+    "fr": "Connectez votre compte sur le web ou dans l’application de bureau. La disponibilité sur d’autres appareils dépend de votre compte et de l’application."
+  },
+  "Connected app": {
+    "en": "Connected app",
+    "ru": "Подключённое приложение",
+    "es": "Aplicación conectada",
+    "fr": "Application connectée"
+  },
+  "If setup reports an existing connection is working, you are done. No new token is needed.": {
+    "en": "If setup reports an existing connection is working, you are done. No new token is needed.",
+    "ru": "Если установка подтвердила, что подключение уже работает, всё готово. Новый токен не нужен.",
+    "es": "Si la configuración confirma que la conexión existente funciona, ya está listo. No necesita un token nuevo.",
+    "fr": "Si la configuration confirme que la connexion existante fonctionne, tout est prêt. Aucun nouveau jeton n’est nécessaire."
+  },
+  "Use my connected Minder Publish to list at most three materials. Show their titles and stable links. Do not publish, edit, delete or upload anything. If authorization fails, explain the error without requesting credentials in chat.": {
+    "en": "Use my connected Minder Publish to list at most three materials. Show their titles and stable links. Do not publish, edit, delete or upload anything. If authorization fails, explain the error without requesting credentials in chat.",
+    "ru": "Через подключённый Minder Publish покажи не более трёх материалов: названия и постоянные ссылки. Ничего не публикуй, не изменяй, не удаляй и не загружай. При ошибке авторизации объясни её, не запрашивая секреты в чате.",
+    "es": "Usa mi conexión de Minder Publish para mostrar como máximo tres materiales con sus títulos y enlaces permanentes. No publiques, edites, elimines ni subas nada. Si falla la autorización, explica el error sin pedir credenciales en el chat.",
+    "fr": "Utilise ma connexion Minder Publish pour afficher au maximum trois contenus, avec leurs titres et liens permanents. Ne publie, ne modifie, ne supprime et ne téléverse rien. Si l’autorisation échoue, explique l’erreur sans demander d’identifiants dans le chat."
+  },
+  "Choose OAuth with automatic client registration (DCR). Leave static client ID and client secret empty. Then choose Create as a plugin and install the resulting plugin.": {
+    "en": "Choose OAuth with automatic client registration (DCR). Leave static client ID and client secret empty. Then choose Create as a plugin and install the resulting plugin.",
+    "ru": "Выберите OAuth с автоматической регистрацией клиента (DCR). Не заполняйте статические client ID и client secret. Затем выберите Create as a plugin и установите созданный плагин.",
+    "es": "Elige OAuth con registro automático del cliente (DCR). Deja vacíos el ID y el secreto de cliente estáticos. Después elige Create as a plugin e instala el plugin creado.",
+    "fr": "Choisissez OAuth avec l’enregistrement automatique du client (DCR). Laissez vides l’identifiant et le secret client statiques. Choisissez ensuite Create as a plugin et installez le plugin créé."
+  },
+  "For a device token, choose No sign in instead of OAuth. Add the Authorization request header in Claude’s connector settings.": {
+    "en": "For a device token, choose No sign in instead of OAuth. Add the Authorization request header in Claude’s connector settings.",
+    "ru": "Для токена устройства выберите No sign in вместо OAuth. Добавьте заголовок запроса Authorization в настройках коннектора Claude.",
+    "es": "Para usar un token de dispositivo, elige No sign in en lugar de OAuth. Añade la cabecera Authorization en los ajustes del conector de Claude.",
+    "fr": "Pour un jeton d’appareil, choisissez No sign in à la place d’OAuth. Ajoutez l’en-tête Authorization dans les paramètres du connecteur Claude."
+  },
+  "Publishing requires materials:manage, which allows reading, creating, updating and deleting materials. materials:read allows viewing only. Review the requested permissions before approving; you can revoke the connection below.": {
+    "en": "Publishing requires materials:manage, which allows reading, creating, updating and deleting materials. materials:read allows viewing only. Review the requested permissions before approving; you can revoke the connection below.",
+    "ru": "Для публикации нужен доступ materials:manage: чтение, создание, изменение и удаление материалов. materials:read разрешает только чтение. Перед подтверждением проверьте запрошенные права; отозвать подключение можно ниже.",
+    "es": "Publicar requiere materials:manage, que permite leer, crear, actualizar y eliminar materiales. materials:read solo permite leer. Revisa los permisos solicitados antes de aprobarlos; puedes revocar la conexión abajo.",
+    "fr": "La publication nécessite materials:manage, qui permet de lire, créer, modifier et supprimer des contenus. materials:read permet uniquement la lecture. Vérifiez les autorisations demandées avant de les approuver ; vous pouvez révoquer la connexion ci-dessous."
+  },
+  "Start a new chat and select the installed Publish plugin or enable its connector. Copy this request to check access without changing any materials.": {
+    "en": "Start a new chat and select the installed Publish plugin or enable its connector. Copy this request to check access without changing any materials.",
+    "ru": "Начните новый чат и выберите установленный плагин Publish или включите его коннектор. Скопируйте этот запрос для проверки доступа без изменения материалов.",
+    "es": "Abre un chat nuevo y selecciona el plugin Publish instalado o activa su conector. Copia esta solicitud para comprobar el acceso sin cambiar ningún material.",
+    "fr": "Ouvrez un nouveau chat et sélectionnez le plugin Publish installé ou activez son connecteur. Copiez cette demande pour vérifier l’accès sans modifier de contenu."
+  },
+  "Copy connection check": {
+    "en": "Copy connection check",
+    "ru": "Скопировать запрос проверки",
+    "es": "Copiar solicitud de comprobación",
+    "fr": "Copier la demande de vérification"
+  },
+  "The browser upload creates a new material. To replace an existing PDF, image or site, use its cabinet controls or the configured CLI.": {
+    "en": "The browser upload creates a new material. To replace an existing PDF, image or site, use its cabinet controls or the configured CLI.",
+    "ru": "Эта загрузка через браузер создаёт новый материал. Для замены существующего PDF, изображения или сайта используйте управление материалом в кабинете или настроенный CLI.",
+    "es": "Esta subida desde el navegador crea un material nuevo. Para reemplazar un PDF, imagen o sitio existente, usa sus controles en el panel o el CLI configurado.",
+    "fr": "Ce téléversement par navigateur crée un nouveau contenu. Pour remplacer un PDF, une image ou un site existant, utilisez ses commandes dans l’espace de gestion ou le CLI configuré."
+  },
+  "Choose tool permissions": {
+    "en": "Choose tool permissions",
+    "ru": "Выберите разрешения инструментов",
+    "es": "Elige los permisos de herramientas",
+    "fr": "Choisissez les autorisations des outils"
+  },
+  "Decide whether the host should ask before each tool use or allow this connection to act without repeated prompts. Automatic approval can let the assistant change or delete materials within its granted access.": {
+    "en": "Decide whether the host should ask before each tool use or allow this connection to act without repeated prompts. Automatic approval can let the assistant change or delete materials within its granted access.",
+    "ru": "Выберите, должно ли приложение спрашивать перед каждым вызовом инструмента или разрешить этому подключению работать без повторных запросов. Автоматическое подтверждение позволяет ассистенту изменять или удалять материалы в пределах выданного доступа.",
+    "es": "Decide si la aplicación debe pedir permiso antes de cada uso de una herramienta o permitir que esta conexión actúe sin solicitudes repetidas. La aprobación automática puede permitir al asistente cambiar o eliminar materiales dentro del acceso concedido.",
+    "fr": "Décidez si l’application doit demander une autorisation avant chaque utilisation d’un outil ou laisser cette connexion agir sans demandes répétées. L’approbation automatique peut permettre à l’assistant de modifier ou supprimer des contenus dans les limites de l’accès accordé."
+  },
+  "In ChatGPT, review the Publish app’s permission controls or an approval prompt and choose the available option that matches your preference. Options depend on the account, app and action.": {
+    "en": "In ChatGPT, review the Publish app’s permission controls or an approval prompt and choose the available option that matches your preference. Options depend on the account, app and action.",
+    "ru": "В ChatGPT проверьте настройки разрешений приложения Publish или окно подтверждения и выберите доступный вариант по своему предпочтению. Варианты зависят от аккаунта, приложения и действия.",
+    "es": "En ChatGPT, revisa los controles de permisos de la aplicación Publish o una solicitud de aprobación y elige la opción disponible que prefieras. Las opciones dependen de la cuenta, la aplicación y la acción.",
+    "fr": "Dans ChatGPT, consultez les autorisations de l’application Publish ou une demande d’approbation et choisissez l’option disponible qui vous convient. Les options dépendent du compte, de l’application et de l’action."
+  },
+  "These host prompts are separate from the access you approved in Publish. A skill adds instructions; it does not grant access or change permissions.": {
+    "en": "These host prompts are separate from the access you approved in Publish. A skill adds instructions; it does not grant access or change permissions.",
+    "ru": "Эти запросы приложения отдельны от доступа, подтверждённого в Publish. Скилл добавляет инструкции, но не выдаёт доступ и не меняет разрешения.",
+    "es": "Estas solicitudes de la aplicación son independientes del acceso autorizado en Publish. Una skill añade instrucciones; no concede acceso ni cambia permisos.",
+    "fr": "Ces demandes de l’application sont distinctes de l’accès autorisé dans Publish. Une compétence ajoute des instructions ; elle n’accorde aucun accès et ne modifie aucune autorisation."
+  },
+  "Returning to the application…": {
+    "en": "Returning to the application…",
+    "ru": "Возвращаемся в приложение…",
+    "es": "Volviendo a la aplicación…",
+    "fr": "Retour à l’application…"
+  },
+  "If you are not redirected, continue below.": {
+    "en": "If you are not redirected, continue below.",
+    "ru": "Если перенаправление не произошло, продолжите ниже.",
+    "es": "Si no se te redirige, continúa abajo.",
+    "fr": "Si vous n’êtes pas redirigé, continuez ci-dessous."
+  },
+  "In Claude on web or desktop, open Customize → Connectors → Publish → Permissions and review the tool permissions. Choose the available setting for each tool that matches your preference. Always ask may not be available on every account. In Auto mode, Needs approval may run without asking; check the conversation mode too.": {
+    "en": "In Claude on web or desktop, open Customize → Connectors → Publish → Permissions and review the tool permissions. Choose the available setting for each tool that matches your preference. Always ask may not be available on every account. In Auto mode, Needs approval may run without asking; check the conversation mode too.",
+    "ru": "В Claude на сайте или компьютере откройте Customize → Connectors → Publish → Permissions и проверьте разрешения инструментов. Для каждого выберите доступную настройку по своему предпочтению. Always ask доступен не во всех аккаунтах. В режиме Auto инструменты с Needs approval могут запускаться без запроса; проверьте также режим диалога.",
+    "es": "En Claude para web o escritorio, abre Customize → Connectors → Publish → Permissions y revisa los permisos. Elige para cada herramienta la opción disponible que prefieras. Always ask puede no estar disponible en todas las cuentas. En modo Auto, Needs approval puede ejecutarse sin preguntar; revisa también el modo de conversación.",
+    "fr": "Dans Claude sur le Web ou sur ordinateur, ouvrez Customize → Connectors → Publish → Permissions et vérifiez les autorisations. Choisissez pour chaque outil le réglage disponible qui vous convient. Always ask peut ne pas être disponible sur tous les comptes. En mode Auto, Needs approval peut s’exécuter sans demande ; vérifiez aussi le mode de conversation."
+  },
+  "Opening statistics": {
+    "en": "Opening statistics",
+    "ru": "Статистика открытий",
+    "es": "Estadísticas de aperturas",
+    "fr": "Statistiques d’ouverture"
+  },
+  "Both audiences": {
+    "en": "Both audiences",
+    "ru": "Все открытия",
+    "es": "Ambos públicos",
+    "fr": "Tous les publics"
+  },
+  "Daily openings, UTC": {
+    "en": "Daily openings, UTC",
+    "ru": "Открытия по дням, UTC",
+    "es": "Aperturas diarias, UTC",
+    "fr": "Ouvertures quotidiennes, UTC"
+  },
+  "Add publish-cover.png to the ZIP root to show a cover in the library.": {
+    "en": "Add publish-cover.png to the ZIP root to show a cover in the library.",
+    "ru": "Добавьте publish-cover.png в корень ZIP, чтобы показать обложку в каталоге.",
+    "es": "Añade publish-cover.png en la raíz del ZIP para mostrar una portada en la biblioteca.",
+    "fr": "Ajoutez publish-cover.png à la racine du ZIP pour afficher une couverture dans la bibliothèque."
+  },
+  "Audience": {
+    "en": "Audience",
+    "ru": "Аудитория",
+    "es": "Audiencia",
+    "fr": "Audience"
+  },
+  "Guests": {
+    "en": "Guests",
+    "ru": "Гости",
+    "es": "Invitados",
+    "fr": "Invités"
+  },
+  "You": {
+    "en": "You",
+    "ru": "Вы",
+    "es": "Tú",
+    "fr": "Vous"
+  },
+  "Your daily openings, UTC": {
+    "en": "Your daily openings, UTC",
+    "ru": "Ваши открытия по дням, UTC",
+    "es": "Tus aperturas diarias, UTC",
+    "fr": "Vos ouvertures quotidiennes, UTC"
+  },
+  "Your last opening": {
+    "en": "Your last opening",
+    "ru": "Ваше последнее открытие",
+    "es": "Tu última apertura",
+    "fr": "Votre dernière ouverture"
+  },
+  "Not collected": {
+    "en": "Not collected",
+    "ru": "Не собирается",
+    "es": "No se recopila",
+    "fr": "Non collecté"
+  },
+  "Count my openings": {
+    "en": "Count my openings",
+    "ru": "Считать мои открытия",
+    "es": "Contar mis aperturas",
+    "fr": "Compter mes ouvertures"
+  },
+  "Counts your signed-in openings, including previews, history and clean view. Guest access checks are excluded. Earlier owner openings are unavailable.": {
+    "en": "Counts your signed-in openings, including previews, history and clean view. Guest access checks are excluded. Earlier owner openings are unavailable.",
+    "ru": "Считает ваши открытия после входа, включая предпросмотр, историю и чистый вид. Гостевые проверки доступа не учитываются. Более ранние открытия владельца недоступны.",
+    "es": "Cuenta tus aperturas con sesión iniciada, incluidas vistas previas, historial y vista limpia. Se excluyen las comprobaciones de acceso de invitados. Las aperturas anteriores del propietario no están disponibles.",
+    "fr": "Compte vos ouvertures après connexion, y compris les aperçus, l’historique et la vue épurée. Les vérifications d’accès invité sont exclues. Les ouvertures antérieures du propriétaire ne sont pas disponibles."
+  },
+  "Counts accepted guest openings through the shared link, not unique people or completed reading. Your signed-in openings and guest access checks are excluded.": {
+    "en": "Counts accepted guest openings through the shared link, not unique people or completed reading. Your signed-in openings and guest access checks are excluded.",
+    "ru": "Считает успешные открытия гостями по общей ссылке, а не уникальных людей или прочтения до конца. Ваши открытия после входа и гостевые проверки доступа не учитываются.",
+    "es": "Cuenta las aperturas aceptadas de invitados mediante el enlace compartido, no personas únicas ni lecturas completas. Se excluyen tus aperturas con sesión iniciada y las comprobaciones de acceso de invitados.",
+    "fr": "Compte les ouvertures invité acceptées via le lien partagé, et non les personnes uniques ou les lectures terminées. Vos ouvertures après connexion et les vérifications d’accès invité sont exclues."
+  },
+  "Owner collection may have gaps while an older release was running.": {
+    "en": "Owner collection may have gaps while an older release was running.",
+    "ru": "В статистике владельца возможны пропуски за время работы старой версии.",
+    "es": "La recopilación del propietario puede tener lagunas mientras se ejecutaba una versión anterior.",
+    "fr": "La collecte du propriétaire peut présenter des lacunes pendant l’utilisation d’une ancienne version."
+  },
+  "Delete all guest, owner and earlier opening counts for this material? This cannot be undone.": {
+    "en": "Delete all guest, owner and earlier opening counts for this material? This cannot be undone.",
+    "ru": "Удалить все гостевые, владельческие и более ранние счётчики открытий этого материала? Это действие нельзя отменить.",
+    "es": "¿Eliminar todos los recuentos de aperturas de invitados, del propietario y anteriores de este material? Esta acción no se puede deshacer.",
+    "fr": "Supprimer tous les compteurs d’ouvertures invité, propriétaire et antérieurs de ce contenu ? Cette action est irréversible."
+  },
+  "Clear all statistics": {
+    "en": "Clear all statistics",
+    "ru": "Очистить всю статистику",
+    "es": "Borrar todas las estadísticas",
+    "fr": "Effacer toutes les statistiques"
+  },
+  "Capacity": {
+    "en": "Capacity",
+    "ru": "Ёмкость",
+    "es": "Capacidad",
+    "fr": "Capacité"
+  },
+  "Usage": {
+    "en": "Usage",
+    "ru": "Использовано",
+    "es": "Uso",
+    "fr": "Utilisation"
+  },
+  "Incorrect material password. Try again.": {
+    "en": "Incorrect material password. Try again.",
+    "ru": "Неверный пароль материала. Попробуйте ещё раз.",
+    "es": "La contraseña del material es incorrecta. Inténtalo de nuevo.",
+    "fr": "Mot de passe du document incorrect. Réessayez."
+  },
+  "Catalog records": {
+    "en": "Catalog records",
+    "ru": "Записи каталога",
+    "es": "Registros del catálogo",
+    "fr": "Entrées du catalogue"
+  },
+  "Retained records count towards the catalog limit.": {
+    "en": "Retained records count towards the catalog limit.",
+    "ru": "Сохранённые записи учитываются в лимите каталога.",
+    "es": "Los registros conservados cuentan para el límite del catálogo.",
+    "fr": "Les entrées conservées comptent dans la limite du catalogue."
+  },
+  "Refresh usage": {
+    "en": "Refresh usage",
+    "ru": "Обновить данные",
+    "es": "Actualizar uso",
+    "fr": "Actualiser l’utilisation"
+  },
+  "Could not refresh capacity.": {
+    "en": "Could not refresh capacity.",
+    "ru": "Не удалось обновить данные об ёмкости.",
+    "es": "No se pudo actualizar la capacidad.",
+    "fr": "Impossible d’actualiser la capacité."
+  },
+  "Code and installation instructions on GitHub": {
+    "en": "Code and installation instructions on GitHub",
+    "ru": "Код и инструкция по установке на GitHub",
+    "es": "Código e instrucciones de instalación en GitHub",
+    "fr": "Code et instructions d’installation sur GitHub"
+  },
+  "Made available via minder publish.": {
+    "en": "Made available via minder publish.",
+    "ru": "Доступно через minder publish.",
+    "es": "Disponible a través de minder publish.",
+    "fr": "Disponible via minder publish."
+  },
+  "View opening history": {
+    "en": "View opening history",
+    "ru": "История открытий",
+    "es": "Ver historial de aperturas",
+    "fr": "Voir l’historique des ouvertures"
+  },
+  "Filename": {
+    "en": "Filename",
+    "ru": "Имя файла",
+    "es": "Nombre de archivo",
+    "fr": "Nom du fichier"
+  },
+  "Size": {
+    "en": "Size",
+    "ru": "Размер",
+    "es": "Tamaño",
+    "fr": "Taille"
+  },
+  "Materials limit": {
+    "en": "Materials limit",
+    "ru": "Лимит материалов",
+    "es": "Límite de materiales",
+    "fr": "Limite de contenus"
+  },
+  "Upload limits": {
+    "en": "Upload limits",
+    "ru": "Лимиты загрузки",
+    "es": "Límites de carga",
+    "fr": "Limites de téléversement"
+  },
+  "These file limits apply to uploads from the cabinet, browser requests, CLI and API.": {
+    "en": "These file limits apply to uploads from the cabinet, browser requests, CLI and API.",
+    "ru": "Эти лимиты действуют для загрузок из кабинета, по ссылке от помощника, через CLI и API.",
+    "es": "Estos límites se aplican a las cargas desde el panel, las solicitudes del asistente, la CLI y la API.",
+    "fr": "Ces limites s’appliquent aux envois depuis le tableau de bord, les demandes de l’assistant, la CLI et l’API."
+  },
+  "Retained records count even after their files are removed.": {
+    "en": "Retained records count even after their files are removed.",
+    "ru": "Сохранённые записи учитываются и после удаления файлов.",
+    "es": "Los registros conservados cuentan aunque se borren sus archivos.",
+    "fr": "Les fiches conservées comptent même après la suppression de leurs fichiers."
+  },
+  "Updated {time}": {
+    "en": "Updated {time}",
+    "ru": "Обновлено в {time}",
+    "es": "Actualizado a las {time}",
+    "fr": "Actualisé à {time}"
+  },
+  "Copy upload request": {
+    "en": "Copy upload request",
+    "ru": "Скопировать запрос на загрузку",
+    "es": "Copiar solicitud de carga",
+    "fr": "Copier la demande de téléversement"
+  },
+  "Use Minder Publish to create an upload link for my file. I will choose the file and confirm publication in the browser.": {
+    "en": "Use Minder Publish to create an upload link for my file. I will choose the file and confirm publication in the browser.",
+    "ru": "Создай в Minder Publish ссылку для загрузки файла. Я выберу файл и подтвержу публикацию в браузере.",
+    "es": "Usa Minder Publish para crear un enlace de carga para mi archivo. Elegiré el archivo y confirmaré la publicación en el navegador.",
+    "fr": "Utilise Minder Publish pour créer un lien de téléversement pour mon fichier. Je choisirai le fichier et confirmerai la publication dans le navigateur."
+  },
+  "Ask your assistant for a Publish upload link. Open it on your phone or computer, sign in, choose the file and confirm.": {
+    "en": "Ask your assistant for a Publish upload link. Open it on your phone or computer, sign in, choose the file and confirm.",
+    "ru": "Попросите помощника дать ссылку на загрузку. Откройте её на телефоне или компьютере, войдите, выберите файл и подтвердите загрузку.",
+    "es": "Pide a tu asistente un enlace de carga. Ábrelo en el móvil o el ordenador, inicia sesión, elige el archivo y confirma.",
+    "fr": "Demandez à votre assistant un lien de téléversement. Ouvrez-le sur votre téléphone ou ordinateur, connectez-vous, choisissez le fichier et confirmez."
+  },
+  "Text and HTML sent directly through MCP: {size} per request.": {
+    "en": "Text and HTML sent directly through MCP: {size} per request.",
+    "ru": "Передача текста или HTML напрямую через MCP: {size} на запрос.",
+    "es": "Texto y HTML enviados directamente por MCP: {size} por solicitud.",
+    "fr": "Texte et HTML envoyés directement par MCP : {size} par requête."
+  },
+  "Single file": {
+    "en": "Single file",
+    "ru": "Один файл",
+    "es": "Archivo individual",
+    "fr": "Fichier individuel"
+  },
+  "Site ZIP": {
+    "en": "Site ZIP",
+    "ru": "ZIP сайта",
+    "es": "ZIP del sitio",
+    "fr": "ZIP du site"
+  },
+  "Expanded site": {
+    "en": "Expanded site",
+    "ru": "Сайт после распаковки",
+    "es": "Sitio descomprimido",
+    "fr": "Site décompressé"
+  },
+  "Open upload settings": {
+    "en": "Open upload settings",
+    "ru": "Открыть настройки загрузки",
+    "es": "Abrir los ajustes de carga",
+    "fr": "Ouvrir les paramètres de téléversement"
+  },
+  "Overview": {
+    "en": "Overview",
+    "ru": "Обзор",
+    "es": "Resumen",
+    "fr": "Aperçu"
+  },
+  "File details": {
+    "en": "File details",
+    "ru": "Сведения о файлах",
+    "es": "Detalles de los archivos",
+    "fr": "Détails des fichiers"
+  },
+  "Page resource check": {
+    "en": "Page resource check",
+    "ru": "Проверка ресурсов страницы",
+    "es": "Comprobación de recursos de la página",
+    "fr": "Vérification des ressources"
+  },
+  "Some resources were not checked. Test the published page before sharing.": {
+    "en": "Some resources were not checked. Test the published page before sharing.",
+    "ru": "Проверены не все ресурсы. Проверьте страницу в браузере перед отправкой ссылки.",
+    "es": "No se comprobaron todos los recursos. Prueba la página en el navegador antes de compartirla.",
+    "fr": "Des ressources restent à vérifier. Testez la page dans le navigateur avant de la partager."
+  },
+  "Some local files are missing. Include them in the upload, then try again.": {
+    "en": "Some local files are missing. Include them in the upload, then try again.",
+    "ru": "Некоторых файлов нет в загрузке. Добавьте их и загрузите материал снова.",
+    "es": "Faltan archivos locales. Inclúyelos y vuelve a subir el material.",
+    "fr": "Des fichiers locaux manquent. Ajoutez-les, puis relancez le téléversement."
+  },
+  "This page uses resources from other sites. Check that they load for your audience.": {
+    "en": "This page uses resources from other sites. Check that they load for your audience.",
+    "ru": "Страница использует ресурсы других сайтов. Проверьте, что они доступны читателям.",
+    "es": "La página usa recursos de otros sitios. Comprueba que estén disponibles para tus lectores.",
+    "fr": "La page utilise des ressources externes. Vérifiez que vos lecteurs y ont accès."
+  },
+  "View checked resources": {
+    "en": "View checked resources",
+    "ru": "Что проверено",
+    "es": "Ver recursos comprobados",
+    "fr": "Voir les ressources vérifiées"
+  },
+  "No issues found in the checked resources": {
+    "en": "No issues found in the checked resources",
+    "ru": "В проверенных ресурсах проблем не найдено",
+    "es": "Sin problemas en los recursos comprobados",
+    "fr": "Aucun problème dans les ressources vérifiées"
+  },
+  "Statistics": {
+    "en": "Statistics",
+    "ru": "Статистика",
+    "es": "Estadísticas",
+    "fr": "Statistiques"
+  },
+  "Request protection": {
+    "en": "Request protection",
+    "ru": "Защита от перебора",
+    "es": "Protección contra intentos repetidos",
+    "fr": "Protection contre les tentatives répétées"
+  },
+  "Link requests per IP per minute": {
+    "en": "Link requests per IP per minute",
+    "ru": "Запросов к ссылкам с одного IP в минуту",
+    "es": "Solicitudes de enlaces por IP por minuto",
+    "fr": "Requêtes de liens par IP par minute"
+  },
+  "Password attempts per IP and material": {
+    "en": "Password attempts per IP and material",
+    "ru": "Попыток ввода пароля с одного IP для материала",
+    "es": "Intentos de contraseña por IP y material",
+    "fr": "Tentatives de mot de passe par IP et par contenu"
+  },
+  "Password attempt window, minutes": {
+    "en": "Password attempt window, minutes",
+    "ru": "Период учёта попыток ввода пароля, минуты",
+    "es": "Ventana de intentos de contraseña, minutos",
+    "fr": "Fenêtre de tentatives de mot de passe, en minutes"
+  },
+  "Attempts are counted in fixed windows. At the limit, new requests wait until the window ends. Owner sign-in has separate protection.": {
+    "en": "Attempts are counted in fixed windows. At the limit, new requests wait until the window ends. Owner sign-in has separate protection.",
+    "ru": "Попытки учитываются за фиксированный период. По достижении лимита новые запросы блокируются до его окончания. Вход владельца защищён отдельно.",
+    "es": "Los intentos se cuentan en ventanas fijas. Al alcanzar el límite, se bloquean nuevas solicitudes hasta que termine la ventana. El acceso del propietario tiene protección propia.",
+    "fr": "Les tentatives sont comptées par fenêtres fixes. Une fois la limite atteinte, les nouvelles requêtes sont bloquées jusqu’à la fin de la fenêtre. La connexion du propriétaire est protégée séparément."
+  },
+  "No HTML or CSS was checked": {
+    "en": "No HTML or CSS was checked",
+    "ru": "HTML и CSS не проверялись",
+    "es": "No se comprobó ningún archivo HTML ni CSS",
+    "fr": "Aucun fichier HTML ou CSS n’a été vérifié"
+  }
+}

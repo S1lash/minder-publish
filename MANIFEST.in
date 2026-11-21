@@ -1,0 +1,15 @@
+include AGENTS.md CONTRIBUTING.md Dockerfile compose.yaml .dockerignore .gitattributes .env.example
+include requirements.lock requirements-test.lock
+include .github/workflows/ci.yml
+include docs/SELF_HOSTING.md docs/SELF_HOSTING.ru.md docs/SECURITY.md docs/ARCHITECTURE.md
+include docs/implementation/API.md
+include docs/LINK_PREVIEWS.md docs/brand/open-corner.svg
+include docs/REVISION_HISTORY.md docs/STATISTICS.md
+include scripts/install-skills.py scripts/check-release.py scripts/smoke-container.py
+include scripts/render-brand.py scripts/build-client-wheel.py scripts/normalize-sdist.py
+recursive-include deploy/publish *.py *.template
+recursive-include skill/minder-publish *.md
+recursive-include src/minder_publish *.py *.json *.sql *.html *.css *.js *.svg *.png *.ttf *.txt
+recursive-include tests *.py
+recursive-include tests/fixtures *.html *.js
+global-exclude __pycache__ *.py[cod] .DS_Store

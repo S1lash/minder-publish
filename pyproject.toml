@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "minder-publish"
+dynamic = ["version"]
+description = "Self-hosted publication of files and static sites for people and AI agents"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT AND OFL-1.1-no-RFN"
+license-files = ["LICENSE", "src/minder_publish/server/web/fonts/*-OFL.txt"]
+dependencies = ["httpx>=0.28.1", "tomli>=2.2; python_version<'3.11'"]
+
+[project.optional-dependencies]
+server = ["fastapi>=0.139.0", "uvicorn[standard]>=0.51.0", "python-multipart>=0.0.20", "jinja2>=3.1.6", "argon2-cffi>=25.1", "pillow>=12.0", "cryptography>=46"]
+mcp = ["mcp>=2.3,<3"]
+test = ["pytest>=8.3", "pytest-asyncio>=0.26", "build>=1.2"]
+
+[project.scripts]
+minder-publish = "minder_publish.client.cli:main"
+minder-publish-server = "minder_publish.server.commands:main"
+minder-publish-mcp = "minder_publish.mcp.server:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.dynamic]
+version = {attr = "minder_publish.__version__"}
+
+[tool.setuptools.package-data]
+minder_publish = ["defaults.json", "server/web/**/*", "server/migrations/**/*"]
+
+[tool.setuptools.data-files]
+"share/minder-publish/skills/minder-publish" = ["skill/minder-publish/SKILL.md"]
+"share/minder-publish/skills/minder-publish/references" = ["skill/minder-publish/references/cli.md", "skill/minder-publish/references/mcp.md", "skill/minder-publish/references/installation.md"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"

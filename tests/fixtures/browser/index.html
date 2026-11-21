@@ -1,0 +1,29 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Minder Publish browser security fixture</title>
+<style>body{font:18px system-ui;padding:32px;max-width:850px;margin:auto}li{padding:10px;border-bottom:1px solid #ccc}.pass{color:#166534}.fail{color:#b91c1c}</style>
+<h1>Browser boundary checks</h1>
+<p>This disposable publication tests the revision origin. It contains no personal data.</p>
+<ul id="results"></ul>
+<p id="complete">Running checks…</p>
+<script>
+const results=document.querySelector('#results');
+function result(name,passed,detail=''){const item=document.createElement('li');item.className=passed?'pass':'fail';item.textContent=`${passed?'PASS':'FAIL'} · ${name}${detail?` · ${detail}`:''}`;results.append(item);return passed;}
+async function worker(url){return new Promise(resolve=>{let instance;const timer=setTimeout(()=>{instance?.terminate();resolve(false)},5000);try{instance=new Worker(url);instance.onmessage=event=>{clearTimeout(timer);instance.terminate();resolve(event.data==='worker-ready')};instance.onerror=()=>{clearTimeout(timer);instance.terminate();resolve(false)}}catch{clearTimeout(timer);resolve(false)}})}
+(async()=>{
+ const checks=[];
+ checks.push(result('Management API absent from content origin',(await fetch('/api/v1/session',{cache:'no-store'})).status===404));
+ checks.push(result('Authentication cookies are HttpOnly',!document.cookie.split(';').some(value=>/mp-(owner|read|viewer|bridge)=/.test(value))));
+ checks.push(result('Dedicated worker is supported',await worker('/worker.js')));
+ const blob=URL.createObjectURL(new Blob([`postMessage('worker-ready')`],{type:'text/javascript'}));
+ checks.push(result('Blob worker is supported',await worker(blob)));URL.revokeObjectURL(blob);
+ let blocked=false;
+ if('serviceWorker' in navigator){try{const registration=await navigator.serviceWorker.register('/sw.js');await registration.unregister()}catch{blocked=true}}
+ checks.push(result('Service worker registration is rejected',blocked,'serviceWorker' in navigator?'API available':'API unavailable: this origin is not a complete gate'));
+ checks.push(result('No service worker controls this revision',!navigator.serviceWorker?.controller));
+ const asset=await fetch('/worker.js',{cache:'reload'});
+ checks.push(result('Author bytes are served with no-store',asset.headers.get('Cache-Control')?.includes('no-store')));
+ document.querySelector('#complete').textContent=checks.every(Boolean)?'All checks passed.':'One or more checks failed.';
+})();
+</script>

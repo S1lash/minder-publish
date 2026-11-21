@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light dark"><title>Minder Publish</title>
+<link rel="icon" href="/static/mark.svg" type="image/svg+xml">
+<script src="/static/preferences.js"></script>
+<link rel="stylesheet" href="/static/theme.css">
+<link rel="stylesheet" href="/static/ui.css"><link rel="stylesheet" href="/static/materials.css"><link rel="stylesheet" href="/static/viewer.css">
+<script type="module" src="/static/viewer.js"></script>
+<script defer src="/static/controls.js"></script>
+</head>
+<body class="owner-viewer">
+<a class="skip-link" href="#viewer-content" data-i18n="Skip to content">Skip to content</a>
+<header class="viewer-rail">
+<a href="/" class="viewer-brand" aria-label="minder publish."><span class="viewer-brand-mark"><!-- brand-standalone --></span><span class="viewer-brand-wordmark"><!-- brand-lockup --><span>minder publish<span class="dot">.</span></span></span></a>
+<span id="viewer-title" class="viewer-title"></span>
+<button id="viewer-tools" type="button" aria-expanded="false" aria-controls="viewer-drawer" disabled><span data-i18n="Owner tools">Owner tools</span><span id="viewer-version"></span></button>
+</header>
+<div id="viewer-error" class="viewer-error" role="alert" hidden></div>
+<div id="viewer-history-notice" class="viewer-history-notice" hidden><span id="viewer-selection-notice"></span><button type="button" id="viewer-current" data-i18n="Back to current">Back to current</button></div>
+<main id="viewer-content" class="viewer-content" tabindex="-1"><p class="viewer-loading" data-i18n="Loading…">Loading…</p></main>
+<dialog id="viewer-drawer" class="viewer-drawer" aria-labelledby="viewer-drawer-title">
+<header class="viewer-drawer-head"><span data-i18n="Your material">Your material</span><button type="button" class="icon-button" id="viewer-close" aria-label="Close" data-i18n-aria-label="Close">×</button></header>
+<h1 id="viewer-drawer-title"></h1><div id="viewer-access" class="viewer-access-state"></div>
+<div class="viewer-quick-actions publication-link-actions"><button type="button" id="viewer-copy" class="primary" data-i18n="Copy material link">Copy material link</button><button type="button" id="viewer-edit-link" data-i18n="Edit link">Edit link</button></div>
+<p id="viewer-copy-address" class="viewer-copy-address"></p>
+<div id="viewer-management"></div><div class="viewer-library-link"><a id="viewer-library" class="button" data-i18n="Edit in your library">Edit in your library</a></div>
+<section class="viewer-section"><div class="viewer-section-head"><h2 data-i18n="Versions">Versions</h2><span id="viewer-version-count" class="subtext"></span></div><div id="viewer-versions" class="viewer-versions"></div><p class="subtext" data-i18n="Selecting a version only previews it. The shared link opens the current version.">Selecting a version only previews it. The shared link opens the current version.</p><div id="viewer-version-sharing" class="viewer-version-sharing"></div><button type="button" id="viewer-restore" hidden data-i18n="Make this version current">Make this version current</button></section>
+<section class="viewer-section" id="viewer-statistics"></section>
+<section class="viewer-section viewer-links"><a id="viewer-clean" class="button" target="_blank" rel="noopener noreferrer"><span data-i18n="View without owner tools">View without owner tools</span><small data-i18n="Keep your owner access">Keep your owner access</small></a><a id="viewer-guest" class="button" target="_blank" rel="noopener noreferrer"><span data-i18n="Check guest access">Check guest access</span><small data-i18n="Test the password and access rules">Test the password and access rules</small></a></section>
+<section class="viewer-section viewer-links"><a id="viewer-download" class="button" download data-i18n="Download original">Download original</a></section>
+<label class="checkbox-label viewer-open-preference"><input type="checkbox" id="viewer-open-tools"><span data-i18n="Show owner tools when opening my links">Show owner tools when opening my links</span></label>
+<div class="viewer-preferences"><label><span data-i18n="Language">Language</span><select id="viewer-language" aria-label="Language"><option value="en">English</option><option value="ru">Русский</option><option value="es">Español</option><option value="fr">Français</option></select></label><label><span data-i18n="Interface theme">Interface theme</span><select id="viewer-theme" aria-label="Interface theme"><option value="system" data-i18n="System">System</option><option value="light" data-i18n="Light">Light</option><option value="dark" data-i18n="Dark">Dark</option></select></label></div>
+</dialog>
+<dialog id="viewer-confirm" class="dialog" aria-labelledby="viewer-confirm-title"><header class="dialog-head"><h2 id="viewer-confirm-title" data-i18n="Make this version current">Make this version current</h2></header><div class="dialog-body"><p data-i18n="This publishes a new version from these files. Your current password, access and expiry are preserved.">This publishes a new version from these files. Your current password, access and expiry are preserved.</p><div id="viewer-confirm-error" class="callout error" role="alert" hidden></div></div><footer class="dialog-actions"><button type="button" id="viewer-restore-cancel" data-i18n="Cancel">Cancel</button><button type="button" id="viewer-restore-confirm" class="primary" data-i18n="Publish this version">Publish this version</button></footer></dialog>
+<dialog id="manual-copy-dialog" class="dialog" aria-labelledby="manual-copy-title">
+  <header class="dialog-head"><h2 id="manual-copy-title"></h2></header>
+  <div class="dialog-body"><textarea id="manual-copy-text" aria-labelledby="manual-copy-title" class="secret" readonly autofocus></textarea></div>
+  <form class="dialog-actions" method="dialog"><button type="submit" data-i18n="Close">Close</button></form>
+</dialog>
+<div id="viewer-toast" class="toast" role="status" hidden></div>
+</body></html>

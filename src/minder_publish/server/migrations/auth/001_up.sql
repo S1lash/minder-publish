@@ -1,0 +1,16 @@
+CREATE TABLE auth_schema_version (id INTEGER PRIMARY KEY CHECK(id=1), version INTEGER NOT NULL);
+INSERT INTO auth_schema_version VALUES(1,1);
+CREATE TABLE auth_owner (id INTEGER PRIMARY KEY CHECK(id=1), username TEXT NOT NULL, password_hash TEXT NOT NULL, created_at REAL NOT NULL);
+CREATE TABLE auth_sessions (token_hash TEXT PRIMARY KEY, created_at REAL NOT NULL, expires_at REAL NOT NULL);
+CREATE TABLE auth_devices (id TEXT PRIMARY KEY, token_hash TEXT NOT NULL UNIQUE, name TEXT NOT NULL, scope TEXT NOT NULL CHECK(scope IN ('materials:read','materials:manage')), created_at REAL NOT NULL, last_used_at REAL, revoked_at REAL);
+CREATE TABLE auth_viewers (token_hash TEXT PRIMARY KEY, expires_at REAL NOT NULL);
+CREATE TABLE auth_unlocks (viewer_hash TEXT NOT NULL, publication_id TEXT NOT NULL, access_version INTEGER NOT NULL, expires_at REAL NOT NULL, PRIMARY KEY(viewer_hash,publication_id));
+CREATE TABLE auth_intents (token_hash TEXT PRIMARY KEY, payload TEXT NOT NULL, expires_at REAL NOT NULL, consumed INTEGER NOT NULL DEFAULT 0);
+CREATE TABLE auth_handoffs (token_hash TEXT PRIMARY KEY, payload TEXT NOT NULL, nonce_hash TEXT NOT NULL, expires_at REAL NOT NULL, consumed INTEGER NOT NULL DEFAULT 0);
+CREATE TABLE auth_readers (token_hash TEXT PRIMARY KEY, payload TEXT NOT NULL, expires_at REAL NOT NULL);
+CREATE TABLE auth_attempts (bucket_hash TEXT PRIMARY KEY, started_at REAL NOT NULL, count INTEGER NOT NULL, expires_at REAL NOT NULL);
+CREATE INDEX auth_sessions_expiry ON auth_sessions(expires_at);
+CREATE INDEX auth_intents_expiry ON auth_intents(expires_at);
+CREATE INDEX auth_handoffs_expiry ON auth_handoffs(expires_at);
+CREATE INDEX auth_readers_expiry ON auth_readers(expires_at);
+CREATE INDEX auth_attempts_start ON auth_attempts(started_at);

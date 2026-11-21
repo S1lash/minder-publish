@@ -1,0 +1,1 @@
+"""Minder Publish server implementation."""

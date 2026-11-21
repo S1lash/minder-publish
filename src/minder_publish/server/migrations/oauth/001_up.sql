@@ -1,0 +1,12 @@
+CREATE TABLE oauth_schema_version (id INTEGER PRIMARY KEY CHECK(id=1), version INTEGER NOT NULL);
+INSERT INTO oauth_schema_version VALUES (1,1);
+CREATE TABLE oauth_client (id TEXT PRIMARY KEY, metadata TEXT NOT NULL, secret_hash TEXT, created_at INTEGER NOT NULL, expires_at INTEGER NOT NULL);
+CREATE TABLE oauth_pending (id TEXT PRIMARY KEY, client_id TEXT NOT NULL, payload TEXT NOT NULL, expires_at INTEGER NOT NULL, session_hash TEXT);
+CREATE TABLE oauth_code (id TEXT PRIMARY KEY, client_id TEXT NOT NULL, payload TEXT NOT NULL, expires_at INTEGER NOT NULL, used_at INTEGER, family_id TEXT);
+CREATE TABLE oauth_family (id TEXT PRIMARY KEY, client_id TEXT NOT NULL, scopes TEXT NOT NULL, subject TEXT NOT NULL, resource TEXT NOT NULL, created_at INTEGER NOT NULL, expires_at INTEGER NOT NULL, revoked_at INTEGER);
+CREATE TABLE oauth_token (id TEXT PRIMARY KEY, kind TEXT NOT NULL CHECK(kind IN ('access','refresh')), family_id TEXT NOT NULL, scopes TEXT NOT NULL, created_at INTEGER NOT NULL, expires_at INTEGER NOT NULL, used_at INTEGER);
+CREATE INDEX oauth_token_family ON oauth_token(family_id);
+CREATE INDEX oauth_token_expiry ON oauth_token(expires_at);
+CREATE INDEX oauth_family_client ON oauth_family(client_id);
+CREATE INDEX oauth_pending_expiry ON oauth_pending(expires_at);
+CREATE INDEX oauth_code_expiry ON oauth_code(expires_at);

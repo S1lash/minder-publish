@@ -1,0 +1,26 @@
+# An allowlist keeps local data, credentials, legacy deployments and git history out.
+**
+!Dockerfile
+!pyproject.toml
+!README.md
+!LICENSE
+!requirements.lock
+!scripts/
+!scripts/build-client-wheel.py
+!deploy/
+!deploy/publish/
+!deploy/publish/render_config.py
+!deploy/publish/nginx.conf.template
+!src/
+!src/**
+!skill/
+!skill/minder-publish/
+!skill/minder-publish/SKILL.md
+!skill/minder-publish/references/
+!skill/minder-publish/references/*.md
+
+# Host-side Python builds may leave generated paths inside the source tree.
+**/__pycache__
+**/*.py[cod]
+**/*.egg-info
+**/.DS_Store
