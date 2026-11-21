@@ -50,7 +50,7 @@ cp .env.example .env
 32 случайных байтов. Это секрет приложения.
 
 ```sh
-docker compose build app &&
+docker compose build &&
 docker compose run --rm --no-deps -T --entrypoint python app \
   /opt/minder-publish/deploy/publish/render_config.py --env-file - --output - \
   < .env > deploy/publish/nginx.conf.tmp &&

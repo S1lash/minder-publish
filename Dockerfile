@@ -1,5 +1,27 @@
 # Resolve these exact release tags to immutable digests before a public image release.
 ARG PYTHON_IMAGE=python:3.14.10-slim-trixie@sha256:9aaa474097d094040649f2162a627c0049b408f52138d980916788d80f04802f
+ARG NGINX_IMAGE=nginx:1.30.7@sha256:7fad6c0dff97965adbddf28027d934b111fc0221a554315dc274712f3fba24d3
+# Debian stable updates that are newer than the pinned base image snapshots.
+ARG DEBIAN_BASE_FILES_VERSION=13.8+deb13u8
+ARG DEBIAN_GLIBC_VERSION=2.41-12+deb13u5
+ARG DEBIAN_OPENSSL_VERSION=3.5.9-1~deb13u1
+ARG DEBIAN_ZLIB_VERSION=1:1.3.dfsg+really1.3.1-1+deb13u1
+
+FROM ${NGINX_IMAGE} AS proxy
+ARG DEBIAN_BASE_FILES_VERSION
+ARG DEBIAN_GLIBC_VERSION
+ARG DEBIAN_OPENSSL_VERSION
+ARG DEBIAN_ZLIB_VERSION
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        "base-files=${DEBIAN_BASE_FILES_VERSION}" \
+        "libc6=${DEBIAN_GLIBC_VERSION}" "libc-bin=${DEBIAN_GLIBC_VERSION}" \
+        "openssl=${DEBIAN_OPENSSL_VERSION}" "libssl3t64=${DEBIAN_OPENSSL_VERSION}" \
+        "openssl-provider-legacy=${DEBIAN_OPENSSL_VERSION}" \
+        "zlib1g=${DEBIAN_ZLIB_VERSION}" \
+        libfreetype6=2.13.3+dfsg-1+deb13u2 libgd3=2.3.3-14~deb13u3 libnghttp2-14=1.64.0-1.1+deb13u2 \
+    && rm -rf /var/lib/apt/lists/*
+
 FROM ${PYTHON_IMAGE} AS builder
 ENV PIP_DISABLE_PIP_VERSION_CHECK=1 \
     PIP_NO_CACHE_DIR=1 \
@@ -16,10 +38,17 @@ RUN python -m pip wheel --no-deps --no-build-isolation --wheel-dir /wheels .
 RUN python scripts/build-client-wheel.py --wheel-dir /client-wheels
 
 FROM ${PYTHON_IMAGE} AS runtime
-# Apply the audited Debian security backport absent from the pinned base image.
-ARG ZLIB_PACKAGE_VERSION=1:1.3.dfsg+really1.3.1-1+deb13u1
+ARG DEBIAN_BASE_FILES_VERSION
+ARG DEBIAN_GLIBC_VERSION
+ARG DEBIAN_OPENSSL_VERSION
+ARG DEBIAN_ZLIB_VERSION
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends "zlib1g=${ZLIB_PACKAGE_VERSION}" \
+    && apt-get install -y --no-install-recommends \
+        "base-files=${DEBIAN_BASE_FILES_VERSION}" \
+        "libc6=${DEBIAN_GLIBC_VERSION}" "libc-bin=${DEBIAN_GLIBC_VERSION}" \
+        "openssl=${DEBIAN_OPENSSL_VERSION}" "libssl3t64=${DEBIAN_OPENSSL_VERSION}" \
+        "openssl-provider-legacy=${DEBIAN_OPENSSL_VERSION}" \
+        "zlib1g=${DEBIAN_ZLIB_VERSION}" \
     && rm -rf /var/lib/apt/lists/*
 ENV PIP_DISABLE_PIP_VERSION_CHECK=1 \
     PIP_NO_CACHE_DIR=1 \

@@ -1,7 +1,7 @@
 name: minder-publish
 services:
   app:
-    image: minder-publish:0.3.1
+    image: minder-publish:0.3.2
     build:
       context: .
       dockerfile: Dockerfile
@@ -34,7 +34,10 @@ services:
     networks: [backend]
 
   proxy:
-    image: nginx:1.30.7@sha256:7fad6c0dff97965adbddf28027d934b111fc0221a554315dc274712f3fba24d3
+    image: minder-publish-proxy:0.3.2
+    build:
+      context: .
+      target: proxy
     entrypoint: [nginx, -g, "daemon off;"]
     user: "101:101"
     read_only: true

@@ -50,7 +50,7 @@ An external secret manager can supply `PUBLISH_SECRET` instead; its value must h
 at least 32 random bytes. Treat it as an application credential.
 
 ```sh
-docker compose build app &&
+docker compose build &&
 docker compose run --rm --no-deps -T --entrypoint python app \
   /opt/minder-publish/deploy/publish/render_config.py --env-file - --output - \
   < .env > deploy/publish/nginx.conf.tmp &&
