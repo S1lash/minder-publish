@@ -20,6 +20,8 @@ RUN apt-get update \
         "openssl-provider-legacy=${DEBIAN_OPENSSL_VERSION}" \
         "zlib1g=${DEBIAN_ZLIB_VERSION}" \
         libfreetype6=2.13.3+dfsg-1+deb13u2 libgd3=2.3.3-14~deb13u3 libnghttp2-14=1.64.0-1.1+deb13u2 \
+    # The supplied configuration does not load JavaScript or XSLT modules.
+    && apt-get purge -y nginx-module-njs nginx-module-xslt libxslt1.1 libxml2 \
     && rm -rf /var/lib/apt/lists/*
 
 FROM ${PYTHON_IMAGE} AS builder
