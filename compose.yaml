@@ -1,7 +1,7 @@
 name: minder-publish
 services:
   app:
-    image: minder-publish:0.3.2
+    image: minder-publish:0.3.3
     build:
       context: .
       dockerfile: Dockerfile
@@ -34,7 +34,7 @@ services:
     networks: [backend]
 
   proxy:
-    image: minder-publish-proxy:0.3.2
+    image: minder-publish-proxy:0.3.3
     build:
       context: .
       target: proxy

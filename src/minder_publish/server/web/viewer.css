@@ -90,6 +90,7 @@
 .viewer-copy-address {font-size:11px;line-height:1.5;color:var(--muted);margin:8px 0 0;overflow-wrap:anywhere;text-align:center;}
 .viewer-quick-actions {display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-top:12px;}
 .viewer-quick-actions button {font-size:12px;padding:9px 12px;flex:1 1 auto;}
+:is(.viewer-quick-actions, .viewer-versions) + p.subtext {margin-block-start:var(--space-element);}
 .viewer-expiry-value {font-size:13px;line-height:1.5;margin:10px 0;}
 .viewer-expiry-presets {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin-top:12px;}
 .viewer-expiry-presets:empty {display:none;}
