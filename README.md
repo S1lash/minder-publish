@@ -1,8 +1,8 @@
 # minder publish.
 
-Publish a result, keep control of its link. Minder Publish is a self-hosted service
-for people working with AI agents: publish a file or a complete built static site,
-open it yourself, or share it with others using an explicit access policy.
+Turn an HTML report from your AI agent, a PDF, or a built static site into a link
+on your own server. Share it with your team, require a password, or keep it for
+yourself. Publish updates at the same address.
 
 One instance has one owner. The browser cabinet searches your publication history;
 the CLI and skills let an agent publish actual files. An optional MCP adapter uses
@@ -16,6 +16,9 @@ before exposing a self-hosted build publicly.
 [![Watch the 50-second Minder Publish demo](https://publish.minder.world/assets/publish-demo-poster.webp)](https://publish.minder.world/#demo)
 
 Follow one report from an agent’s terminal to a phone, then update and share it at the same address. [Open a sample publication](https://publish.minder.world/example/).
+
+- [Publish a Claude artifact as a website](https://publish.minder.world/guides/publish-claude-artifact/)
+- [Share an HTML file with a password](https://publish.minder.world/guides/share-html-with-password/)
 
 ## What you can publish
 
