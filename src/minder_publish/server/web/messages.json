@@ -2831,12 +2831,6 @@
     "es": "Añade tiempo desde ahora o desde el vencimiento actual, lo que sea posterior.",
     "fr": "Ajoute du temps à partir de maintenant ou de l’expiration actuelle, selon la date la plus tardive."
   },
-  "+{days} days": {
-    "en": "+{days} days",
-    "ru": "+{days} дн.",
-    "es": "+{days} días",
-    "fr": "+{days} jours"
-  },
   "Changing expiry preserves access, passwords and cleanup rules. A paused material stays paused.": {
     "en": "Changing expiry preserves access, passwords and cleanup rules. A paused material stays paused.",
     "ru": "Изменение срока сохраняет доступ, пароль и правила очистки. Приостановленный материал остаётся на паузе.",

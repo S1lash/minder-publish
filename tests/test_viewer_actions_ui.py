@@ -1,4 +1,5 @@
 """Quick action requests freeze their dialog and cannot report into a newer one."""
+import json
 import shutil
 import subprocess
 from pathlib import Path
@@ -6,6 +7,67 @@ from pathlib import Path
 import pytest
 
 WEB = Path(__file__).parents[1] / 'src/minder_publish/server/web'
+
+
+@pytest.mark.parametrize(
+    ("language", "labels"),
+    [
+        ("en", ["+1 day", "+7 days", "+30 days"]),
+        ("ru", ["+1 день", "+7 дней", "+30 дней"]),
+        ("es", ["+1 día", "+7 días", "+30 días"]),
+        ("fr", ["+1 jour", "+7 jours", "+30 jours"]),
+    ],
+)
+def test_expiry_presets_render_localized_day_counts(language, labels):
+    if not shutil.which("node"):
+        pytest.skip("Node is required for viewer UI checks")
+    script = r'''
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {join} from 'node:path';
+import vm from 'node:vm';
+
+const [web, lang, labels] = process.argv.slice(2);
+const read = name => readFileSync(join(web, name), 'utf8');
+const document = {documentElement: {lang}, dispatchEvent() {}};
+const root = {
+  isConnected: true,
+  querySelector: () => null,
+  querySelectorAll: () => [],
+  addEventListener() {},
+};
+const context = vm.createContext({
+  document, Event, window: {},
+  fetch: async () => ({ok: true, json: async () => JSON.parse(read('messages.json'))}),
+});
+const load = name => vm.runInContext(
+  read(name).replace(/^import .*;\n/gm, '').replace(/^export /gm, ''), context,
+);
+load('i18n.js');
+await context.loadMessages();
+load('viewer-actions.js');
+context.mountViewerActions({
+  root,
+  getMaterial: () => ({
+    id: 'test', access: 'link', content_state: 'present',
+    expires_at: new Date(Date.now() + 86400000).toISOString(),
+  }),
+  getSettings: () => ({ceilings: {retention_days: 365}}),
+  getSession: () => ({authenticated: true}),
+  t: context.t, escape: value => value, date: value => value,
+}).render();
+
+const buttons = [...root.innerHTML.matchAll(
+  /data-owner-action="extend" data-days="(\d+)"[^>]*>([^<]*)<\/button>/g,
+)];
+assert.deepEqual(buttons.map(match => Number(match[1])), [1, 7, 30]);
+assert.deepEqual(buttons.map(match => match[2].replace(/\s/g, ' ')), JSON.parse(labels));
+'''
+    result = subprocess.run(
+        ["node", "--input-type=module", "-", str(WEB), language, json.dumps(labels)],
+        input=script, text=True, capture_output=True, timeout=15,
+    )
+    assert result.returncode == 0, result.stdout + result.stderr
 
 
 def test_delayed_action_locks_controls_and_discards_stale_error():
@@ -19,7 +81,7 @@ const source=readFileSync(process.argv[2],'utf8').replace(/^import .*;\n/gm,'').
 class N {constructor(){this.events={};this.disabled=false;this.hidden=false;this.value='';this.dataset={};this.isConnected=true;this.open=false;this.textContent='';} addEventListener(k,f){this.events[k]=f} setAttribute(k,v){this[k]=v} removeAttribute(k){delete this[k]} focus(){} close(){this.open=false;this.events.close?.()} remove(){this.isConnected=false} showModal(){this.open=true} }
 let dialogs=[];
 function makeDialog(){const d=new N(), form=new N(), cancel=new N(), submit=new N(), select=new N(), days=new N(), panel=new N(), error=new N(); select.value='never';days.value='7';days.disabled=true;panel.querySelector=()=>days; const list=[select,days,cancel,submit];list.expiry=select;list.days=days;form.elements=list;form.reportValidity=()=>true;form.querySelector=()=>submit;d.querySelector=s=>({'form':form,'[data-action-cancel]':cancel,'[data-action-error]':error,'[name=expiry]':select,'[data-expiry-days]':panel,'input,select,[type=submit]':select}[s]);d.querySelectorAll=()=>[]; d.parts={form,cancel,submit,select,days,error};dialogs.push(d);return d;}
-const document={createElement:makeDialog,body:{append(){}},dispatchEvent(){}};
+const document={documentElement:{lang:'en'},createElement:makeDialog,body:{append(){}},dispatchEvent(){}};
 const root=new N();root.isConnected=true;root.contains=()=>true;root.querySelectorAll=()=>[];root.querySelector=()=>null;
 const session={authenticated:true};let reject,errors=0,changed=0,requested;
 const context={document,Event:class{},Date,Number,encodeURIComponent,copyOwnerSecret(){},clearPasswordEditors(){},mountPasswordEditors(){},passwordEditorControl(){return ''}};
