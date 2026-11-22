@@ -14,6 +14,43 @@ def run_node(script):
     result = subprocess.run(['node', '--input-type=module', '-', str(VIEWER)], input=script, text=True, capture_output=True, timeout=15)
     assert result.returncode == 0, result.stdout + result.stderr
 
+def test_cancel_closes_drawer_and_returns_focus_explicitly():
+    run_node(r'''
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import vm from 'node:vm';
+
+const source = readFileSync(process.argv[2], 'utf8');
+const from = source.indexOf("$('#viewer-tools').addEventListener('click'");
+const to = source.indexOf("$('#viewer-versions').addEventListener", from);
+const close = source.slice(source.indexOf('function closeDrawer()'), source.indexOf('function explicitRevision()'));
+assert.ok(from >= 0 && to > from && close);
+
+let closes = 0;
+const toggle = {expanded: 'true', focused: false, addEventListener() {},
+  setAttribute(name, value) { assert.equal(name, 'aria-expanded'); this.expanded = value; },
+  focus() { this.focused = true; },
+};
+const drawer = {open: true, events: {},
+  addEventListener(name, handler) { this.events[name] = handler; },
+  close() { this.open = false; },
+};
+const control = {close() { closes++; }};
+const context = vm.createContext({
+  $: () => toggle, drawer, copyLinkAttempt: 0, publicationLink: control,
+  sharing: control, actions: control, manualCopy: control,
+});
+vm.runInContext(close + source.slice(from, to), context);
+const event = {prevented: false, preventDefault() { this.prevented = true; }};
+drawer.events.cancel(event);
+assert.equal(event.prevented, true);
+assert.equal(drawer.open, false);
+assert.equal(toggle.expanded, 'false');
+assert.equal(toggle.focused, true);
+assert.equal(closes, 4);
+assert.equal(context.copyLinkAttempt, 1);
+''')
+
 
 def test_current_revision_remains_pinned_when_material_changes():
     run_node(r'''

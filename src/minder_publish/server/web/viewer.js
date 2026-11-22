@@ -119,6 +119,7 @@ async function refresh({loadSettings=false}={}){
 $('#viewer-tools').addEventListener('click',()=>{actions.clearSecrets();drawer.showModal();$('#viewer-tools').setAttribute('aria-expanded','true');statistics?.refresh();});
 $('#viewer-close').addEventListener('click',closeDrawer);
 drawer.addEventListener('click',event=>{if(event.target===drawer){const rect=drawer.getBoundingClientRect();if(event.clientX<rect.left||event.clientX>rect.right||event.clientY<rect.top||event.clientY>rect.bottom)closeDrawer();}});
+drawer.addEventListener('cancel',event=>{event.preventDefault();closeDrawer();});
 drawer.addEventListener('close',()=>{if(drawer.open)return;copyLinkAttempt++;publicationLink.close();sharing.close();actions.close();manualCopy.close();$('#viewer-tools').setAttribute('aria-expanded','false');});
 $('#viewer-versions').addEventListener('click',event=>{const button=event.target.closest('[data-revision]');if(button)selectRevision(button.dataset.revision);});
 $('#viewer-current').addEventListener('click',()=>selectRevision(material.current_revision,{latest:true}));
