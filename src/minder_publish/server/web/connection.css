@@ -25,7 +25,7 @@
 .connection-muted, .connection-step-body .connection-muted { color: var(--muted); font-size: 13px; }
 .connection-notice { padding: 14px 16px; margin: 20px 0; border-radius: 8px; background: var(--warningBg); color: var(--warning); font-size: 13px; }
 .connection-release-details { margin-top: 12px; color: var(--muted); font-size: 12px; }
-.connection-release-details summary { width: fit-content; cursor: pointer; min-height: 28px; }
+.connection-release-details summary { width: fit-content; cursor: pointer; min-height: var(--control-size); }
 .connection-release-details p { margin: 8px 0; }
 .connection-release-details .connection-code { font-size: 11px; }
 .connection-phone, .connection-example { margin-top: 28px; padding: 18px 20px; border-radius: 10px; background: var(--canvas); }
@@ -34,7 +34,7 @@
 .connection-example strong { font-size: 14px; font-weight: 550; }
 .connection-example button { margin-top: 8px; }
 .connection-bearer { padding-top: 20px; margin-top: 20px; border-top: 1px solid var(--line); font-size: 13px; }
-.connection-bearer summary { cursor: pointer; min-height: 36px; color: var(--muted); }
+.connection-bearer summary { cursor: pointer; min-height: var(--control-size); color: var(--muted); }
 .connection-bearer p { margin: 10px 0; }
 .connection-copy-status { margin: 16px 0 0; color: var(--accent); font-size: 13px; }
 .connection-manual-copy { padding: 18px; margin-top: 20px; border: 1px solid var(--accent); border-radius: 10px; }

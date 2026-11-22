@@ -82,6 +82,20 @@ with `rsvg-convert` on PATH after changing the mark or palette. The application
 ships the rendered assets for light and dark surfaces and a square link-preview
 fallback.
 
+## Interface changes
+
+Use the roles in [theme.css](src/minder_publish/server/web/theme.css) for
+spacing, contrast, motion and control sizes. Reuse existing form, status and
+dialog patterns. Give icon actions localized accessible names and preserve
+focus across errors and dialogs. Keep author content visually independent
+from the owner controls and guest gates.
+
+For visible changes, check the affected states in a disposable instance.
+Include keyboard focus, touch, the supported translations, 320 px reflow,
+light and dark surfaces, and reduced motion where relevant. Check Chrome
+and WebKit for changes that depend on layout or native controls. Capture
+synthetic data in any screenshots used for review.
+
 ## Changes and reviews
 
 - Make one cohesive change with a concrete before/after behavior and relevant tests.

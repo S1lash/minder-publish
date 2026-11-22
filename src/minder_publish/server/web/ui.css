@@ -532,11 +532,11 @@ dialog.dialog.wide, dialog.dialog.preview-dialog { width: min(1000px, calc(100% 
   .brand .mark { width: 25px; min-width: 25px; height: 25px; }
   .brand { gap: 8px; }
   .nav { gap: 22px; }
-  .topbar { align-items: flex-start; gap: 12px; }
-  .topbar > div:first-child { min-width: 0; overflow-wrap: anywhere; }
+  .topbar { align-items: flex-start; flex-wrap: wrap; gap: 12px; }
+  .topbar > div:first-child { flex: 1 1 190px; min-width: 0; overflow-wrap: anywhere; }
   .topbar h1 { font-size: 25px; }
   .topbar .subtext { max-width: 28ch; }
-  .top-actions button { padding-inline: 10px; font-size: 11px; }
+  .top-actions button { padding-inline: 10px; font-size: 12px; }
   .top-actions .icon { width: 17px; height: 17px; flex-basis: 17px; }
 
 
@@ -587,6 +587,11 @@ dialog.dialog.wide, dialog.dialog.preview-dialog { width: min(1000px, calc(100% 
   .brand-large .wordmark { font-size: 29px; }
   .brand-large .mark { width: 39px; min-width: 39px; height: 39px; }
   .brand-large { gap: 13px; }
+}
+
+@media (max-width: 360px) {
+  .topbar { flex-direction: column; }
+  .topbar > div:first-child { flex: none; width: 100%; }
 }
 
 @media (prefers-reduced-motion: reduce) {
