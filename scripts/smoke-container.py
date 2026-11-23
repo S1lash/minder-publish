@@ -24,7 +24,7 @@ from urllib.parse import urlsplit
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--image", default="minder-publish:0.3.7")
+    parser.add_argument("--image", default="minder-publish:0.3.8")
     args = parser.parse_args()
     prefix = "minder-publish-smoke-" + secrets.token_hex(6)
     containers = []

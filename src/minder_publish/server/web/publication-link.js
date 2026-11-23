@@ -10,7 +10,7 @@ export function materialLink(url, name) {
   return target.href;
 }
 
-export function mountPublicationLink({api, getSession, t, escape, onError, errorMessage, showManualCopy}) {
+export function mountPublicationLink({api, getSession, t, escape, onError, errorMessage, showManualCopy, onPreviewSaved}) {
   let modal;
   const label = key => escape(t(key));
 
@@ -240,6 +240,12 @@ export function mountPublicationLink({api, getSession, t, escape, onError, error
           if (previewEdit !== undefined) body.preview_mode = previewEdit;
           const value = await api(path, {method: 'PATCH', body});
           if (!active()) return;
+          if (!renamed && onPreviewSaved) {
+            onUpdate(value);
+            dismissEditor();
+            onPreviewSaved(parent);
+            return;
+          }
           saved ||= renamed;
           keep.checked = false;
           previousToDisable = undefined;

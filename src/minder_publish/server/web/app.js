@@ -13,6 +13,7 @@ import { mountPasswordEditors, clearPasswordEditors, passwordEditorControl } fro
 
 const $ = (selector, root = document) => root.querySelector(selector);
 const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
+const toast = $('#toast');
 const showManualCopy = mountManualCopy($('#manual-copy-dialog'));
 const escape = value => String(value ?? '').replace(/[&<>"']/g, character => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[character]));
 const MiB = 1024 ** 2, GiB = 1024 ** 3, DAY = 86400;
@@ -20,7 +21,10 @@ const prefs = window.PublishPreferences;
 const libraryStates = [['active','Available'],['paused','Paused'],['expired','Expired'],['deleted','Files deleted']];
 const defaultLibraryStates = ['active','paused'];
 const state = { session:null, settings:null, page:'materials', items:[], total:0, offset:0, limit:50, query:'', kind:'', states:[...defaultLibraryStates], layout:'list', generation:0, dialogEpoch:0, upload:null, listRequest:null, settingsRequest:null };
-const publicationLink = mountPublicationLink({api, getSession:()=>state.session, t, escape, onError:showError, errorMessage, showManualCopy});
+const publicationLink = mountPublicationLink({
+  api, getSession:()=>state.session, t, escape, onError:showError, errorMessage, showManualCopy,
+  onPreviewSaved: parent => notify('Link preview setting saved.', parent),
+});
 const paths = {
   materials:'<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>',
   settings:'<path d="M4 6h16M4 12h16M4 18h16"/><circle cx="9" cy="6" r="2"/><circle cx="16" cy="12" r="2"/><circle cx="8" cy="18" r="2"/>',
@@ -57,9 +61,13 @@ function bytes(value) {
   const number = Number(value), unit = number >= GiB ? 'GiB' : number >= MiB ? 'MiB' : 'KiB';
   return `${new Intl.NumberFormat(document.documentElement.lang,{maximumFractionDigits:1}).format(number / (unit === 'GiB' ? GiB : unit === 'MiB' ? MiB : 1024))} ${unit}`;
 }
-function notify(key) {
-  const output = $('#toast'); clearTimeout(notify.timer); output.textContent = t(key); output.hidden = false;
-  notify.timer = setTimeout(() => { output.hidden = true; },5000);
+function notify(key, parent) {
+  const surface = parent || document.body;
+  if (toast.parentElement !== surface) surface.append(toast);
+  clearTimeout(notify.timer);
+  toast.textContent = t(key);
+  toast.hidden = false;
+  notify.timer = setTimeout(() => { toast.hidden = true; }, 5000);
 }
 class RequestError extends Error {
   constructor(problem,status) { super(problem.detail || 'Could not complete the request.'); this.problem=problem;this.status=status; }
@@ -238,7 +246,7 @@ function clearOwnerState() {
   if(state.upload){state.upload.cancelling=true;state.upload.controller.abort();state.upload=null;}
   state.session={authenticated:false};state.settings=null;state.items=[];state.total=0;state.offset=0;
   state.query='';state.kind='';state.states=[...defaultLibraryStates];state.page='materials';state.generation++;
-  publicationLink.close();$('#manual-copy-dialog').close();$('#dialog').close();$('#toast').hidden=true;
+  publicationLink.close();$('#manual-copy-dialog').close();$('#dialog').close();toast.hidden=true;
 }
 function renderPublic() {
   refreshChrome();
@@ -1007,7 +1015,7 @@ $('#theme-button').addEventListener('click',()=>{
 matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>{if(prefs.read('mp_theme','system')==='system')refreshThemeControl();});
 $('#sidebar-toggle').addEventListener('click',()=>{prefs.write('mp_sidebar',prefs.read('mp_sidebar','expanded')==='expanded'?'collapsed':'expanded');prefs.apply();refreshChrome();});
 $('#language-select').addEventListener('change',async event=>{
-  prefs.write('mp_lang',event.target.value);prefs.apply();$('#dialog').close();$('#toast').hidden=true;
+  prefs.write('mp_lang',event.target.value);prefs.apply();$('#dialog').close();toast.hidden=true;
   document.dispatchEvent(new CustomEvent('publish:languagechange',{detail:{language:document.documentElement.lang}}));
   try {await navigate(state.page);}catch(error){showError(error);}
 });
