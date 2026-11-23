@@ -5,15 +5,24 @@ from minder_publish.errors import PublishError
 from .storage import safe_id
 
 
+UNCHANGED = object()
+
+
+def validate_preview_mode(mode):
+    if mode not in ("inherit", "on", "off"):
+        raise PublishError("invalid_preview_mode", 400, field="preview_mode")
+    return mode
+
+
 def add_initial(connection, publication):
     add_primary(connection, publication["id"], publication["id"], publication["created_at"])
 
 
-def add_primary(connection, name, publication_id, timestamp):
+def add_primary(connection, name, publication_id, timestamp, preview_mode="inherit"):
     connection.execute(
-        """INSERT INTO publication_link(name,publication_id,is_primary,created_at,changed_at)
-           VALUES (?,?,1,?,?)""",
-        (name, publication_id, timestamp, timestamp),
+        """INSERT INTO publication_link(name,publication_id,is_primary,created_at,changed_at,preview_mode)
+           VALUES (?,?,1,?,?,?)""",
+        (name, publication_id, timestamp, timestamp, preview_mode),
     )
 
 
@@ -54,39 +63,46 @@ def occupied(connection, name, *, exclude_upload=None):
 
 
 def resolve(connection, name):
+    return resolve_address(connection, name)["publication_id"]
+
+
+def resolve_address(connection, name):
     try:
         safe_id(name)
     except PublishError as exc:
         raise PublishError("publication_not_found", 404) from exc
     row = connection.execute(
-        """SELECT link.publication_id
+        """SELECT link.publication_id,link.preview_mode
            FROM publication_link link JOIN publication p ON p.id=link.publication_id
            WHERE link.name=? AND (link.retired_at IS NULL OR link.is_primary=1)""",
         (name,),
     ).fetchone()
     if not row:
         raise PublishError("publication_not_found", 404)
-    return row["publication_id"]
+    return row
 
 
 def stable_url(base_url, name):
     return f"{base_url}/p/{name}"
 
 
-def snapshot(connection, publication, base_url):
+def snapshot(connection, publication, base_url, preview_default):
     primary = publication["link_name"]
     return {
         "id": publication["id"],
         "link_name": primary,
         "stable_url": stable_url(base_url, primary),
+        "preview_mode": resolve_address(connection, primary)["preview_mode"],
+        "preview_default": preview_default,
         "previous_links": [
             {
                 "name": row["name"],
                 "url": stable_url(base_url, row["name"]),
                 "created_at": row["created_at"],
+                "preview_mode": row["preview_mode"],
             }
             for row in connection.execute(
-                """SELECT name,created_at FROM publication_link
+                """SELECT name,created_at,preview_mode FROM publication_link
                    WHERE publication_id=? AND is_primary=0 AND retired_at IS NULL
                    ORDER BY created_at DESC, name""",
                 (publication["id"],),

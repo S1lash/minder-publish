@@ -22,7 +22,9 @@ A stable publication URL is returned by the server; clients do not reconstruct i
   and `storage.quota_bytes` report material use and its effective quota.
 - PATCH `/settings`: `{defaults?:{...},limits?:{...}}`; owner session only.
   `limits.publication_count` caps new material records within the published ceiling.
-  Lowering it keeps existing records and permits updates to them. The upload,
+  `defaults.link_previews` is a boolean, enabled by default. It applies immediately
+  to every address whose preview mode is `inherit`.
+  Lowering the material limit keeps existing records and permits updates to them. The upload,
   expanded site and quota limits are shared across file transports.
 - GET `/tokens`: redacted device token list; owner only.
 - POST `/tokens`: `{name,scope:"materials:manage"|"materials:read"}`; recent owner
@@ -94,7 +96,7 @@ A direct revision-host document navigation without a valid reader grant returns
 to its pinned control gate, retaining its path/query and guest realm. Resource fetches, Range and conditional requests do not acquire
 this navigation fallback or bypass access checks.
 
-Guest document GETs expose server-rendered Open Graph and Twitter Card HTML at
+With previews enabled for the requested address, guest document GETs expose server-rendered Open Graph and Twitter Card HTML at
 the stable entry before automatically continuing to the isolated document through
 an HTML refresh. A visible continuation link works when automatic navigation is
 disabled. Explicit resource/Range/conditional requests retain HTTP redirect
@@ -112,6 +114,11 @@ opening until that handoff is accepted. Password and private sign-in gates retur
 generic branded metadata; their GET/HEAD status is 200 without granting content
 access. User-Agent chooses presentation only; it grants no authority. Responses use
 `no-store`; external services can retain an earlier preview independently.
+If previews are off, recognized crawlers receive 204 without a continuation or
+reader state. Browser responses omit Open Graph and Twitter Card tags and
+retain normal navigation and access checks. A public custom cover requires the
+exact ordinary name or pinned sequence in the image URL. The cover route
+rechecks that address's preview, access and retention policy on every request.
 Asset decisions and platform rules are documented in [link previews](../LINK_PREVIEWS.md).
 
 Automatic publication names use cryptographic lowercase letters/digits. Owner
@@ -184,14 +191,19 @@ stable_url. Detail adds files and thumbnail state.
 
 ### Publication link management
 
-- GET `/publications/{id}/link` returns `{id,link_name,stable_url,previous_links}`.
-  Each retained address has `{name,url,created_at}`. These routes require an owner
-  session; mutations also require the usual browser CSRF protection.
-- PATCH `/publications/{id}/link` takes `{name,expected_name,keep_previous}` and
-  returns the same snapshot. `expected_name` prevents a stale tab from renaming
-  a different address. Pass `false` for `keep_previous` to disable the replaced
-  name. Older retained names stay active until individually disabled. Owners can
-  promote or reclaim a name belonging to the same material.
+- GET `/publications/{id}/link` returns
+  `{id,link_name,stable_url,preview_mode,preview_default,previous_links}`.
+  Each retained address has `{name,url,created_at,preview_mode}`. These routes
+  require an owner session and mutations require browser CSRF protection.
+- PATCH `/publications/{id}/link` takes `{name,expected_name,keep_previous,preview_mode?}`
+  and returns the same snapshot. `expected_name` prevents a stale tab from saving
+  against a different primary address. Pass `false` for `keep_previous` to
+  disable the replaced name. Older retained names stay active until individually
+  disabled. Owners can promote or reclaim a name belonging to the same material.
+  Mode is `inherit`, `on` or `off`. Omission preserves the destination mode
+  for an existing name and copies the source mode when assigning a new name.
+- PATCH `/publications/{id}/link/{name}` sets a retained address's preview mode
+  with `{preview_mode}` and returns the same snapshot.
 - DELETE `/publications/{id}/link/{name}` disables a retained address and returns
   the remaining snapshot. The primary name is changed using PATCH.
 
@@ -573,9 +585,9 @@ accepted owner openings when enabled.
 
 These API routes require an owner browser session, not a material device token:
 
-- `GET /publications/{id}/revisions` returns `{items,total,available}`. Each item
+- `GET /publications/{id}/revisions` returns `{items,total,available,catalog_limit,preview_default}`. Each item
   includes `revision_id`, `sequence`, `created_at`, `size_bytes`, `change_summary`,
-  `current`, `available`, `retain_until`, `baseline`, `shared`, `version_url`,
+  `current`, `available`, `retain_until`, `baseline`, `shared`, `version_url`, `preview_mode`,
   `kind`, `filename` and `content_type`. The last three describe that revision's
   files and entry manifest, not the current material; they are null when unavailable.
   The version URL identifies the revision even when sharing is disabled; returning
@@ -589,11 +601,15 @@ These API routes require an owner browser session, not a material device token:
   publishes a new immutable revision with the current policy unchanged; stale
   replacement conflicts rather than overwriting concurrent work.
 - `POST /publications/{id}/revisions/{revision}/sharing` accepts only
-  `{enabled:boolean}` and returns `{revision_id,sequence,shared,version_url}`.
+  `{enabled:boolean}` and returns `{revision_id,sequence,shared,version_url,preview_mode,preview_default}`.
   Recent owner authentication and CSRF are required. The revision must still be
   retained. Sharing does not change current access, password, expiry or retention
   settings; private material remains private. Repeating the same setting is
   idempotent. Disabling then reenabling sharing rotates the grant epoch.
+- `PATCH /publications/{id}/revisions/{revision}/sharing` sets `{preview_mode}`
+  for a shared, retained version and returns the same snapshot. This owner
+  session change requires CSRF and preserves the existing sharing epoch.
+  An unshared revision returns 409.
 - `GET /publications/{id}/statistics?days=7|30|90` returns `total`, `legacy_total`,
   `started_at`, `last_opened`, `period_total`, `daily:[{day,opens}]`, `enabled`,
   `incomplete` and `timezone:"UTC"` for guests, plus `owner` with `total`,

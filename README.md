@@ -112,9 +112,9 @@ Use **Edit link** in the cabinet or the owner menu to give a publication a named
 address. The previous address stops working by default. Keep it when recipients
 still need it, and disable it later from the same menu.
 
-Shared links expose messenger-friendly titles, descriptions and a brand thumbnail.
-Protected materials use a generic card without revealing their contents. See
-[link previews](docs/LINK_PREVIEWS.md) for platform behavior and deployment requirements.
+Shared links show a messenger card by default. Set the instance default in
+**Settings → Links**, or choose a mode for an individual address. Protected
+materials use a generic card. See [link previews](docs/LINK_PREVIEWS.md).
 
 Static sites can include a raster image for their library cover.
 See [site covers](docs/implementation/API.md#site-covers) for bundle filenames.

@@ -11,6 +11,7 @@ from urllib.parse import quote
 
 from minder_publish.errors import PublishError
 
+from . import publication_links
 from .core import dumps, iso, now, parse
 from .storage import CHUNK_BYTES, fsync_directory, fsync_tree, normalize_path, safe_id, tree_bytes
 
@@ -66,6 +67,7 @@ def apply_retention(core, connection, timestamp):
 def list_history(core, publication_id):
     with core.repository.connect() as connection:
         publication = core._publication(connection, publication_id)
+        preview_default = core._settings(connection)["defaults"]["link_previews"]
         rows = connection.execute(
             "SELECT h.*,r.state,r.recovery_until,r.data,f.data AS entry_data FROM revision_history h "
             "LEFT JOIN revision r ON r.id=h.revision_id "
@@ -90,9 +92,16 @@ def list_history(core, publication_id):
             "filename": (revision.get("filename") or PurePosixPath(revision["entry_path"]).name) if available else None,
             "content_type": entry.get("content_type", "application/octet-stream") if available else None,
             "shared": bool(revision.get("shared", False)),
+            "preview_mode": revision.get("preview_mode", "inherit"),
             "version_url": version_url(core.config, publication_id, row["sequence"]),
         })
-    return {"items": entries, "total": publication.get("history_sequence", len(entries)), "available": sum(item["available"] for item in entries), "catalog_limit": core.config.operations["history_catalog_entries"]}
+    return {
+        "items": entries,
+        "total": publication.get("history_sequence", len(entries)),
+        "available": sum(item["available"] for item in entries),
+        "catalog_limit": core.config.operations["history_catalog_entries"],
+        "preview_default": preview_default,
+    }
 
 
 def version_url(config, publication_id, sequence):
@@ -110,15 +119,21 @@ def version_sequence(core, publication_id, revision_id):
     return row["sequence"]
 
 
-def pinned_revision(core, publication_id, sequence):
+def pinned_publication(core, publication_id, sequence):
     with core.repository.connect() as connection:
+        publication = core._publication(connection, publication_id)
         row = connection.execute(
             "SELECT revision_id FROM revision_history WHERE publication_id=? AND sequence=?",
             (publication_id, sequence),
         ).fetchone()
-    if not row:
-        raise PublishError("revision_not_found", 404)
-    return retained_revision(core, publication_id, row["revision_id"])
+        if not row:
+            raise PublishError("revision_not_found", 404)
+        revision = core._revision(connection, row["revision_id"], manifest=False)
+        require_retained(publication, revision)
+        preview_enabled = revision.get("shared") is True and core._preview_mode_enabled(
+            connection, revision.get("preview_mode", "inherit")
+        )
+    return core._decorate(publication), revision, preview_enabled
 
 
 def retained_available(publication, revision):
@@ -156,13 +171,42 @@ def revision_grant_available(publication, revision, payload, *, new):
     )
 
 
-def set_sharing(core, publication_id, revision_id, enabled, *, authorize):
+def shared_preview_mode(core, connection, publication_id, sequence):
+    if type(sequence) is not int or not 0 < sequence <= 9223372036854775807:
+        return None
+    row = connection.execute(
+        """SELECT r.data,r.state,r.recovery_until
+           FROM revision_history h JOIN revision r ON r.id=h.revision_id AND r.publication_id=h.publication_id
+           WHERE h.publication_id=? AND h.sequence=?""",
+        (publication_id, sequence),
+    ).fetchone()
+    if not row:
+        return None
+    revision = dict(
+        json.loads(row["data"]), state=row["state"], recovery_until=row["recovery_until"]
+    )
+    if revision.get("shared") is not True:
+        return None
+    publication = core._publication(connection, publication_id)
+    if not retained_available(publication, revision):
+        return None
+    return revision.get("preview_mode", "inherit")
+
+
+def set_sharing(
+    core, publication_id, revision_id, enabled=None, *,
+    authorize, preview_mode=publication_links.UNCHANGED,
+):
+    if preview_mode is not publication_links.UNCHANGED:
+        publication_links.validate_preview_mode(preview_mode)
     with core.repository.connect(immediate=True) as connection:
         authorize(connection)
         publication = core._publication(connection, publication_id)
         row = connection.execute(
-            "SELECT r.*,h.sequence FROM revision r JOIN revision_history h ON h.revision_id=r.id "
-            "WHERE r.id=? AND r.publication_id=?", (safe_id(revision_id), publication_id),
+            """SELECT r.*,h.sequence FROM revision r
+               JOIN revision_history h ON h.revision_id=r.id AND h.publication_id=r.publication_id
+               WHERE r.id=? AND r.publication_id=?""",
+            (safe_id(revision_id), publication_id),
         ).fetchone()
         if not row:
             raise PublishError("revision_not_found", 404)
@@ -170,26 +214,39 @@ def set_sharing(core, publication_id, revision_id, enabled, *, authorize):
         revision = dict(data, state=row["state"], recovery_until=row["recovery_until"])
         if not retained_available(publication, revision):
             raise PublishError("revision_unavailable", 410)
-        if enabled != data.get("shared", False):
+        was_shared = data.get("shared", False)
+        if preview_mode is not publication_links.UNCHANGED:
+            if not was_shared:
+                raise PublishError("revision_not_shared", 409)
+            data["preview_mode"] = preview_mode
+            connection.execute("UPDATE revision SET data=? WHERE id=?", (dumps(data), revision_id))
+        elif enabled != was_shared:
             data["shared"] = enabled
             data["share_version"] = data.get("share_version", 0) + 1
             connection.execute("UPDATE revision SET data=? WHERE id=?", (dumps(data), revision_id))
-        return {"revision_id": revision_id, "sequence": row["sequence"], "shared": enabled,
-                "version_url": version_url(core.config, publication_id, row["sequence"])}
+        return {
+            "revision_id": revision_id, "sequence": row["sequence"],
+            "shared": data.get("shared", False),
+            "preview_mode": data.get("preview_mode", "inherit"),
+            "preview_default": core._settings(connection)["defaults"]["link_previews"],
+            "version_url": version_url(core.config, publication_id, row["sequence"]),
+        }
 
 
 def retained_revision(core, publication_id, revision_id):
     publication = core.get_publication(publication_id)
     revision = core.get_revision(safe_id(revision_id))
-    if revision["publication_id"] != publication_id:
+    require_retained(publication, revision)
+    return revision
+
+
+def require_retained(publication, revision):
+    if revision["publication_id"] != publication["id"]:
         raise PublishError("revision_not_found", 404)
     if publication["content_state"] != "present" or publication.get("deletion_state"):
         raise PublishError("content_unavailable", 410)
-    if revision["state"] != "current" and not (
-        revision["state"] == "retired" and revision["recovery_until"] and parse(revision["recovery_until"]) > now()
-    ):
+    if not retained_available(publication, revision):
         raise PublishError("revision_unavailable", 410)
-    return revision
 
 
 def restore_revision(core, publication_id, revision_id, expected_revision, subject, *, authorize=None):

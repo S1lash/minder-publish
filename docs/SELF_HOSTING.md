@@ -337,7 +337,9 @@ require a new upload and an explicit expiry choice.
 
 The cabinet's **Settings** page changes defaults for future publications and owner
 limits beneath the deployment ceilings. Publication defaults do not rewrite existing
-publication policies. **Upload limits** apply to file transfers from the cabinet,
+publication policies. The card default in **Links** applies immediately to
+addresses that inherit it. See [Preview controls](LINK_PREVIEWS.md#preview-controls).
+**Upload limits** apply to file transfers from the cabinet,
 assistant browser-upload requests, CLI and API. On a new installation, the single-file
 and transmitted-upload limits both start at 109 MiB. Existing settings are preserved.
 Connection shows the current effective limits for files and sites. **Limits and storage** sets the byte
@@ -430,11 +432,12 @@ more recent snapshot instead of serving through an old address. Before exposing
 the restored instance, confirm deleted materials and disabled addresses are still
 unavailable. The ledger can only account for changes it recorded.
 
-For a core schema 5 upgrade, save a stopped, verified schema 4 backup and the
-matching image. The migration keeps every existing current address and pinned
-revision URL. Rehearse on an isolated copy. Once named addresses change, recover
-with the current build and a compatible backup to keep the link registry. An image
-using schema 4 requires the matching pre-upgrade data snapshot.
+For a core schema 6 upgrade, save a stopped, verified backup and the matching
+image. The migration keeps existing ordinary and pinned URLs and their default
+preview behavior. Rehearse on an isolated copy. Use a compatible build to recover
+current link names and preview choices. To recover using a build requiring
+schema 5 or 4, restore its matching snapshot into a separate volume after
+accounting for material changes and deletions since that snapshot.
 
 Select the restored volume through a reviewed Compose override only after checking
 counts, bytes, sample files and deletion state. Keep the original volume as a rollback

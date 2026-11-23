@@ -198,5 +198,9 @@ async function start(){
   catch(error){showError(error);}
 }
 actions=mountViewerActions({root:$('#viewer-management'),drawer,api,getMaterial:()=>material,getSettings:()=>settings,getSession:()=>session,t,escape,date,onChanged:async()=>{try{await refresh();}catch(error){if([404,410].includes(error.status)){$('#viewer-content').replaceChildren();location.assign('/');return;}throw error;}},onDeleted:()=>{actions.close();$('#viewer-content').replaceChildren();location.assign('/');},onError:showError,notify});
-sharing=mountVersionSharing({root:$('#viewer-version-sharing'),api,getMaterial:()=>material,getSelected:()=>selected,getSession:()=>session,t,escape,onChanged:refresh,onError:showError,notify,showManualCopy});
+sharing=mountVersionSharing({root:$('#viewer-version-sharing'),api,getMaterial:()=>material,getSelected:()=>selected,getPreviewDefault:()=>historyData.preview_default,getSession:()=>session,t,escape,onChanged:refresh,onPreviewChanged:({revision_id,preview_mode,preview_default})=>{
+  historyData.preview_default=preview_default;
+  const revision=historyData.items.find(item=>item.revision_id===revision_id);
+  if(revision)revision.preview_mode=preview_mode;
+},onError:showError,notify,showManualCopy});
 start();

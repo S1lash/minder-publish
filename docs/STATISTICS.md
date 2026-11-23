@@ -66,7 +66,7 @@ collection interval.
 
 ## Schema upgrade and recovery
 
-Starting the schema-4 release upgrades a supported older core schema in one SQLite
+Starting the server upgrades a supported older core schema in one SQLite
 transaction. Authentication's separate schema and credentials are unchanged. The
 backup snapshot includes both audiences and their collection boundaries. Ordinary
 restore retains statistics and material bytes and applies its documented credential
@@ -74,18 +74,18 @@ revocation; see [self-hosting](SELF_HOSTING.md#backup-and-restore).
 
 For an offline rollback to a compatible **schema-3** release, stop the service and
 other writers, keep the exact previous image, and take a consistent backup outside
-the data volume. Using the schema-4 executable against that stopped data root, run:
+the data volume. Using the current executable against that stopped data root, run:
 
 ```sh
 minder-publish-server --data-dir /path/to/data schema-downgrade --target 3
 ```
 
-The command holds the same exclusive instance lock as the server, requires exactly
-schema 4 and an intact database, and refuses unsupported targets or repeated
-downgrades. It retains the independent owner extension tables, material metadata,
+The command holds the same exclusive instance lock as the server. It accepts
+core schemas 4–6 with an intact database and refuses the rollback if registered custom
+addresses or configured messenger preview policy would be lost. It retains the independent owner extension tables, material metadata,
 immutable revision references, guest/legacy statistics and authentication data.
 It changes the core schema marker to 3; it does not restore an older snapshot over
-newer materials. Do not start schema-4 software between this command and starting
+newer materials. Do not start newer software between this command and starting
 the selected schema-3 release: initialization would upgrade again. A release that
 requires schema 2 or older needs its matching backup restored into a separate volume.
 
@@ -100,6 +100,6 @@ record deletion still cascades into the retained owner tables.
 Rehearse rollback with the exact chosen installed release on synthetic data before
 using it on an instance. Schema fixtures establish transactional preservation, not
 compatibility with an arbitrary historical image. If the rollback release cannot
-read the prepared database, keep traffic stopped and restart schema-4 software or
+read the prepared database, keep traffic stopped and restart the matching current software or
 restore the matching backup into a separate volume after accounting for later
 material changes and deletions. Changing an image alone never downgrades a database.

@@ -25,7 +25,7 @@ from .core import Core
 from .distribution import Distribution
 from .http import Admission, MCPControlRoute, fields, json_body, problem, success
 from .previews import metadata
-from .publication_links import stable_url
+from .publication_links import UNCHANGED, stable_url
 from .source_footer import source_footer
 from .static import PackagedStaticFiles
 from .statistics import Statistics
@@ -562,13 +562,25 @@ def create_app(config: Config | None = None) -> FastAPI:
     async def rename_publication_link(identifier: str, request: Request):
         require_owner(request)
         keys = {"name", "keep_previous", "expected_name"}
-        value = fields(await json_body(request), keys, keys)
+        value = fields(await json_body(request), keys | {"preview_mode"}, keys)
         result = await run_in_threadpool(
             core.rename_publication_link,
             identifier,
             value["name"],
             value["keep_previous"],
             value["expected_name"],
+            authorize=lambda connection: require_live_owner(request, connection),
+            preview_mode=value.get("preview_mode", UNCHANGED),
+        )
+        return success(request, result)
+
+    @app.patch("/api/v1/publications/{identifier}/link/{name}")
+    async def edit_publication_alias(identifier: str, name: str, request: Request):
+        require_owner(request)
+        keys = {"preview_mode"}
+        value = fields(await json_body(request), keys, keys)
+        result = await run_in_threadpool(
+            core.set_alias_preview, identifier, name, value["preview_mode"],
             authorize=lambda connection: require_live_owner(request, connection),
         )
         return success(request, result)
@@ -618,6 +630,17 @@ def create_app(config: Config | None = None) -> FastAPI:
             authorize=lambda connection: auth.require_recent_auth(
                 request.cookies.get(config.owner_cookie), connection=connection
             ),
+        )
+        return success(request, result)
+
+    @app.patch("/api/v1/publications/{identifier}/revisions/{revision_id}/sharing")
+    async def edit_revision_sharing(identifier: str, revision_id: str, request: Request):
+        require_owner(request)
+        keys = {"preview_mode"}
+        value = fields(await json_body(request), keys, keys)
+        result = await run_in_threadpool(
+            core.set_revision_preview, identifier, revision_id, value["preview_mode"],
+            authorize=lambda connection: require_live_owner(request, connection),
         )
         return success(request, result)
 

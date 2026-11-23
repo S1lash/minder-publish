@@ -257,3 +257,20 @@ dialog.material-dialog[open] { display:grid; grid-template-rows:auto auto minmax
 .publication-link-confirmation { width:100%; }
 .publication-link-confirmation p { margin:0 0 8px; }
 .publication-link-actions { justify-content:center; flex-wrap:wrap; }
+
+.publication-preview-fields,
+.publication-preview-alias {
+  display:grid;
+  gap:var(--space-compact);
+  min-width:0;
+  overflow-wrap:anywhere;
+}
+.publication-preview-fields select { width:100%; min-width:0; }
+.publication-preview-alias { margin-block-start:var(--space-element); }
+@media (max-width:480px) {
+  dialog.publication-link-dialog { overflow:hidden; }
+  .publication-link-dialog > form { display:flex; flex-direction:column; max-height:inherit; }
+  .publication-link-dialog .dialog-head,
+  .publication-link-dialog .dialog-actions { flex:none; }
+  .publication-link-dialog .dialog-body { min-height:0; overflow:auto; }
+}

@@ -20,7 +20,7 @@ from minder_publish.errors import PublishError
 from .auth import digest
 from .brand import LANGUAGE_ICON, LOCKUP, SYSTEM_CSS, THEME_CSS, THEME_ICON
 from .core import guest_available
-from .history import pinned_revision, revision_grant_available, version_sequence, version_url
+from .history import pinned_publication, revision_grant_available, version_sequence, version_url
 from .navigation import install_navigation
 from .previews import cover_url, is_preview_request, metadata, opening_page, preview_page, public_cover
 from .publication_links import stable_url
@@ -166,7 +166,10 @@ def install_content_routes(app, config, core, auth):
         language, _ = preferences(request)
         return html.escape(messages.get(key, {}).get(language, key))
 
-    def page(request, key, status=200, body="", *, publication=None, canonical=None, footer="", binary_theme=False):
+    def page(
+        request, key, status=200, body="", *, publication=None, canonical=None,
+        footer="", binary_theme=False, preview_enabled=True,
+    ):
         language, theme = preferences(request)
 
         def translated(key):
@@ -252,7 +255,7 @@ def install_content_routes(app, config, core, auth):
             f"""<!doctype html>
 <html lang="{language}" data-theme="{theme}"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-{metadata(config, publication, gate=True, canonical=canonical)}
+{metadata(config, publication, gate=True, canonical=canonical, enabled=preview_enabled)}
 <meta name="color-scheme" content="{theme if theme != "system" else "light dark"}">
 <title>{translated(key)} · minder publish.</title>
 <style>
@@ -393,34 +396,46 @@ body{{padding-block:76px 28px}}
                 normalize_path(path.rstrip("/"), config.limits)
         selected_revision = None
         canonical = None
+        link_name = None
+        preview_enabled = False
         try:
-            if pinned_sequence is None and history_revision is None:
-                pub = await run_in_threadpool(core.get_linked_publication, identifier)
-                canonical = stable_url(config.base_url, identifier)
+            if pinned_sequence is not None:
+                pub, selected_revision, preview_enabled = await run_in_threadpool(
+                    pinned_publication, core, identifier, pinned_sequence
+                )
+                canonical = version_url(config, pub["id"], pinned_sequence)
+            elif history_revision is None:
+                link_name = identifier
+                pub = await run_in_threadpool(core.get_linked_publication, link_name)
+                canonical = stable_url(config.base_url, link_name)
+                preview_enabled = pub["link_preview_enabled"]
             else:
                 pub = await run_in_threadpool(core.get_publication, identifier)
             identifier = pub["id"]
-            if pinned_sequence is not None:
-                selected_revision = await run_in_threadpool(pinned_revision, core, identifier, pinned_sequence)
-                canonical = version_url(config, identifier, pinned_sequence)
         except PublishError as error:
             if pinned_sequence is not None and error.status in (404, 410):
-                return page(request, "This publication is unavailable.", error.status)
+                return page(request, "This publication is unavailable.", error.status, preview_enabled=False)
             if error.status == 404 and history_revision is None and document_navigation(request):
-                return page(request, "This publication is unavailable.", 404)
+                return page(request, "This publication is unavailable.", 404, preview_enabled=False)
             raise
         if is_preview_request(request):
             if selected_revision is not None and not selected_revision.get("shared", False):
-                return page(request, "This publication is unavailable.", 404)
-            cover = cover_url(config, core, pub, selected_revision, pinned_sequence)
+                return page(request, "This publication is unavailable.", 404, preview_enabled=False)
+            if not preview_enabled:
+                return Response(status_code=204, headers={
+                    "Cache-Control": "no-store",
+                    "Vary": "User-Agent",
+                    "X-Robots-Tag": "noindex, nofollow",
+                })
+            cover = cover_url(config, core, pub, selected_revision, pinned_sequence, link_name=link_name)
             return preview_page(config, pub, canonical=canonical, cover=cover)
         if pub["content_state"] != "present" or pub.get("deletion_state"):
-            return page(request, "Files deleted", 410)
+            return page(request, "Files deleted", 410, preview_enabled=preview_enabled)
         guest = request.query_params.get("guest") == "1"
         principal = request.state.principal
         owner = bool(principal and principal.owner and not guest)
         if selected_revision is not None and not owner and not selected_revision.get("shared", False):
-            return page(request, "This publication is unavailable.", 404)
+            return page(request, "This publication is unavailable.", 404, preview_enabled=False)
         if (
             owner and history_revision is None and not path
             and set(request.query_params) <= {"preview", "revision"}
@@ -451,7 +466,7 @@ body{{padding-block:76px 28px}}
             kind, subject = "owner", principal.id
         else:
             if not guest_available(pub):
-                return page(request, "This publication is unavailable.", 410)
+                return page(request, "This publication is unavailable.", 410, preview_enabled=preview_enabled)
             if pub["access"] == "private":
                 return_to = urlsplit(canonical or stable_url(config.base_url, pub["link_name"])).path
                 login_url = config.base_url + "/login?" + urlencode({"return_to": return_to})
@@ -462,6 +477,7 @@ body{{padding-block:76px 28px}}
                     f"""<a href="{html.escape(login_url, quote=True)}">{text(request, "Sign in")}</a>""",
                     publication=pub,
                     canonical=canonical,
+                    preview_enabled=preview_enabled,
                 )
             if pub["access"] == "link":
                 kind, subject = "anonymous", ""
@@ -504,6 +520,7 @@ body{{padding-block:76px 28px}}
                                     hint=pub.get("password_hint"),
                                     publication=pub,
                                     canonical=canonical,
+                                    preview_enabled=preview_enabled,
                                 )
                             await run_in_threadpool(auth.unlock, viewer, pub)
                         finally:
@@ -515,6 +532,7 @@ body{{padding-block:76px 28px}}
                             hint=pub.get("password_hint"),
                             publication=pub,
                             canonical=canonical,
+                            preview_enabled=preview_enabled,
                         )
                 kind, subject = "guest", viewer
         language, theme = preferences(request)
@@ -568,10 +586,13 @@ body{{padding-block:76px 28px}}
                 details={"intent": intent},
             )
         if not owner and opening_document(request, selected_revision if selected_revision is not None else pub, path):
-            cover = cover_url(config, core, pub, selected_revision, pinned_sequence)
+            cover = (
+                cover_url(config, core, pub, selected_revision, pinned_sequence, link_name=link_name)
+                if preview_enabled else None
+            )
             return opening_page(
                 config, pub, target, language=language, theme=theme,
-                canonical=canonical, cover=cover,
+                canonical=canonical, cover=cover, preview_enabled=preview_enabled,
                 loading_label=messages.get("Loading…", {}).get(language, "Loading…"),
                 open_label=messages.get("Open", {}).get(language, "Open"),
             )
@@ -583,7 +604,10 @@ body{{padding-block:76px 28px}}
             raise PublishError("owner_required", 403)
         return await stable(request, identifier, history_revision=revision_id)
 
-    def password_page(request, raw, *, wrong_password=False, hint=None, publication=None, canonical=None):
+    def password_page(
+        request, raw, *, wrong_password=False, hint=None, publication=None, canonical=None,
+        preview_enabled=True,
+    ):
         csrf = auth.csrf(raw)
         language, _ = preferences(request)
         clue = f'<p id="password-hint" class="password-hint">{html.escape(hint)}</p>' if hint else ""
@@ -603,6 +627,7 @@ body{{padding-block:76px 28px}}
             f"""{clue}<form class="gate-form" method="post"><input type="hidden" name="csrf" value="{csrf}">{error}<div class="gate-field"><label for="material-password">{text(request, "Password")}</label><input id="material-password" name="password" type="password" autocomplete="current-password" maxlength="1024"{described_by}{invalid} required></div><button class="system-action">{text(request, "Open")}</button></form>""",
             publication=publication,
             canonical=canonical,
+            preview_enabled=preview_enabled,
             binary_theme=not request.state.revision_id and not request.state.legacy_host,
             footer=source_footer(
                 config.source_url,
@@ -679,7 +704,7 @@ body{{padding-block:76px 28px}}
         if "~" in identifier:
             identifier, _, sequence = identifier.rpartition("~")
             if not re.fullmatch(r"[1-9][0-9]{0,18}", sequence) or int(sequence) > 9223372036854775807:
-                return page(request, "This publication is unavailable.", 404)
+                return page(request, "This publication is unavailable.", 404, preview_enabled=False)
             return await stable(request, identifier, path, pinned_sequence=int(sequence))
         return await stable(request, identifier, path)
 
@@ -689,11 +714,14 @@ body{{padding-block:76px 28px}}
         revision_id: str,
         request: Request,
         sequence: int | None = Query(default=None, ge=1, le=9223372036854775807),
+        name: str | None = Query(default=None, max_length=128),
     ):
         if request.state.revision_id or request.state.legacy_host:
             raise PublishError("not_found", 404)
         await admit_open(request, "preview-image")
-        image = await run_in_threadpool(public_cover, core, identifier, revision_id, sequence)
+        image = await run_in_threadpool(
+            public_cover, core, identifier, revision_id, sequence, link_name=name
+        )
         return Response(
             image if request.method == "GET" else b"", media_type="image/jpeg",
             headers={

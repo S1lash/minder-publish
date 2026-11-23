@@ -123,11 +123,12 @@ def test_schema_four_downgrade_reupgrade_preserves_material_auth_and_both_counts
     repository = Repository(path)
     repository.initialize()
     with repository.connect(immediate=True) as connection:
-        assert connection.execute("SELECT version FROM core_schema_version").fetchone()[0] == 5
+        assert connection.execute("SELECT version FROM core_schema_version").fetchone()[0] == 6
         assert tuple(connection.execute("SELECT legacy_total,total FROM publication_statistics").fetchone()) == (20, 3)
         connection.execute("INSERT INTO publication_owner_statistics(publication_id,started_at,total) VALUES('example','2026-11-19T00:00:00Z',7)")
         connection.execute("INSERT INTO publication_owner_statistics_daily VALUES('example','2026-11-19',7)")
     with sqlite3.connect(path) as connection:
+        connection.executescript(migrations.joinpath("006_down.sql").read_text())
         connection.executescript(migrations.joinpath("005_down.sql").read_text())
         connection.executescript(migrations.joinpath("004_down.sql").read_text())
     import minder_publish.server.repository as module

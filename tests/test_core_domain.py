@@ -475,7 +475,7 @@ def test_migration_v1_to_current_preserves_publications(core, tmp_path):
     repository.initialize()
     with repository.connect() as conn:
         assert (
-            conn.execute("SELECT version FROM core_schema_version").fetchone()[0] == 5
+            conn.execute("SELECT version FROM core_schema_version").fetchone()[0] == 6
         )
         assert conn.execute("SELECT id FROM publication").fetchone()[0] == "example"
         assert (

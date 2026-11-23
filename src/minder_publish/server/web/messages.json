@@ -2339,11 +2339,11 @@
     "es": "Enlace anterior desactivado.",
     "fr": "Ancien lien désactivé."
   },
-  "Link names": {
-    "en": "Link names",
-    "ru": "Имена ссылок",
-    "es": "Nombres de enlace",
-    "fr": "Noms des liens"
+  "Links": {
+    "en": "Links",
+    "ru": "Ссылки",
+    "es": "Enlaces",
+    "fr": "Liens"
   },
   "Minimum random name length": {
     "en": "Minimum random name length",
@@ -3490,5 +3490,59 @@
     "ru": "HTML и CSS не проверялись",
     "es": "No se comprobó ningún archivo HTML ni CSS",
     "fr": "Aucun fichier HTML ou CSS n’a été vérifié"
+  },
+  "Link previews in chats": {
+    "en": "Link previews in chats",
+    "ru": "Превью ссылок в чатах",
+    "es": "Vistas previas de enlaces en chats",
+    "fr": "Aperçus des liens dans les discussions"
+  },
+  "Applies to current addresses, previous addresses and shared versions that use the instance default. Individual links can override it.": {
+    "en": "Applies to current addresses, previous addresses and shared versions that use the instance default. Individual links can override it.",
+    "ru": "Настройка применяется к текущим и прежним адресам, а также к ссылкам на опубликованные версии, если они используют значение по умолчанию. Для каждой ссылки его можно изменить.",
+    "es": "Se aplica a las direcciones actuales, las anteriores y las versiones compartidas que usan el valor predeterminado de la instancia. Puedes cambiarlo en cada enlace.",
+    "fr": "Ce réglage s’applique aux adresses actuelles, aux anciennes adresses et aux versions partagées qui utilisent le réglage par défaut de l’instance. Chaque lien peut avoir son propre réglage."
+  },
+  "Use instance default (on)": {
+    "en": "Use instance default (on)",
+    "ru": "Как в настройках (вкл.)",
+    "es": "Valor de la instancia (sí)",
+    "fr": "Réglage de l’instance (activé)"
+  },
+  "Use instance default (off)": {
+    "en": "Use instance default (off)",
+    "ru": "Как в настройках (выкл.)",
+    "es": "Valor de la instancia (no)",
+    "fr": "Réglage de l’instance (désactivé)"
+  },
+  "On": {
+    "en": "On",
+    "ru": "Вкл.",
+    "es": "Activadas",
+    "fr": "Activés"
+  },
+  "Off": {
+    "en": "Off",
+    "ru": "Выкл.",
+    "es": "Desactivadas",
+    "fr": "Désactivés"
+  },
+  "Previous address {name}": {
+    "en": "Previous address {name}",
+    "ru": "Прежний адрес {name}",
+    "es": "Dirección anterior {name}",
+    "fr": "Ancienne adresse {name}"
+  },
+  "Link preview setting saved.": {
+    "en": "Link preview setting saved.",
+    "ru": "Настройка превью ссылки сохранена.",
+    "es": "Se guardó la configuración de vista previa del enlace.",
+    "fr": "Le réglage de l’aperçu du lien a été enregistré."
+  },
+  "Keep address setting": {
+    "en": "Keep address setting",
+    "ru": "Сохранить настройку адреса",
+    "es": "Mantener el ajuste de la dirección",
+    "fr": "Conserver le réglage de l’adresse"
   }
 }

@@ -104,16 +104,21 @@ def test_sharing_does_not_copy_after_session_ends_during_refresh():
     if not shutil.which('node'):
         pytest.skip('Node is required for viewer UI checks')
     script = r'''
-import assert from 'node:assert/strict';import {readFileSync} from 'node:fs';import vm from 'node:vm';
-const source=readFileSync(process.argv[2],'utf8').replace('export function mountVersionSharing','function mountVersionSharing');
+import assert from 'node:assert/strict';import {readFileSync} from 'node:fs';import {join} from 'node:path';import vm from 'node:vm';
+const load = (name, context) => vm.runInContext(
+  readFileSync(join(process.argv[2], name), 'utf8').replace(/^import .*;\n/gm, '').replace(/^export /gm, ''),
+  context,
+);
 class N{constructor(){this.events={};this.isConnected=true;this.open=false;this.disabled=false;this.hidden=false;this.dataset={}}addEventListener(k,f){this.events[k]=f}setAttribute(){}removeAttribute(){}close(){this.open=false;this.events.close?.()}remove(){this.isConnected=false}showModal(){this.open=true}focus(){}}
 let dialog,resolveRefresh,writes=[];const session={authenticated:true};let currentSession=session;
 const root=new N();root.contains=()=>true;root.querySelector=()=>null;root.replaceChildren=()=>{};
 const document={body:{append(){}},createElement(){const d=new N(),form=new N(),cancel=new N(),submit=new N(),err=new N();form.elements=[cancel,submit];d.querySelector=s=>({'form':form,'[data-sharing-cancel]':cancel,'[type=submit]':submit,'[role=alert]':err}[s]);d.parts={form,cancel,submit};dialog=d;return d;}};
-const navigator={clipboard:{writeText:async s=>writes.push(s)}};const context={document,navigator,encodeURIComponent};vm.createContext(context);vm.runInContext(source,context);
+const navigator={clipboard:{writeText:async s=>writes.push(s)}};const context=vm.createContext({document,navigator,encodeURIComponent});
+load('preview-policy.js', context);
+load('viewer-sharing.js', context);
 let call;context.mountVersionSharing({root,api:async(u,o)=>{call={u,o};return {version_url:'https://publish.test/p/id~1'}},getMaterial:()=>({id:'id',access:'link'}),getSelected:()=>({revision_id:'rev',sequence:1,available:true,shared:false}),getSession:()=>currentSession,t:x=>x,escape:x=>x,onChanged:()=>new Promise(r=>resolveRefresh=r),onError(){},notify(){}});
 const button={dataset:{versionAction:'share'},closest(){return this}};await root.events.click({target:button});const pending=dialog.parts.form.events.submit({preventDefault(){},currentTarget:dialog.parts.form});await new Promise(resolve=>setImmediate(resolve));assert.equal(call.u,'/publications/id/revisions/rev/sharing');assert.equal(call.o.body.enabled,true);currentSession=null;resolveRefresh();await pending;assert.deepEqual(writes,[]);
 '''
-    result = subprocess.run(['node', '--input-type=module', '-', str(WEB / 'viewer-sharing.js')],
+    result = subprocess.run(['node', '--input-type=module', '-', str(WEB)],
                             input=script, text=True, capture_output=True, timeout=15)
     assert result.returncode == 0, result.stdout + result.stderr

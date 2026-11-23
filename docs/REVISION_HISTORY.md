@@ -22,7 +22,7 @@ governed by the material's access policy. A revision-host document URL without a
 valid reader grant returns to its pinned link; it never substitutes a different
 revision. Existing ordinary reader grants retain their bounded transfer drain.
 
-The sharing flag and revocation epoch live in the revision's schema-3 JSON metadata
+The sharing flag, revocation epoch and pinned address's messenger preview mode live in the revision's JSON metadata
 and are included in backup/restore. Enabling or stopping sharing requires recent
 owner authentication checked inside the write transaction. Restoring files creates
 a new unshared revision; it does not copy an older revision's sharing authorization.
@@ -36,7 +36,8 @@ revisions are not reconstructed or assigned fictional events.
 Available history entries expose their own kind, filename and entry content type.
 The owner viewer uses these to choose the selected version's preview; replacing a
 material with another file type does not reinterpret earlier files. Access and
-preview policies remain those of the current material. Collected entries expose
+document preview policies remain those of the current material. The pinned
+address supplies its own [messenger preview policy](LINK_PREVIEWS.md#preview-controls). Collected entries expose
 null for these file fields.
 
 Settings `history_previous_versions` (default 4, range 0–20),

@@ -10,7 +10,7 @@ from pathlib import Path
 
 from minder_publish.errors import PublishError
 
-SCHEMA_VERSION = 5
+SCHEMA_VERSION = 6
 
 
 def _apply_migration(connection, version, *, direction="up"):
@@ -110,11 +110,20 @@ class Repository:
             raise PublishError("database_not_found", 404)
         with self.connect(immediate=True) as connection:
             versions = [row[0] for row in connection.execute("SELECT version FROM core_schema_version")]
-            if versions not in ([4], [5]):
+            if versions not in ([4], [5], [6]):
                 raise PublishError("unsupported_schema_downgrade", 409, actual=versions, limit=SCHEMA_VERSION)
             if connection.execute("PRAGMA quick_check").fetchone()[0] != "ok" or connection.execute("PRAGMA foreign_key_check").fetchone():
                 raise PublishError("database_integrity_failed", 409)
-            if versions == [5]:
+            if versions == [6]:
+                if connection.execute(
+                    """SELECT 1 FROM publication_link WHERE preview_mode<>'inherit'
+                       UNION ALL SELECT 1 FROM revision WHERE json_extract(data,'$.preview_mode') IN ('on','off')
+                       UNION ALL SELECT 1 FROM core_settings
+                        WHERE json_extract(data,'$.defaults.link_previews')=0 LIMIT 1"""
+                ).fetchone():
+                    raise PublishError("link_preview_policy_prevents_downgrade", 409)
+                _apply_migration(connection, 6, direction="down")
+            if versions[0] >= 5:
                 if connection.execute(
                     "SELECT 1 FROM publication_link WHERE name<>publication_id LIMIT 1"
                 ).fetchone():

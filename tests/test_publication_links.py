@@ -206,6 +206,11 @@ async def test_link_management_requires_current_owner_and_csrf(application, clie
     assert response.json()["data"]["previous_links"][0]["name"] == publication["id"]
     assert (await client.patch(path, json=payload, headers=owner)).status_code == 409
     alias_path = f"{path}/{publication['id']}"
+    assert (await client.patch(alias_path, content=b"malformed", headers=manage)).status_code == 403
+    assert (await client.patch(alias_path, json={"preview_mode": "off"})).status_code == 403
+    edited = await client.patch(alias_path, json={"preview_mode": "off"}, headers=owner)
+    assert edited.status_code == 200
+    assert edited.json()["data"]["previous_links"][0]["preview_mode"] == "off"
     assert (await client.delete(alias_path, headers=manage)).status_code == 403
     response = await client.delete(alias_path, headers=owner)
     assert response.status_code == 200 and not response.json()["data"]["previous_links"]
@@ -223,3 +228,81 @@ async def test_link_management_requires_current_owner_and_csrf(application, clie
     payload.update(name="another-name", expected_name="renamed")
     assert (await client.patch(path, json=payload, headers=owner)).status_code == 401
     assert application.state.core.get_publication(publication["id"])["link_name"] == "renamed"
+
+
+def test_preview_modes_follow_exact_address_and_default(core):
+    original = publish(core, key="original")
+    material_id = original["id"]
+    settings = core.update_settings({"defaults": {"link_previews": False}})
+    assert settings["defaults"]["link_previews"] is False
+    assert core.publication_link(material_id)["preview_default"] is False
+    assert core.get_linked_publication(material_id)["link_preview_enabled"] is False
+    with pytest.raises(PublishError) as failed:
+        core.update_settings({"defaults": {"link_previews": 1}})
+    assert (failed.value.code, failed.value.field) == ("invalid_boolean", "link_previews")
+    with pytest.raises(PublishError) as failed:
+        core.rename_publication_link(material_id, material_id, True, material_id,
+                                     preview_mode=None, authorize=authorized)
+    assert (failed.value.code, failed.value.field) == ("invalid_preview_mode", "preview_mode")
+
+    def rename_with_mode(name, expected, **options):
+        return core.rename_publication_link(material_id, name, True, expected,
+                                            authorize=authorized, **options)
+
+    assert rename_with_mode(material_id, material_id, preview_mode="on")["preview_mode"] == "on"
+    assert core.get_linked_publication(material_id)["link_preview_enabled"] is True
+    inherited = rename_with_mode("new-name", material_id)
+    assert inherited["preview_mode"] == inherited["previous_links"][0]["preview_mode"] == "on"
+    updated = core.set_alias_preview(material_id, material_id, "off", authorize=authorized)
+    assert updated["preview_mode"] == "on"
+    assert updated["previous_links"][0]["preview_mode"] == "off"
+    assert not core.link_preview_enabled(material_id, publication_id=material_id)
+    assert core.link_preview_enabled("new-name", publication_id=material_id)
+    assert not core.link_preview_enabled("new-name", publication_id="another-material")
+    assert not core.link_preview_enabled("missing")
+    core.disable_publication_alias(material_id, material_id, authorize=authorized)
+    with pytest.raises(PublishError, match="publication link not found"):
+        core.set_alias_preview(material_id, material_id, "on", authorize=authorized)
+    reclaimed = rename_with_mode(material_id, "new-name")
+    assert reclaimed["preview_mode"] == "off"
+    assert reclaimed["previous_links"][0]["preview_mode"] == "on"
+    promoted = rename_with_mode("new-name", material_id, preview_mode="inherit")
+    assert promoted["preview_mode"] == "inherit"
+    assert promoted["previous_links"][0]["preview_mode"] == "off"
+    assert not core.link_preview_enabled("new-name")
+    core.update_settings({"defaults": {"link_previews": True}})
+    assert core.link_preview_enabled("new-name")
+    assert not core.link_preview_enabled(material_id)
+
+
+def test_legacy_backup_restores_addresses_with_inherited_previews(instance, tmp_path):
+    config, core, _ = instance
+    original = publish(core, key="original")
+    rename(core, original, "new-name")
+    migrations = files("minder_publish.server").joinpath("migrations/core")
+    with sqlite3.connect(config.db_path) as connection:
+        connection.executescript(migrations.joinpath("006_down.sql").read_text())
+        connection.execute(
+            "UPDATE core_settings SET data=json_remove(data,'$.defaults.link_previews')"
+        )
+    archive = tmp_path / "schema-five.tar"
+    backup(config, archive)
+    target = replace(config, data_dir=tmp_path / "restored", secret="")
+    restore(target, archive)
+    restored = Core(target).initialize()
+    snapshot = restored.publication_link(original["id"])
+    assert snapshot["preview_default"] is True
+    assert snapshot["preview_mode"] == snapshot["previous_links"][0]["preview_mode"] == "inherit"
+    assert restored.link_preview_enabled("new-name")
+    assert restored.link_preview_enabled(original["id"])
+
+
+def test_offline_downgrade_preserves_preview_policy(core):
+    material = publish(core, key="original")
+    material_id = material["id"]
+    core.rename_publication_link(material_id, material_id, True, material_id,
+                                 preview_mode="off", authorize=authorized)
+    with pytest.raises(PublishError) as failed:
+        core.repository.downgrade_owner_statistics(3)
+    assert failed.value.code == "link_preview_policy_prevents_downgrade"
+    assert core.publication_link(material_id)["preview_mode"] == "off"

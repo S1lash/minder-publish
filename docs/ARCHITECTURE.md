@@ -98,8 +98,9 @@ The `publication_link` table owns the public name namespace, with one primary na
 per publication and any deliberately retained addresses. It keeps reservations
 after a name is disabled or its publication is removed. Revisions, grants and
 statistics refer to the unchanged publication ID. The owner rename transaction
-changes the primary and retires or retains the replaced name atomically. Core
-schema 5 registers existing IDs as primary names during migration.
+changes the primary and retires or retains the replaced name atomically. Each
+ordinary address carries its own messenger preview mode. Revision metadata
+owns the mode for pinned addresses. See [Preview controls](LINK_PREVIEWS.md#preview-controls).
 
 ## Agents, OAuth and browser-upload requests
 

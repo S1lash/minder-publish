@@ -342,3 +342,120 @@ async def test_opening_escapes_labels_and_fallback_target(application, client):
     assert '<html lang="en" data-theme="system">' in body
     assert '&lt;Loading &amp; wait&gt;' in body and '&lt;Open&gt;' in body
     assert '<Loading & wait>' not in body and '<Open>' not in body
+
+
+async def test_preview_default_and_explicit_override_for_existing_address(application, client):
+    material, _ = await publish(application, client, access="link")
+    url = material["stable_url"]
+    headers = await sign_in(client)
+    crawler = {"User-Agent": "TelegramBot"}
+    link_api = f"/api/v1/publications/{material['id']}/link"
+    name = material["link_name"]
+
+    assert (await client.get(link_api, headers=headers)).json()["data"]["preview_default"] is True
+    assert "og:image" in Tags((await client.get(url, headers=crawler)).text).meta
+
+    async def set_default(value):
+        response = await client.patch(
+            "/api/v1/settings", headers=headers, json={"defaults": {"link_previews": value}}
+        )
+        assert response.status_code == 200, response.text
+
+    async def set_mode(mode):
+        response = await client.patch(
+            link_api,
+            headers=headers,
+            json={"name": name, "expected_name": name, "keep_previous": False, "preview_mode": mode},
+        )
+        assert response.status_code == 200, response.text
+
+    async def assert_disabled():
+        for method in ("GET", "HEAD"):
+            response = await client.request(method, url, headers=crawler)
+            assert response.status_code == 204 and not response.content
+            assert "set-cookie" not in response.headers and "location" not in response.headers
+            assert response.headers["cache-control"] == "no-store"
+
+    await set_default(False)
+    await assert_disabled()
+    await set_mode("on")
+    assert "og:image" in Tags((await client.get(url, headers=crawler)).text).meta
+    await set_mode("off")
+    await set_default(True)
+    await assert_disabled()
+    await set_mode("inherit")
+    assert "og:image" in Tags((await client.get(url, headers=crawler)).text).meta
+
+
+@pytest.mark.parametrize("access", ["link", "password", "private"])
+async def test_disabled_preview_preserves_ordinary_browser_opening(application, client, access):
+    from browser_navigation import opening_target
+
+    material, _ = await publish(
+        application, client, access=access,
+        password="material-password" if access == "password" else None,
+    )
+    headers = await sign_in(client)
+    settings = await client.patch(
+        "/api/v1/settings", headers=headers, json={"defaults": {"link_previews": False}},
+    )
+    assert settings.status_code == 200, settings.text
+    response = await client.get(
+        material["stable_url"] + "?guest=1", headers={"User-Agent": "UnknownPreviewBot/1.0"},
+        follow_redirects=False,
+    )
+    assert response.status_code == 200
+    assert not any(key and key.startswith(("og:", "twitter:")) for key in Tags(response.text).meta)
+    if access == "link":
+        assert opening_target(response)
+        assert "A result" not in response.text
+    elif access == "password":
+        assert 'type="password"' in response.text
+    else:
+        assert "Owner sign-in" in response.text
+
+
+async def test_cover_policy_follows_the_exact_address(application, client):
+    material, _ = await publish(
+        application, client, access="link", kind="site", filename="site.zip",
+        body=bundle([("index.html", b"<h1>Public site</h1>")]),
+    )
+    revision = material["current_revision"]
+    Image.new("RGB", (640, 360), (199, 23, 45)).save(
+        application.state.core.storage.revision(revision) / "thumbnail.jpg", "JPEG"
+    )
+    headers = await sign_in(client)
+    link_api = f"/api/v1/publications/{material['id']}/link"
+    old_name = material["link_name"]
+    renamed = await client.patch(
+        link_api, headers=headers,
+        json={"name": "current-site", "expected_name": old_name, "keep_previous": True},
+    )
+    assert renamed.status_code == 200, renamed.text
+    current_url = renamed.json()["data"]["stable_url"]
+    old_url = material["stable_url"]
+    sharing = f"/api/v1/publications/{material['id']}/revisions/{revision}/sharing"
+    shared = await client.post(sharing, headers=headers, json={"enabled": True})
+    assert shared.status_code == 200, shared.text
+    version_url = shared.json()["data"]["version_url"]
+
+    async def cover_at(url):
+        response = await client.get(url, headers={"User-Agent": "Slackbot-LinkExpanding"})
+        assert response.status_code == 200
+        return Tags(response.text).meta["og:image"]
+
+    current_cover = await cover_at(current_url)
+    old_cover = await cover_at(old_url)
+    version_cover = await cover_at(version_url)
+    assert len({current_cover, old_cover, version_cover}) == 3
+    assert (await client.head(old_cover)).status_code == 200
+
+    alias_endpoint = f"{link_api}/{old_name}"
+    for endpoint in (alias_endpoint, sharing):
+        disabled = await client.patch(endpoint, headers=headers, json={"preview_mode": "off"})
+        assert disabled.status_code == 200, disabled.text
+    assert (await client.get(old_cover)).status_code == 404
+    assert (await client.get(version_cover)).status_code == 404
+    assert (await client.get(current_cover)).status_code == 200
+    unscoped = f"https://publish.test/__mp/preview/{material['id']}/{revision}.jpg"
+    assert (await client.get(unscoped)).status_code == 404

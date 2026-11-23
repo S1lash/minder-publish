@@ -1,8 +1,11 @@
+import {previewModeOptions, previewPolicyLabel} from './preview-policy.js';
+
 /* Explicit version links preserve material policy and never reserve historical bytes. */
-export function mountVersionSharing({root,api,getMaterial,getSelected,getSession,t,escape,onChanged,onError,notify,showManualCopy}) {
+export function mountVersionSharing({root,api,getMaterial,getSelected,getPreviewDefault,getSession,t,escape,onChanged,onPreviewChanged,onError,notify,showManualCopy}) {
   let modal=null,generation=0,busy=false;
   const label=key=>escape(t(key));
   const current=()=>root.isConnected&&!!getSession()?.authenticated;
+  const sharingPath=(material,revision)=>`/publications/${encodeURIComponent(material.id)}/revisions/${encodeURIComponent(revision.revision_id)}/sharing`;
   function close(){
     generation++;
     if(modal){const previous=modal;modal=null;previous.close();previous.remove();}
@@ -35,7 +38,7 @@ export function mountVersionSharing({root,api,getMaterial,getSelected,getSession
       const form=event.currentTarget,controls=[...form.elements];busy=true;form.setAttribute('aria-busy','true');controls.forEach(control=>{control.disabled=true;});
       let committed=false;
       try{
-        const result=await api(`/publications/${encodeURIComponent(material.id)}/revisions/${encodeURIComponent(revision.revision_id)}/sharing`,{method:'POST',body:{enabled}});committed=true;
+        const result=await api(sharingPath(material,revision),{method:'POST',body:{enabled}});committed=true;
         const visible=active();
         if(current()&&getSession()===owner){
           if(visible)close();
@@ -52,8 +55,40 @@ export function mountVersionSharing({root,api,getMaterial,getSelected,getSession
     const revision=getSelected();
     if(!current()||!revision?.available){root.replaceChildren();root.hidden=true;return;}
     root.hidden=false;
-    root.innerHTML=`<div class="viewer-section-head"><h3>${escape(t('Version {version}',{version:revision.sequence}))}</h3><span class="subtext">${label(revision.shared?'Version link enabled':'Version link off')}</span></div><div class="viewer-quick-actions">${revision.shared?`<button type="button" data-version-action="copy">${label('Copy version link')}</button><button type="button" data-version-action="stop">${label('Stop sharing')}</button>`:`<button type="button" data-version-action="share">${label('Share this version')}</button>`}</div><p class="subtext">${label('Uses the material’s access rules. History cleanup may remove the files; sharing does not keep them forever.')}</p><p class="callout error" data-version-error role="alert" hidden></p>`;
+    root.innerHTML=`<div class="viewer-section-head"><h3>${escape(t('Version {version}',{version:revision.sequence}))}</h3><span class="subtext">${label(revision.shared?'Version link enabled':'Version link off')}</span></div><div class="viewer-quick-actions">${revision.shared?`<button type="button" data-version-action="copy">${label('Copy version link')}</button><button type="button" data-version-action="stop">${label('Stop sharing')}</button>`:`<button type="button" data-version-action="share">${label('Share this version')}</button>`}</div>${revision.shared?`<div class="viewer-version-preview"><label for="viewer-version-preview-mode">${label(previewPolicyLabel)}</label><select id="viewer-version-preview-mode">${previewModeOptions(t,escape,revision.preview_mode,getPreviewDefault())}</select></div>`:''}<p class="subtext">${label('Uses the material’s access rules. History cleanup may remove the files; sharing does not keep them forever.')}</p><p class="callout error" data-version-error role="alert" tabindex="-1" hidden></p>`;
   }
+  root.addEventListener('change',async event=>{
+    const control=event.target.closest('#viewer-version-preview-mode');
+    if(!control||!current()||busy)return;
+    const revision=getSelected(),owner=getSession(),context=generation;
+    if(!revision?.shared||control.value===revision.preview_mode)return;
+    const actions=[...root.querySelectorAll('[data-version-action]')];
+    const alert=root.querySelector('[data-version-error]');
+    busy=true;
+    control.disabled=true;
+    actions.forEach(action=>{action.disabled=true;});
+    alert.hidden=true;
+    const active=()=>current()&&getSession()===owner&&generation===context&&control.isConnected;
+    let failed=false;
+    try{
+      const result=await api(sharingPath(getMaterial(),revision),{method:'PATCH',body:{preview_mode:control.value}});
+      if(current()&&getSession()===owner)onPreviewChanged(result);
+      if(active())notify('Link preview setting saved.');
+    }catch(failure){
+      failed=true;
+      if(active()||failure.status===401&&current()&&getSession()===owner)error(failure);
+    }finally{
+      busy=false;
+      if(control.isConnected){
+        control.innerHTML=previewModeOptions(t,escape,getSelected().preview_mode,getPreviewDefault());
+        control.disabled=false;
+        actions.forEach(action=>{action.disabled=false;});
+      }
+      queueMicrotask(()=>{
+        if(active()&&(failed||document.activeElement===document.body))(failed?alert:control).focus();
+      });
+    }
+  });
   root.addEventListener('click',async event=>{
     const button=event.target.closest('[data-version-action]');if(!button||!root.contains(button)||!current()||busy)return;
     try{if(button.dataset.versionAction==='copy')await copy(getSelected().version_url);else confirm(button.dataset.versionAction==='share');}

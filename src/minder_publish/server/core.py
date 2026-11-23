@@ -188,7 +188,15 @@ class Core:
         row = conn.execute("SELECT data FROM core_settings WHERE id=1").fetchone()
         data = json.loads(row["data"])
         # New defaults apply without rewriting a restored instance on startup.
-        for name in (*_KEY_LENGTH_FIELDS, *self.config.operations["publication_rate_bounds"], "history_previous_versions", "history_retention_days", "history_budget_percent", "owner_counts"):
+        for name in (
+            *_KEY_LENGTH_FIELDS,
+            *self.config.operations["publication_rate_bounds"],
+            "history_previous_versions",
+            "history_retention_days",
+            "history_budget_percent",
+            "owner_counts",
+            "link_previews",
+        ):
             data["defaults"].setdefault(name, self.config.defaults[name])
         return data
 
@@ -233,6 +241,7 @@ class Core:
     def _validate_settings(self, data, *, allow_budget_reduction=False):
         defaults, limits = data["defaults"], data["limits"]
         defaults.setdefault("owner_counts", self.config.defaults["owner_counts"])
+        defaults.setdefault("link_previews", self.config.defaults["link_previews"])
         bounds = self.config.operations["publication_key_bounds"]
         for name, allowed in self.config.operations["publication_rate_bounds"].items():
             _integer(defaults.get(name, self.config.defaults[name]), name, allowed["minimum"], allowed["maximum"])
@@ -276,7 +285,7 @@ class Core:
             if defaults.get(name) not in choices:
                 raise PublishError("invalid_setting", 400, field=name)
         # Password cannot be a create default without a separately supplied password.
-        for field in ("owner_auto_open", "indexing", "guest_counts", "owner_counts"):
+        for field in ("owner_auto_open", "indexing", "guest_counts", "owner_counts", "link_previews"):
             if type(defaults.get(field)) is not bool:
                 raise PublishError("invalid_boolean", 400, field=field)
         for field in ("private_ttl_seconds", "external_ttl_seconds"):
@@ -598,13 +607,50 @@ class Core:
 
     def get_linked_publication(self, name):
         with self.repository.connect() as conn:
-            publication = self._publication(conn, publication_links.resolve(conn, name))
-        return self._decorate(publication)
+            address = publication_links.resolve_address(conn, name)
+            publication = self._publication(conn, address["publication_id"])
+            enabled = self._preview_mode_enabled(conn, address["preview_mode"])
+        return {**self._decorate(publication), "link_preview_enabled": enabled}
+
+    def _preview_mode_enabled(self, connection, mode):
+        return mode == "on" or (
+            mode == "inherit" and self._settings(connection)["defaults"]["link_previews"]
+        )
+
+    def link_preview_enabled(
+        self, name, *, publication_id=None, sequence=None, connection=None
+    ):
+        """Check the named address policy in the caller's database snapshot."""
+        if connection is None:
+            with self.repository.connect() as conn:
+                return self.link_preview_enabled(
+                    name, publication_id=publication_id, sequence=sequence, connection=conn
+                )
+        if sequence is not None:
+            from .history import shared_preview_mode
+
+            if not publication_id or name not in (None, publication_id):
+                return False
+            mode = shared_preview_mode(self, connection, publication_id, sequence)
+        else:
+            try:
+                address = publication_links.resolve_address(connection, name)
+            except PublishError:
+                return False
+            if publication_id is not None and address["publication_id"] != publication_id:
+                return False
+            mode = address["preview_mode"]
+        return self._preview_mode_enabled(connection, mode)
+
+    def _link_snapshot(self, connection, publication):
+        return publication_links.snapshot(
+            connection, publication, self.config.base_url,
+            self._settings(connection)["defaults"]["link_previews"],
+        )
 
     def publication_link(self, publication_id):
         with self.repository.connect() as conn:
-            publication = self._link_publication(conn, publication_id)
-            return publication_links.snapshot(conn, publication, self.config.base_url)
+            return self._link_snapshot(conn, self._link_publication(conn, publication_id))
 
     def _link_publication(self, conn, publication_id):
         publication = self._publication(conn, publication_id)
@@ -612,7 +658,12 @@ class Core:
             raise PublishError("publication_not_found", 404)
         return publication
 
-    def rename_publication_link(self, publication_id, name, keep_previous, expected_name, *, authorize):
+    def rename_publication_link(
+        self, publication_id, name, keep_previous, expected_name, *,
+        authorize, preview_mode=publication_links.UNCHANGED,
+    ):
+        if preview_mode is not publication_links.UNCHANGED:
+            publication_links.validate_preview_mode(preview_mode)
         try:
             safe_id(expected_name)
         except PublishError as exc:
@@ -627,9 +678,14 @@ class Core:
             if publication["link_name"] != expected_name:
                 raise PublishError("publication_link_changed", 409, field="expected_name")
             if name == expected_name:
-                return publication_links.snapshot(conn, publication, self.config.base_url)
+                if preview_mode is not publication_links.UNCHANGED:
+                    conn.execute(
+                        "UPDATE publication_link SET preview_mode=? WHERE name=?",
+                        (preview_mode, name),
+                    )
+                return self._link_snapshot(conn, publication)
             reserved = conn.execute(
-                "SELECT publication_id FROM publication_link WHERE name=?",
+                "SELECT publication_id,preview_mode FROM publication_link WHERE name=?",
                 (name,),
             ).fetchone()
             if reserved is None:
@@ -643,6 +699,10 @@ class Core:
                 reserved is None and publication_links.occupied(conn, name)
             ):
                 raise PublishError("publication_exists", 409, field="name")
+            if preview_mode is publication_links.UNCHANGED:
+                preview_mode = (
+                    reserved if reserved is not None else publication_links.resolve_address(conn, expected_name)
+                )["preview_mode"]
             timestamp = iso(now())
             conn.execute(
                 "UPDATE publication_link SET is_primary=0,retired_at=?,changed_at=? WHERE name=?",
@@ -650,15 +710,30 @@ class Core:
             )
             if reserved:
                 conn.execute(
-                    "UPDATE publication_link SET is_primary=1,retired_at=NULL,changed_at=? WHERE name=?",
-                    (timestamp, name),
+                    "UPDATE publication_link SET is_primary=1,retired_at=NULL,changed_at=?,preview_mode=? WHERE name=?",
+                    (timestamp, preview_mode, name),
                 )
             else:
-                publication_links.add_primary(conn, name, publication_id, timestamp)
+                publication_links.add_primary(conn, name, publication_id, timestamp, preview_mode)
             publication["link_name"] = name
             publication["metadata_version"] = publication.get("metadata_version", 1) + 1
             self._save_publication(conn, publication)
-            return publication_links.snapshot(conn, publication, self.config.base_url)
+            return self._link_snapshot(conn, publication)
+
+    def set_alias_preview(self, publication_id, name, preview_mode, *, authorize):
+        safe_id(name)
+        publication_links.validate_preview_mode(preview_mode)
+        with self.repository.connect(immediate=True) as conn:
+            authorize(conn)
+            publication = self._link_publication(conn, publication_id)
+            changed = conn.execute(
+                """UPDATE publication_link SET preview_mode=?
+                   WHERE name=? AND publication_id=? AND is_primary=0 AND retired_at IS NULL""",
+                (preview_mode, name, publication_id),
+            ).rowcount
+            if not changed:
+                raise PublishError("publication_link_not_found", 404)
+            return self._link_snapshot(conn, publication)
 
     def disable_publication_alias(self, publication_id, name, *, authorize):
         safe_id(name)
@@ -673,7 +748,7 @@ class Core:
             ).rowcount
             if not changed:
                 raise PublishError("publication_link_not_found", 404)
-            return publication_links.snapshot(conn, publication, self.config.base_url)
+            return self._link_snapshot(conn, publication)
 
     def list_publications(
         self, query="", kind=None, status=None, offset=0, limit=50, *, states=None
@@ -1847,6 +1922,13 @@ class Core:
         from .history import set_sharing
 
         return set_sharing(self, publication_id, revision_id, enabled, authorize=authorize)
+
+    def set_revision_preview(self, publication_id, revision_id, preview_mode, *, authorize):
+        from .history import set_sharing
+
+        return set_sharing(
+            self, publication_id, revision_id, authorize=authorize, preview_mode=preview_mode
+        )
 
     def restore_revision(self, publication_id, revision_id, expected_revision, subject, *, authorize=None):
         from .history import restore_revision

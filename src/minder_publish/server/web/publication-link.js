@@ -1,4 +1,5 @@
 import {copyResolvedLink} from './link-copy.js';
+import {previewModeOptions, previewPolicyLabel} from './preview-policy.js';
 
 export const linkEndpoint = id => `/publications/${encodeURIComponent(id)}/link`;
 
@@ -46,6 +47,14 @@ export function mountPublicationLink({api, getSession, t, escape, onError, error
               <label class="checkbox-label"><input type="checkbox" name="keep_previous" aria-describedby="publication-link-effect"><span>${label('Keep previous address active')}</span></label>
               <p id="publication-link-effect" class="subtext" aria-live="polite"></p>
             </div>
+            <details class="publication-preview-settings">
+              <summary>${label(previewPolicyLabel)}</summary>
+              <div class="publication-preview-fields">
+                <label data-preview-mode-label for="publication-preview-mode"></label>
+                <select id="publication-preview-mode" name="preview_mode"></select>
+                <div data-preview-aliases></div>
+              </div>
+            </details>
             <section data-link-history hidden aria-labelledby="publication-link-history-title">
               <h3 id="publication-link-history-title">${label('Previous links')}</h3>
               <ul class="publication-link-history"></ul>
@@ -65,6 +74,10 @@ export function mountPublicationLink({api, getSession, t, escape, onError, error
     const form = element('form');
     const input = form.elements.name;
     const keep = form.elements.keep_previous;
+    const previewSettings = element('.publication-preview-settings');
+    const mode = form.elements.preview_mode;
+    const modeLabel = element('[data-preview-mode-label]');
+    const aliases = element('[data-preview-aliases]');
     const save = element('[type=submit]');
     const copy = element('[data-link-copy]');
     const dismiss = element('[data-link-close]');
@@ -72,12 +85,27 @@ export function mountPublicationLink({api, getSession, t, escape, onError, error
     const status = element('[data-link-status]');
     const path = linkEndpoint(id);
     const active = () => modal === dialog && dialog.open && source.isConnected && (!parent || parent.open) && getSession() === session;
-    let snapshot, busy = false, mayClose = true, previousToDisable, saved = false;
+    let snapshot, busy = false, mayClose = true, previousToDisable, saved = false, previewEdit, modeOptions;
     const validName = () => input.value === snapshot?.id || /^[a-z0-9][a-z0-9-]{1,63}$/u.test(input.value);
+
+    function renderMode() {
+      const renaming = input.value !== snapshot.link_name;
+      const selected = previewEdit ?? (renaming ? '' : snapshot.preview_mode);
+      const options = previewModeOptions(t, escape, selected, snapshot.preview_default, {renaming});
+      const name = t(renaming ? 'New address' : 'Current address');
+      if (modeLabel.textContent !== name) modeLabel.textContent = name;
+      if (modeOptions !== options) {
+        mode.innerHTML = options;
+        modeOptions = options;
+      }
+      mode.value = selected;
+    }
 
     function renderDraft() {
       if (!snapshot) return;
-      save.disabled = busy || input.value === snapshot.link_name;
+      save.disabled = busy || input.value === snapshot.link_name && previewEdit === undefined;
+      mode.disabled = busy || !validName();
+      renderMode();
       const isCurrent = input.value === snapshot.link_name;
       const preview = element('[data-link-preview]');
       preview.textContent = validName() ? materialLink(snapshot.stable_url, input.value) : '—';
@@ -103,16 +131,30 @@ export function mountPublicationLink({api, getSession, t, escape, onError, error
           </div>` : `<button type="button" data-link-disable="${escape(name)}" aria-label="${escape(t('Disable {name}', {name}))}">${label('Disable link')}</button>`}</li>`).join('');
     }
 
+    function renderAliasModes() {
+      aliases.innerHTML = snapshot.previous_links.map(({name, preview_mode: previewMode}, index) => `
+        <div class="publication-preview-alias">
+          <label for="publication-preview-alias-${index}">${escape(t('Previous address {name}', {name}))}</label>
+          <select id="publication-preview-alias-${index}" data-preview-alias="${escape(name)}">
+            ${previewModeOptions(t, escape, previewMode, snapshot.preview_default)}
+          </select>
+        </div>`).join('');
+    }
+
     function setSnapshot(value, updateDraft) {
       snapshot = value;
       element('[data-link-loading]').hidden = true;
       element('.publication-link-fields').hidden = false;
       element('[data-link-address]').textContent = materialLink(snapshot.stable_url);
       element('[data-link-prefix]').textContent = new URL(snapshot.stable_url, location.href).origin + '/p/';
-      if (updateDraft) input.value = snapshot.link_name;
+      if (updateDraft) {
+        input.value = snapshot.link_name;
+        previewEdit = undefined;
+      }
       onUpdate(snapshot);
       renderDraft();
       renderHistory();
+      renderAliasModes();
     }
 
     function failure(problem, message) {
@@ -150,7 +192,7 @@ export function mountPublicationLink({api, getSession, t, escape, onError, error
         controls.forEach((control, index) => { control.disabled = disabled[index]; });
         if (active()) {
           renderDraft();
-          focus?.focus();
+          if (focus) queueMicrotask(() => { if (active()) focus.focus(); });
         }
       }
     }
@@ -162,11 +204,29 @@ export function mountPublicationLink({api, getSession, t, escape, onError, error
 
     dismiss.addEventListener('click', dismissEditor);
     dialog.addEventListener('cancel', event => { event.preventDefault(); if (mayClose) dismissEditor(); });
-    input.addEventListener('input', () => { error.hidden = true; status.hidden = true; input.removeAttribute('aria-invalid'); renderDraft(); });
+    input.addEventListener('input', () => {
+      error.hidden = true;
+      status.hidden = true;
+      input.removeAttribute('aria-invalid');
+      previewEdit = undefined;
+      renderDraft();
+    });
+    previewSettings.addEventListener('toggle', () => {
+      if (previewSettings.open && active()) {
+        mode.parentElement.scrollIntoView({block: 'nearest'});
+      }
+    });
+    mode.addEventListener('change', () => {
+      error.hidden = true;
+      status.hidden = true;
+      const original = input.value === snapshot.link_name ? snapshot.preview_mode : '';
+      previewEdit = mode.value === original ? undefined : mode.value;
+      renderDraft();
+    });
     keep.addEventListener('change', renderDraft);
     form.addEventListener('submit', event => {
       event.preventDefault();
-      if (!active() || busy || !snapshot || input.value === snapshot.link_name) return;
+      if (!active() || busy || !snapshot || save.disabled) return;
       if (!validName()) {
         failure({}, t('Use 2–64 lowercase letters, digits or dashes. Start with a letter or digit.'));
         input.setAttribute('aria-invalid', 'true');
@@ -175,15 +235,18 @@ export function mountPublicationLink({api, getSession, t, escape, onError, error
       }
       void run(async () => {
         try {
-          const value = await api(path, {method: 'PATCH', body: {name: input.value, keep_previous: keep.checked, expected_name: snapshot.link_name}});
+          const renamed = input.value !== snapshot.link_name;
+          const body = {name: input.value, keep_previous: keep.checked, expected_name: snapshot.link_name};
+          if (previewEdit !== undefined) body.preview_mode = previewEdit;
+          const value = await api(path, {method: 'PATCH', body});
           if (!active()) return;
-          saved = true;
+          saved ||= renamed;
           keep.checked = false;
           previousToDisable = undefined;
           setSnapshot(value, true);
-          status.textContent = t('Link saved.');
+          status.textContent = t(renamed ? 'Link saved.' : 'Link preview setting saved.');
           status.hidden = false;
-          return copy;
+          return renamed ? copy : mode;
         } catch (problem) {
           const code = problem.code || problem.problem?.code;
           if (code === 'reserved_key') {
@@ -194,6 +257,7 @@ export function mountPublicationLink({api, getSession, t, escape, onError, error
           if (!['publication_link_changed', 'publication_exists'].includes(code)) throw problem;
           const latest = await api(path);
           if (!active()) return;
+          if (code === 'publication_link_changed') previewEdit = undefined;
           setSnapshot(latest, false);
           if (code === 'publication_exists') {
             failure(problem, t('This link name is already in use.'));
@@ -202,6 +266,34 @@ export function mountPublicationLink({api, getSession, t, escape, onError, error
           }
           failure(problem, t('The current address changed. Review it before saving again.'));
         }
+      });
+    });
+    aliases.addEventListener('change', event => {
+      const control = event.target.closest('[data-preview-alias]');
+      if (!control || !active() || busy) return;
+      const name = control.dataset.previewAlias;
+      const original = snapshot.previous_links.find(link => link.name === name).preview_mode;
+      const preview_mode = control.value;
+      if (preview_mode === original) return;
+      void run(async () => {
+        let value;
+        try {
+          value = await api(`${path}/${encodeURIComponent(name)}`, {method: 'PATCH', body: {preview_mode}});
+        } catch (problem) {
+          if (!active()) return;
+          if ((problem.code || problem.problem?.code) === 'publication_link_not_found') {
+            const latest = await api(path);
+            if (active()) setSnapshot(latest, false);
+          } else {
+            control.value = original;
+          }
+          throw problem;
+        }
+        if (!active()) return;
+        setSnapshot(value, false);
+        status.textContent = t('Link preview setting saved.');
+        status.hidden = false;
+        return [...aliases.querySelectorAll('select')].find(select => select.dataset.previewAlias === name);
       });
     });
     element('[data-link-history]').addEventListener('click', event => {

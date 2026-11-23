@@ -154,3 +154,37 @@ async def test_shared_historical_guest_opening_counts_but_probe_does_not(applica
     stats = await client.get(f"/api/v1/publications/{old['id']}/statistics", headers=owner)
     assert stats.status_code == 200
     assert stats.json()['data']['total'] == 1
+
+
+async def test_pinned_preview_mode_survives_resharing_and_is_independent(application, client):
+    material, bearer = await upload_site(application, client, entry='index.html', html='current')
+    material_id = material['id']
+    revisions = f'/api/v1/publications/{material_id}/revisions'
+    sharing = f"{revisions}/{material['current_revision']}/sharing"
+    patch = {'preview_mode': 'off'}
+    owner = await sign_in(client)
+    assert (await client.patch(sharing, json=patch)).status_code == 403
+    assert (await client.patch(sharing, content=b'malformed', headers=bearer)).status_code == 403
+    assert (await client.patch(sharing, json=patch, headers=owner)).status_code == 409
+
+    enabled = await client.post(sharing, json={'enabled': True}, headers=owner)
+    assert enabled.json()['data']['preview_mode'] == 'inherit'
+    core = application.state.core
+    assert core.link_preview_enabled(None, publication_id=material_id, sequence=1)
+    assert (await client.patch(sharing, json={'preview_mode': 'invalid'}, headers=owner)).status_code == 400
+    updated = await client.patch(sharing, json=patch, headers=owner)
+    assert updated.json()['data']['preview_mode'] == 'off'
+    assert not core.link_preview_enabled(None, publication_id=material_id, sequence=1)
+    assert core.link_preview_enabled(material_id)
+
+    assert (await client.post(sharing, json={'enabled': False}, headers=owner)).status_code == 200
+    assert (await client.post(sharing, json={'enabled': True}, headers=owner)).json()['data']['preview_mode'] == 'off'
+    assert not core.link_preview_enabled(None, publication_id=material_id, sequence=1)
+    history = (await client.get(revisions, headers=owner)).json()['data']
+    assert history['preview_default'] is True
+    assert history['items'][0]['preview_mode'] == 'off'
+    revision = material['current_revision']
+    restored = await client.post(f'{revisions}/{revision}/restore', json={'expected_revision': revision}, headers=owner)
+    assert restored.status_code == 200, restored.text
+    history = (await client.get(revisions, headers=owner)).json()['data']
+    assert [(item['preview_mode'], item['shared']) for item in history['items']] == [('inherit', False), ('off', True)]

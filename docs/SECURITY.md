@@ -173,12 +173,14 @@ The navigation intent, handoff and reader stores reserve additional capacity for
 requests authorized by an owner session. Password viewer grants use the guest policy.
 Neither limiter prevents a distributed denial of service.
 
-Link-preview crawlers receive title/summary only for guest-accessible link
-materials. Owner sessions and previous guest unlocks do not expand this metadata.
+Enabled link-preview cards disclose title and summary only for guest-accessible
+link materials. Owner sessions and previous guest unlocks do not expand this metadata.
 Other existing records show the brand and a generic access/status caption, without
 the saved title, summary, filename, hint or content. The
 generic image is a public packaged PNG. A public site's preview can use its selected
-revision's sanitized raster cover through a separately authorized image route.
+revision's sanitized raster cover through an image route scoped to its ordinary
+name or pinned sequence. Turning cards off denies future cover fetches for
+that address. See [preview controls](LINK_PREVIEWS.md#preview-controls).
 Escaped metadata comes from the publication record, not uploaded HTML. Making a public link private
 stops future public metadata delivery; it cannot retract cards already cached by
 Slack, Telegram or another recipient.

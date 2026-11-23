@@ -100,7 +100,7 @@ def card_text(publication=None, *, gate=False):
     return _GENERIC_CARD
 
 
-def cover_url(config, core, publication, revision=None, sequence=None):
+def cover_url(config, core, publication, revision=None, sequence=None, *, link_name=None):
     selected = revision if revision is not None else publication
     if not public_metadata(publication) or selected["kind"] != "site":
         return None
@@ -112,7 +112,9 @@ def cover_url(config, core, publication, revision=None, sequence=None):
     identifier = quote(publication["id"], safe="")
     url = f"{config.base_url}/__mp/preview/{identifier}/{revision_id}.jpg"
     query = f"?v=2-{_ASSET_VERSIONS[_TOUCH_ICON]}"
-    return url + query + (f"&sequence={sequence}" if sequence is not None else "")
+    if sequence is not None:
+        return url + query + f"&sequence={sequence}"
+    return url + query + f"&name={quote(link_name, safe='')}" if link_name is not None else None
 
 
 @lru_cache(maxsize=16)
@@ -136,11 +138,17 @@ def _compose_cover(thumbnail):
     return output.getvalue()
 
 
-def public_cover(core, identifier, revision_id, sequence):
+def public_cover(core, identifier, revision_id, sequence, *, link_name=None):
     unavailable = PublishError("thumbnail_not_found", 404)
+    if (link_name is None) == (sequence is None):
+        raise unavailable
     maximum = core.config.thumbnails["output_bytes"]
     # Bound the read and serialize it with retention and access transitions.
     with core.repository.connect(immediate=True) as connection:
+        if not core.link_preview_enabled(
+            link_name, publication_id=identifier, sequence=sequence, connection=connection
+        ):
+            raise unavailable
         publication = core._publication(connection, identifier)
         if not public_metadata(publication):
             raise unavailable
@@ -177,12 +185,15 @@ def public_cover(core, identifier, revision_id, sequence):
         raise unavailable from None
 
 
-def metadata(config, publication=None, *, gate=False, canonical=None, cover=None):
-    title, description = card_text(publication, gate=gate)
+def metadata(config, publication=None, *, gate=False, canonical=None, cover=None, enabled=True):
     if canonical is None:
         canonical = config.base_url
         if publication:
             canonical = stable_url(config.base_url, publication["link_name"])
+    links = [f'<link rel="canonical" href="{_attribute(canonical)}">', favicon_links(config)]
+    if not enabled:
+        return "\n".join(links)
+    title, description = card_text(publication, gate=gate)
     cover = cover if not gate and public_metadata(publication) else None
     image = cover or _asset_url(config, _PREVIEW_ASSET)
     width, height = _CARD_SIZE
@@ -213,9 +224,7 @@ def metadata(config, publication=None, *, gate=False, canonical=None, cover=None
             "twitter:image:alt": image_alt,
         }.items()
     )
-    tags.append(f'<link rel="canonical" href="{_attribute(canonical)}">')
-    tags.append(favicon_links(config))
-    return "\n".join(tags)
+    return "\n".join(tags + links)
 
 
 def preview_page(config, publication, *, canonical=None, cover=None):
@@ -241,16 +250,16 @@ def preview_page(config, publication, *, canonical=None, cover=None):
 def opening_page(
     config, publication, target, *, language="en", theme="system",
     loading_label="Loading…", open_label="Open",
-    canonical=None, cover=None,
+    canonical=None, cover=None, preview_enabled=True,
 ):
     """Expose cards before cookie-bound navigation, including to unknown crawlers."""
     language = language if language in ("en", "ru", "es", "fr") else "en"
     theme = theme if theme in ("system", "light", "dark") else "system"
-    title, _ = card_text(publication)
+    title = card_text(publication)[0] if preview_enabled else f"{open_label} · {_BRAND}"
     return HTMLResponse(
         f'<!doctype html><html lang="{language}" data-theme="{theme}"><head><meta charset="utf-8">'
         '<meta name="viewport" content="width=device-width,initial-scale=1">'
-        + metadata(config, publication, canonical=canonical, cover=cover)
+        + metadata(config, publication, canonical=canonical, cover=cover, enabled=preview_enabled)
         + f'<meta http-equiv="refresh" content="2;url={_attribute(target)}">'
         + f'<title>{html.escape(title)}</title>'
         + f'<style>{_OPENING_STYLES}</style>'

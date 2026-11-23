@@ -111,3 +111,29 @@ check('https://publish.test/p/old?preview=tools#heading', null, null);
         timeout=15,
     )
     assert result.returncode == 0, result.stderr
+
+
+@pytest.mark.skipif(not shutil.which("node"), reason="Node is required for link UI checks")
+def test_preview_selector_distinguishes_inheritance_and_keeping_destination_policy():
+    result = subprocess.run(
+        ["node", "--input-type=module", "-", str(WEB / "preview-policy.js")],
+        input=r"""
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+const source = readFileSync(process.argv[2], 'utf8');
+const {previewModeOptions} = await import('data:text/javascript;base64,' + Buffer.from(source).toString('base64'));
+const identity = value => value;
+const options = (mode, enabled, settings) => previewModeOptions(identity, identity, mode, enabled, settings);
+assert.match(options('inherit', true), /value="inherit" selected>Use instance default \(on\)/);
+assert.match(options('inherit', false), /value="inherit" selected>Use instance default \(off\)/);
+assert.match(options('on', false), /value="on" selected>On/);
+assert.match(options('off', true), /value="off" selected>Off/);
+assert.doesNotMatch(options('off', true), /Keep address setting/);
+assert.match(options('', true, {renaming: true}), /^<option value="" selected>Keep address setting/);
+assert.match(options('inherit', true, {renaming: true}), /value="inherit" selected>/);
+""",
+        capture_output=True,
+        text=True,
+        timeout=15,
+    )
+    assert result.returncode == 0, result.stderr
